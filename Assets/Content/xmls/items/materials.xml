@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+    <LithiumMonoxide identifier="LithiumMonoxide" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" Tags="smallitem,chem,poison" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True" >
+        <PreferredContainer secondary="wrecktoxcab,abandonedtoxcab" spawnprobability="0.5" />
+        <PreferredContainer primary="toxcab" secondary="toxcontainer"/>
+        <Price baseprice="80">
+          <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.25" />
+          <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="2"  />
+          <Price storeidentifier="merchantresearch" multiplier="0.9" minavailable="4" />
+          <Price storeidentifier="merchantmilitary" sold="false" multiplier="1.1"/>
+          <Price storeidentifier="merchantmine" multiplier="1.125" minavailable="1"/>
+          <Price storeidentifier="merchantarmory" sold="false" multiplier="0.9" />
+        </Price>
+        <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sheetindex="2,4" sheetelementsize="64,64" origin="0.5,0.5" />
+        <Sprite texture="Content/Items/Materials/CraftingElements1.png" sourcerect="150,176,23,42" depth="0.55" origin="0.5,0.5" />
+        <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
+        <Fabricate suitablefabricators="fabricator" requiredtime="30" >
+          <RequiredSkill identifier="medical" level="70" />
+          <RequiredItem identifier="lithium" amount="2"/>
+          <RequiredItem identifier="liquidoxygenite" amount="1"/>
+          <RequiredItem identifier="rubber" />
+        </Fabricate>
+        <Deconstruct time="10">
+            <Item identifier="rubber" />
+            <Item identifier="Lithium" />
+            <!-- might want to add a probablity of getting liquid oxygenite-->
+        </Deconstruct>
+        <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" holdangle="30" aimable="false" msg="ItemMsgPickUpSelect">
+          <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true">
+            <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+          </StatusEffect>
+          <StatusEffect type="OnUse" target="UseTarget" duration="5.0">
+            <Affliction identifier="acidburn" amount="3" />
+            <Affliction identifier="oxygenlow" amount="5" />
+          </StatusEffect>
+          <StatusEffect type="OnBroken" target="This">
+            <Remove />
+          </StatusEffect>
+        </Holdable>
+    </LithiumMonoxide>
+
+    <enzyme identifier="enzyme" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" useinhealthinterface="false" scale="0.5" impactsoundtag="impact_metal_light">
+      <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="1" maxamount="2" spawnprobability="0.5" />
+      <PreferredContainer primary="medfabcab" secondary="medcontainer"/>
+      <Price baseprice="80" minavailable="4">
+        <Price storeidentifier="merchantoutpost" sold="false" />
+        <Price storeidentifier="merchantcity" multiplier="1.2" />
+        <Price storeidentifier="merchantresearch" multiplier="0.9" />
+        <Price storeidentifier="merchantmilitary" multiplier="1.5" />
+        <Price storeidentifier="merchantmine" sold="false" />
+      </Price>
+      <Fabricate suitablefabricators="medicalfabricator" requiredtime="15" >
+        <RequiredSkill identifier="medical" level="20" />
+        <RequiredItem identifier="carbon" amount="2" />
+        <RequiredItem identifier="ethanol" amount="1" />
+        <RequiredItem identifier="zinc" amount="1" />
+      </Fabricate>
+      <Deconstruct time="15">
+        <Item identifier="zinc" amount="1" />
+      </Deconstruct>
+      <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+        <!-- Remove the item when fully used -->
+        <StatusEffect type="OnBroken" target="This">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sheetindex="1,7" sheetelementsize="64,64" origin="0.5,0.5" />
+      <Sprite texture="Content/Items/InventoryIconAtlas.png" sheetindex="1,7" sheetelementsize="64,64" origin="0.5,0.5" depth="0.55"/>
+      <Body width="35" height="65" density="10.2" waterdragcoefficient="1"/>
+    </enzyme>
+
+    <RawBlood identifier="raw_empty" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" >
+      <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
+      <PreferredContainer primary="medfabcab" secondary="medcontainer" />
+      <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
+      <PreferredContainer secondary="outpostmedcompartment" minamount="0" maxamount="2" spawnprobability="0.1" />
+      <InventoryIcon texture="%ModDir%/Images/BloodPackAtlas.png" sheetindex="3,0" sheetelementsize="64,85" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Images/BloodPackAtlas.png" sheetindex="3,0" sheetelementsize="64,85" origin="0.5,0.5" depth="0.6" />
+      <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
+      <Fabricate suitablefabricators="fabricator" requiredtime="15" >
+        <RequiredSkill identifier="medical" level="10" />
+        <RequiredSkill identifier="mechanical" level="10" />
+        <RequiredItem identifier="plastic" amount="1" />
+        <RequiredItem identifier="rubber" amount="2" />
+      </Fabricate>
+      <Deconstruct time="15">
+        <RequiredItem identifier="rubber" amount="1" />
+      </Deconstruct>
+      <Price baseprice="100">
+        <Price storeidentifier="merchantmedical" multiplier="1.1" />
+        <Price storeidentifier="merchantresearch" multiplier="1.0" />
+        <Price storeidentifier="merchantmilitary" multiplier="1.1" />
+      </Price>
+      <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      </Holdable>
+    </RawBlood>
+
+    <Organ identifier="lung" category="Medical" maxstacksize="1" cargocontaineridentifier="mediccrate" Tags="smallitem,organ" useinhealthinterface="false" scale="0.5" impactsoundtag="impact_soft" >
+      <PreferredContainer primary="medcab" secondary="medcontainer" />
+      <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="4,3" sheetelementsize="64,64" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="2,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
+      <Body width="65" height="40" density="50" />
+      <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="Always" target="This" Condition="-0.5" stackable="false" >
+          <Conditional HasStatusTag="! freezed" targetcontainer="true" />
+        </StatusEffect>
+        <StatusEffect type="OnFire" target="This" Condition="-2.5" />
+        <StatusEffect type="InWater" target="This" Condition="-5" />
+        <StatusEffect type="OnImpact" target="This" Condition="-20" />
+        <StatusEffect type="OnNotContained" target="NearbyCharacters" range="300">
+          <Affliction identifier="nausea" amount="0.2" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+
+    </Organ>
+
+    <Organ identifier="liver" category="Medical" maxstacksize="1" cargocontaineridentifier="mediccrate" Tags="smallitem,organ" useinhealthinterface="false" scale="0.5" impactsoundtag="impact_soft" >
+      <PreferredContainer primary="medcab" secondary="medcontainer" />
+      <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="3,3" sheetelementsize="64,64" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="1,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
+      <Body width="65" height="40" density="50" />
+      <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="Always" target="This" Condition="-0.5" stackable="false" >
+          <Conditional HasStatusTag="! freezed" targetcontainer="true" />
+        </StatusEffect>
+        <StatusEffect type="OnFire" target="This" Condition="-2.5" />
+        <StatusEffect type="InWater" target="This" Condition="-5" />
+        <StatusEffect type="OnImpact" target="This" Condition="-20" />
+        <StatusEffect type="OnNotContained" target="NearbyCharacters" range="300">
+          <Affliction identifier="nausea" amount="0.2" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+
+    </Organ>
+
+    <Organ identifier="heart" category="Medical" maxstacksize="1" cargocontaineridentifier="mediccrate" Tags="smallitem,organ" useinhealthinterface="false" scale="0.5" impactsoundtag="impact_soft" >
+      <PreferredContainer primary="medcab" secondary="medcontainer" />
+      <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="5,3" sheetelementsize="64,64" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="3,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
+      <Body width="65" height="40" density="50" />
+      <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="Always" target="This" Condition="-0.5" stackable="false" >
+          <Conditional HasStatusTag="! freezed" targetcontainer="true" />
+        </StatusEffect>
+        <StatusEffect type="OnFire" target="This" Condition="-2.5" />
+        <StatusEffect type="InWater" target="This" Condition="-5" />
+        <StatusEffect type="OnImpact" target="This" Condition="-20" />
+        <StatusEffect type="OnNotContained" target="NearbyCharacters" range="300">
+          <Affliction identifier="nausea" amount="0.2" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+
+    </Organ>
+
+    <Item identifier="sulture" category="Material" maxstacksize="8" Tags="smallitem" canbepicked="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_soft">
+      <PreferredContainer secondary="wreckstorage,abandonedstoragecab" minamount="1" maxamount="2" spawnprobability="0.05" />
+      <PreferredContainer primary="medfabcab" />
+      <Price baseprice="30">
+        <Price storeidentifier="merchantoutpost" multiplier="1.3" minavailable="4" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="8" />
+        <Price storeidentifier="merchantresearch" minavailable="7" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="3" />
+        <Price storeidentifier="merchantmine" multiplier="0.9" minavailable="2" />
+      </Price>
+      <Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2">
+        <RequiredSkill identifier="medical" level="10" />
+        <RequiredSkill identifier="mechanical" level="20" />
+        <RequiredItem identifier="organicfiber" amount="2" />
+        <RequiredItem identifier="elastin" amount="1" />
+      </Fabricate>
+      <Deconstruct time="15">
+        <Item identifier="organicfiber" amount="1" />
+      </Deconstruct>
+      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="64,768,64,64" />
+      <Sprite texture="Content/Items/Materials/minerals.png" sourcerect="178,8,42,45" depth="0.55" origin="0.5,0.5" />
+      <Body width="45" height="45" density="12" />
+      <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0">
+        <!-- Remove the item when fully used -->
+        <StatusEffect type="OnBroken" target="This">
+          <Remove />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+  
+</Items>

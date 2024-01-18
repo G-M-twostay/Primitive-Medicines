@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+    <!-- overrides(ends with .mod)-->
+    <entitydescription.deusizine.mod>An opiate made using exotic materials on Europa. It lasts way longer than its earthly counterparts, and, strangely enough, causes no addiction.</entitydescription.deusizine.mod>
+    
+    <entitydescription.combatstimulantsyringe.mod>A highly advanced stimulant that's capable of completely block the sense of pain.</entitydescription.combatstimulantsyringe.mod>
+    
+    <entitydescription.antibiotics.mod>A mild antibiotic that acts against a wide range of disease-causing bacteria, though with the side effect of minor organ damage. Used as an ingredient in many medical compounds. More effective against internal infection.</entitydescription.antibiotics.mod>
+    
+    <entitydescription.antibloodloss1.mod>A sodium chloride infusion mimicking the fluids in human body.</entitydescription.antibloodloss1.mod>
+
+    <entitydescription.antibloodloss2.mod>Pack of substances that act like Blood Plasma. Mildly useful in the treatment of blood loss.</entitydescription.antibloodloss2.mod>
+    
+    <entityname.lithiummonoxide>Lithium Monoxide</entityname.lithiummonoxide>
+    <entitydescription.lithiummonoxide>An extremely basic substance discovered on earth but was only able to be mass produced on Europa.</entitydescription.lithiummonoxide>
+
+    <entityname.pacifiedhusk>Innocuous Velonaceps Calyx</entityname.pacifiedhusk>
+    <entitydescription.pacifiedhusk>A specialized anti-bacteria drug made by carefully conditioned Velonaceps Calyx. Must be applied by experienced medics.</entitydescription.pacifiedhusk>
+
+    <entityname.icepack>Ice Pack</entityname.icepack>
+    <entitydescription.icepack>What year is it that you still think this is traditional ice pack? This pack of advanced chemical is able to absorb large amount of heat on demand.</entitydescription.icepack>
+
+    <entityname.heatpack>Heat Pack</entityname.heatpack>
+    <entitydescription.heatpack>Powerful thermal agent utilizing thermite reaction.</entitydescription.heatpack>
+
+    <entityname.enzyme>Enzyme</entityname.enzyme>
+    <entitydescription.enzyme>Organic catalyst, useful in inducing organic reactions.</entitydescription.enzyme>
+
+    <entityname.immunebooster>Chinese Medicine</entityname.immunebooster>
+    <entitydescription.immunebooster>Arcane substances only known by historians. Only Jove knows how this one can boost the patient's immune system without noticeable side effects.</entitydescription.immunebooster>
+    
+    <entityname.disinfectant>Bleach</entityname.disinfectant>
+    <entitydescription.disinfectant>Classic chemical that's very effective against ranges of microbes. Can be traced back to earth. Do not drink.</entitydescription.disinfectant>
+
+    <entityname.raw_empty>Liquid Pack</entityname.raw_empty>
+    <entitydescription.raw_empty>An empty bag used to contain liquids(or solids). Apply it on any limbs with ice/heat packs to remove them(this will also deplete them).</entitydescription.raw_empty>
+	<packs.not_equipped>No packs to remove.</packs.not_equipped>
+	
+    <entityname.raw_blooda0>Raw Blood</entityname.raw_blooda0>
+    <entityname.raw_blooda1>Raw Blood</entityname.raw_blooda1>
+    <entityname.raw_bloodb0>Raw Blood</entityname.raw_bloodb0>
+    <entityname.raw_bloodb1>Raw Blood</entityname.raw_bloodb1>
+    <entityname.raw_bloodab0>Raw Blood</entityname.raw_bloodab0>
+    <entityname.raw_bloodab1>Raw Blood</entityname.raw_bloodab1>
+    <entityname.raw_bloodo0>Raw Blood</entityname.raw_bloodo0>
+    <entityname.raw_bloodo1>Raw Blood</entityname.raw_bloodo1>
+    <entitydescription.raw_blood>Fresh blood extracted from patients. Process before use.</entitydescription.raw_blood>
+
+    <entityname.proc_blooda0>A+ Blood</entityname.proc_blooda0>
+    <entityname.proc_blooda1>A- Blood</entityname.proc_blooda1>
+    <entityname.proc_bloodb0>B+ Blood</entityname.proc_bloodb0>
+    <entityname.proc_bloodb1>B- Blood</entityname.proc_bloodb1>
+    <entityname.proc_bloodab0>AB+ Blood</entityname.proc_bloodab0>
+    <entityname.proc_bloodab1>AB- Blood</entityname.proc_bloodab1>
+    <entityname.proc_bloodo0>O+ Blood</entityname.proc_bloodo0>
+    <entityname.proc_bloodo1>O- Blood</entityname.proc_bloodo1>
+    <entitydescription.proc_blood>Processed blood that's safe to use and good for long term storage.</entitydescription.proc_blood>   
+
+    <entityname.bloodextractor>Blood Extractor</entityname.bloodextractor>
+    <entitydescription.bloodextractor>A device used for extracting blood from patients, causes minor wound.</entitydescription.bloodextractor>
+
+    <entityname.prednisone>Prednisone</entityname.prednisone>
+    <entitydescription.prednisone>Immunosuppressant that mitigates Hemolysis.</entitydescription.prednisone>
+
+    <entityname.alpha_stim>Alpha Stimulant</entityname.alpha_stim>
+    <entitydescription.alpha_stim>Alien medicine that can rapidly heal damages to organs and flesh.</entitydescription.alpha_stim>
+
+    <entityname.beta_stim>Beta Stimulant</entityname.beta_stim>
+    <entitydescription.beta_stim>Well known Europan medicine that stimulates organ regeneration.</entitydescription.beta_stim>
+
+    <entityname.gamma_stim>Gamma Stimulant</entityname.gamma_stim>
+    <entitydescription.gamma_stim>Coalition-developed experimental substance that induces organ growth. Use with care.</entitydescription.gamma_stim>
+
+    <entityname.heatclothes>UOU</entityname.heatclothes>
+    <entitydescription.heatclothes>The Underwater Operation Uniform provides protections against common harzards when operating in wet and underwater environments. It can also utilize Incendium Crystals and built-in computer to provide heat on demand.</entitydescription.heatclothes>
+
+    <bloodsampler.title>Result:</bloodsampler.title>
+	<bloodsampler.cannot>No blood to collect.</bloodsampler.cannot>
+    <entityname.bloodsampler>Blood Type Analyzer</entityname.bloodsampler>
+    <entitydescription.bloodsampler>A device used to determine the type of blood quickly.</entitydescription.bloodsampler>
+
+    <entityname.aspirin>Aspirin</entityname.aspirin>
+    <entitydescription.aspirin>A classic and effective nonsteroidal anti-inflammatory drug.</entitydescription.aspirin>
+
+    <entityname.traumafix>Hydrocodone</entityname.traumafix>
+    <entitydescription.traumafix>A substance used to treat Chronic Pain.</entitydescription.traumafix>
+
+    <entityname.Ciclosporin>Ciclosporin</entityname.Ciclosporin>
+    <entitydescription.Ciclosporin>Immunosuppressant that mitigates Immune Rejection.</entitydescription.Ciclosporin>
+
+    <entityname.scalpel>Scalpel</entityname.scalpel>
+    <entitydescription.scalpel>Surgical Scalpels are mainly used to create incision, but can also be used like a knife.</entitydescription.scalpel>
+
+    <entityname.scissors>Surgical Scissors</entityname.scissors>
+    <entitydescription.scissors>Surgical Scissors are mainly used to sulture wounds. Nevertheless, its sharp edges can hurt.</entitydescription.scissors>
+
+    <entityname.stapler>Surgical Stapler</entityname.stapler>
+    <entitydescription.stapler>Surgical Staplers are handy tools that can sulture blood vessles together precisely or to create small wounds good for sampling blood.</entitydescription.stapler>
+	
+    <entityname.sulture>Sultures</entityname.sulture>
+    <entitydescription.sulture>Surgical threads that can be naturally absorbed by human body.</entitydescription.sulture>
+
+    <scalpel.action>Action: </scalpel.action>
+    <scalpel.unknown>Unknown scalpel action.</scalpel.unknown>
+    <scalpel.incise>Incision</scalpel.incise>
+    <scalpel.lung>Lung</scalpel.lung>
+    <scalpel.liver>Liver</scalpel.liver>
+    <scalpel.heart>Heart</scalpel.heart>
+    
+    <surgery.cannot>Can't perform this action.</surgery.cannot>
+
+    <entityname.heart>Heart</entityname.heart>
+    <entitydescription.heart>Keep refrigerated for freshness.</entitydescription.heart>
+
+    <entityname.lung>Lung</entityname.lung>
+    <entitydescription.lung>Keep refrigerated for freshness.</entitydescription.lung>
+
+    <entityname.liver>Liver</entityname.liver>
+    <entitydescription.liver>Keep refrigerated for freshness.</entitydescription.liver>
+
+    <entityname.coldcrate>Refrigerated Crate</entityname.coldcrate>
+    <entitydescription.coldcrate>Refrigerates contained items on demand when powered.</entitydescription.coldcrate>
+
+    <entityname.anestheticgas0>Nitrous oxide</entityname.anestheticgas0>
+    <entitydescription.anestheticgas0>A tank of Nitrous oxide, a weak inhaled anaesthetic.</entitydescription.anestheticgas0>
+
+    <entityname.anestheticgas1>Desflurane</entityname.anestheticgas1>
+    <entitydescription.anestheticgas1>A tank of Desflurane, a strong inhaled anaesthetic.</entitydescription.anestheticgas1>
+
+    <entityname.vitamins>Mixed Vitamins</entityname.vitamins>
+    <entitydescription.vitamins>Vitamins are critical to human's health, but only a few greedy individuals know how to make it.</entitydescription.vitamins>
+
+    <entityname.analgesicgas0>Methoxyflurane</entityname.analgesicgas0>
+    <entitydescription.analgesicgas0>A tank of extremely powerful but short-lasting analgesic gas that doesn't cause too much addiction. </entitydescription.analgesicgas0>
+</infotexts>

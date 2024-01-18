@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+    <afflictionname.surfacepain>Pain</afflictionname.surfacepain>
+    <affdesc.surfacepain.one>Slight pain might cause minor inconviences, but not much of a deal.</affdesc.surfacepain.one>
+    <affdesc.surfacepain.two>The feeling can't be ignored, but this is still tolerable.</affdesc.surfacepain.two>
+    <affdesc.surfacepain.three>Severe pain, it's driving you crazy.</affdesc.surfacepain.three>
+
+    <afflictionname.traumaPain>Pain</afflictionname.traumaPain>
+
+    <afflictionname.scar>Secondary Wounds</afflictionname.scar>
+    <affdesc.scar>Partially healed wounds.</affdesc.scar>
+    <afflictioncauseofdeath.scar>You have succumbed to repeated injuries.</afflictioncauseofdeath.scar>
+    <afflictioncauseofdeathself.scar>Died of secondary injuries.</afflictioncauseofdeathself.scar>
+
+    <afflictionname.bacterial0>Infection</afflictionname.bacterial0>
+    <affdesc.bacterial0.one>There are clear signs of infections. Better to treat it now before it's too late.</affdesc.bacterial0.one>
+    <affdesc.bacterial0.two>The infection is going out of control.</affdesc.bacterial0.two>
+    <afflictioncauseofdeath.bacterial0>Died of bacterial infection.</afflictioncauseofdeath.bacterial0>
+    <afflictioncauseofdeathself.bacterial0>You've succumbed to infections.</afflictioncauseofdeathself.bacterial0>
+
+    <afflictionname.bacterial1>Inernal Infection</afflictionname.bacterial1>
+    <affdesc.bacterial1>The infection is so severe that anyone can see the patient is sick on first look.</affdesc.bacterial1>
+    <afflictioncauseofdeath.bacterial1>Died of bacterial infection.</afflictioncauseofdeath.bacterial1>
+    <afflictioncauseofdeathself.bacterial1>You've succumbed to infections.</afflictioncauseofdeathself.bacterial1>
+
+    <afflictionname.bandaged>Bandaged</afflictionname.bandaged>
+    <affdesc.bandaged>The wounds here are treated: slows down bleeding, speeds up healing, and prevents infection.</affdesc.bandaged>
+
+    <afflictionname.asprin>Asprin Applied</afflictionname.asprin>
+    <affdesc.asprin>Hyperthermia effcts on you are reduced. Your blood streams' capability to carry oxygen is increased.</affdesc.asprin>
+
+    <afflictionname.analgesictrival>Opium Applied</afflictionname.analgesictrival>
+    <afflictionname.analgesicweak>Morphine Applied</afflictionname.analgesicweak>
+    <afflictionname.analgesicstrong>Fentanyl Applied</afflictionname.analgesicstrong>
+    <afflictionname.analgesiclong>Deuszine Applied</afflictionname.analgesiclong>
+    <afflictionname.analgesicshort>Methoxyflurane Applied</afflictionname.analgesicshort>
+    <affdesc.analgesic.universal>You feel less pain.</affdesc.analgesic.universal>
+
+    <afflictionname.bacterialimmune>Bacterial Infection Resistance</afflictionname.bacterialimmune>
+    <affdesc.bacterialimmune.universal>Patient's immune system is more attuned to bacteria.</affdesc.bacterialimmune.universal>
+
+    <afflictionname.iced>Cooled</afflictionname.iced>
+    <affdesc.iced.one>1 Ice Pack has been applied to this area.</affdesc.iced.one>
+    <affdesc.iced.two>2 Ice Packs has been applied to this area.</affdesc.iced.two>
+    <affdesc.iced.three>3 Ice Packs has been applied to this area.</affdesc.iced.three>
+
+    <afflictionname.heated>Heated</afflictionname.heated>
+    <affdesc.heated.one>1 Heat Pack has been applied to this area.</affdesc.heated.one>
+    <affdesc.heated.two>2 Heat Packs has been applied to this area.</affdesc.heated.two>
+    <affdesc.heated.three>3 Heat Packs has been applied to this area.</affdesc.heated.three>
+
+    <afflictionname.hyperthermia>Hyperthermia</afflictionname.hyperthermia>
+    <affdesc.hyperthermia>Hyperthermia, commonly known as ferver.</affdesc.hyperthermia>
+    <afflictioncauseofdeath.hyperthermia>Died of severe hyperthermia.</afflictioncauseofdeath.hyperthermia>
+    <afflictioncauseofdeathself.hyperthermia>You've succumbed to extreme body temperatures.</afflictioncauseofdeathself.hyperthermia>
+    
+    <afflictionname.hypothermia>Hypothermia</afflictionname.hypothermia>
+    <affdesc.hypothermia>Your body temperature is lower than it should.</affdesc.hypothermia>
+    <afflictioncauseofdeath.hypothermia>Died of severe hypothermia.</afflictioncauseofdeath.hypothermia>
+    <afflictioncauseofdeathself.hypothermia>You've succumbed to extreme body temperatures.</afflictioncauseofdeathself.hypothermia>
+
+    <afflictionname.hemolysis>Hemolysis</afflictionname.hemolysis>
+    <affdesc.hemolysis>It appears that your blood is of irregular color.</affdesc.hemolysis>
+    <afflictioncauseofdeath.hemolysis>Died of Hemolysis.</afflictioncauseofdeath.hemolysis>
+    <afflictioncauseofdeathself.hemolysis>Your body stopped functioning due to damaged blood cells.</afflictioncauseofdeathself.hemolysis>
+
+    <afflictionname.pierce>Pierce</afflictionname.pierce>
+    <affdesc.pierce.one>Tiny holes caused by needles appeares on this area.</affdesc.pierce.one>
+    <affdesc.pierce.two>This area of skin has been poked by needles many times.</affdesc.pierce.two>
+    <afflictioncauseofdeath.pierce>Pierced to death.</afflictioncauseofdeath.pierce>
+    <afflictioncauseofdeathself.pierce>You've been poked to death.</afflictioncauseofdeathself.pierce>
+
+    <afflictionname.lungdmg>Damaged Lungs</afflictionname.lungdmg>
+    <affdesc.lungdmg>Your lungs don't feel right.</affdesc.lungdmg>
+
+    <afflictionname.lungmissing>Lungs Missing</afflictionname.lungmissing>
+    <affdesc.lungmissing>Your lungs are missing; this shouldn't happen naturally.</affdesc.lungmissing>
+
+    <afflictionname.liverdmg>Damaged Liver</afflictionname.liverdmg>
+    <affdesc.liverdmg.one>Your liver doeesn't feel right, but it should be ok.</affdesc.liverdmg.one>
+    <affdesc.liverdmg.two>Your liver is feeling very bad.</affdesc.liverdmg.two>
+
+    <afflictionname.livermissing>Liver Missing</afflictionname.livermissing>
+    <affdesc.livermissing>Your liver is missing; this shouldn't happen naturally.</affdesc.livermissing>
+
+    <afflictionname.heartdmg>Damaged Heart</afflictionname.heartdmg>
+    <affdesc.heartdmg.one>Your heart doeesn't feel right, but it should be ok.</affdesc.heartdmg.one>
+    <affdesc.heartdmg.two>Your heart is feeling very bad.</affdesc.heartdmg.two>
+
+    <afflictionname.heartmissing>Heart Missing</afflictionname.heartmissing>
+    <affdesc.heartmissing>Your liver is missing; this shouldn't happen naturally.</affdesc.heartmissing>
+
+    <afflictionname.immunereject>Immune Rejection</afflictionname.immunereject>
+    <affdesc.immunereject>Your body isn't used to new foreign bodies which can cause lots of problems.</affdesc.immunereject>
+
+    <afflictionname.immunesuppresed>Immune Suppressed</afflictionname.immunesuppresed>
+    <affdesc.immunesuppresed>Your immune system is suppressed and reacts less to foreign objects.</affdesc.immunesuppresed>
+
+    <afflictionname.vsealed>Blood Vessels Sealed</afflictionname.vsealed>
+    <affdesc.vsealed>Blood Vessels of this reigon has been sealed to prevent circulation induced bleeding.</affdesc.vsealed>
+
+    <afflictionname.vconnected>Blood Vessels Connected</afflictionname.vconnected>
+    <affdesc.vconnected>Disconnected Blood Vessels of this reigon has been temperorarily connected.</affdesc.vconnected>
+
+    <afflictionname.sutural>Sutural</afflictionname.sutural>
+    <affdesc.sutural>Large wounds in this area has been sutured to accelerate healing.</affdesc.sutural>
+
+    <afflictionname.incision>Surgical Incision</afflictionname.incision>
+    <affdesc.incision>This area of skin has been carefully cut open to expose the tissues underneath</affdesc.incision>
+
+    <afflictionname.vitalityboosted>Adrenaline Applied</afflictionname.vitalityboosted>
+    <affdesc.vitalityboosted>You feel more alive.</affdesc.vitalityboosted>
+
+    <afflictionname.anesthetized>Anesthetized</afflictionname.anesthetized>
+    <affdesc.anesthetized>Patient is completely anesthetized.</affdesc.anesthetized>
+</infotexts>

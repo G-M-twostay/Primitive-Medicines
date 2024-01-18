@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Primitive Medicines" steamworkshopid="3017002558" corepackage="false" modversion="0.3.5.1" gameversion="1.2.8.0" >
+	<Other file="%ModDir%/CSharp/RunConfig.xml" />
+	<Afflictions file="%ModDir%/xmls/aff/bads.xml" />
+	<Afflictions file="%ModDir%/xmls/aff/goods.xml" />
+	<Afflictions file="%ModDir%/xmls/aff/overrides.xml" />
+	<Item file="%ModDir%/xmls/items/overrides.xml" />
+	<Item file="%ModDir%/xmls/items/medicals.xml" />
+	<Item file="%ModDir%/xmls/items/materials.xml" />
+	<Item file="%ModDir%/xmls/items/tools.xml" />
+	<Talents file="%ModDir%/xmls/talents/Doctor.xml" />
+	<Text file="%ModDir%/xmls/texts/en/affs.xml" />
+	<Text file="%ModDir%/xmls/texts/en/items.xml" />
+	<Text file="%ModDir%/xmls/texts/en/tips.xml" />
+	<Text file="%ModDir%/xmls/texts/en/talents.xml" />
+	<NPCConversations file="%ModDir%/xmls/texts/en/dialogs.xml" />
+	<Other file="%ModDir%/Images/BloodPackAtlas.png" />
+	<Other file="%ModDir%/Images/AfflictionIcons.png" />
+	<Other file="%ModDir%/Images/InGameItemIconAtlas.png" />
+	<Other file="%ModDir%/Images/InventoryItemIconAtlas.png" />
+</contentpackage>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Conversations identifier="PMdialogs" Language="English" nowhitespace="False">
+    <Conversation line="Do you know that Lithium Monoxide was the strongest base they knew on earth?" speaker="0" flags="Casual">
+        <Conversation line="The funny thing is they can't really make it there without alien magics." speaker="0">
+            <Conversation line="Then why the hell do they even make it?" speaker="1">
+                <Conversation line="Probably just for fun." speaker="0" />
+                <Conversation line="I mean why do even we go towards the eye when we can just chill in cold caverns?" speaker="0">
+                    <Conversation line="We all mad." speaker="1">
+                        <Conversation line="Right." speaker="2" />
+                    </Conversation>
+                </Conversation>
+            </Conversation>
+        </Conversation>
+    </Conversation>
+    <Conversation line="Stop spreading misinformation. The strongest base they had was Diethynylbenzene Dianion." speaker="1" speakertags="professional">
+        <Conversation line="I'm not an Archaeologists nor have I learned history." speaker="0"/>
+    </Conversation>
+
+
+    <Conservation line="Ouch." speaker="0" flags="surfacepain.one">
+        <Conversation line="You soft as hell." speaker="1" flags="surfacepain.one" />
+        <Conversation line="Stop whining." speaker="1" flags="surfacepain.one" />
+    </Conservation>
+    <Conservation line="ei you." speaker="0" flags="surfacepain.one" />
+    <Conservation line="It hurts." speaker="0" flags="surfacepain.one">
+        <Conversation line="You soft as hell." speaker="1" flags="surfacepain.one" />
+        <Conversation line="Stop bitching." speaker="1" flags="surfacepain.one" />
+    </Conservation>
+
+    <Conservation line="It fucking hurts." speaker="0" flags="surfacepain.two">
+        <Conversation line="You gotta learn how not to hurt yourself." speaker="1" flags="surfacepain.two" />
+    </Conservation>
+    <Conservation line="Wound is deeper than I thought." speaker="0" flags="surfacepain.two">
+        <Conversation line="Becareful man." speaker="1" flags="surfacepain.two">
+            <Conversation line="Will do." speaker="0" flags="surfacepain.two" />
+            <Conversation line="Yeah, don't wanna get this again." speaker="0" flags="surfacepain.two" />
+        </Conversation>
+    </Conservation>
+    <Conservation line="Ah. This is getting severe." speaker="0" flags="surfacepain.two" />
+
+    <Conservation line="AHHHHHHHHHH!" speaker="0" flags="surfacepain.three">
+        <Conversation line="We got any opiates?" speaker="1" flags="surfacepain.three" />
+        <Conversation line="Get this person some morphine!" speaker="1" flags="surfacepain.three" />
+    </Conservation>
+    <Conservation line="OHHHHHHHHHH!" speaker="0" flags="surfacepain.three">
+        <Conversation line="Need painkillers!" speaker="1" flags="surfacepain.three" />
+    </Conservation>
+    <Conservation line="KAHHHHHHHH!" speaker="0" flags="surfacepain.three">
+        <Conversation line="Someone needs to get this guy treated." speaker="1" flags="surfacepain.three" />
+        <Conversation line="Get this guy out of misery! Quick!" speaker="1" flags="surfacepain.three" />
+        <Conversation line="What's that thing called? Fentanyl?" speaker="2" flags="surfacepain.three" />
+    </Conservation>
+
+    <Conversation line="This wound isn't looking right." speaker="0" flags="bacterial0.one" />
+    <Conversation line="Wound ain't looking good." speaker="0" flags="bacterial0.one" />
+
+    <Conversation line="I have infected wounds." speaker="0" flags="bacterial0.two" />
+    <Conversation line="I need to get my infection treated." speaker="0" flags="bacterial0.two" />
+    <Conversation line="First time seeing such a colorful scar." speaker="0" flags="bacterial0.two" />
+    <Conversation line="Never knew these things grow on me." speaker="0" flags="bacterial0.two" />
+
+    <Conversation line="I'm feeling sick." speaker="0" flags="bacterial1.one" />
+    <Conversation line="I'm not feeling well." speaker="0" flags="bacterial1.one" />
+    <Conversation line="My body doesn't feel right." speaker="0" flags="bacterial1.one">
+        <Conversation line="What's wrong, buddy?" speaker="1" flags="bacterial1.one">
+            <Conversation line="I ain't sure." speaker="0" flags="bacterial1.one">
+                <Conversation line="Migt be a good time to go to the hospital." speaker="2" flags="bacterial1.two">
+                    <Conversation line="We ain't got that on Europa." speaker="1" flags="bacterial1.two" />
+                    <Conversation line="What's that?" speaker="1" flags="bacterial1.two" />
+                    <Conversation line="Y'talking about that doctor on outposts?" speaker="1" flags="bacterial1.two" />
+                </Conversation>
+            </Conversation>
+        </Conversation>
+    </Conversation>
+
+    <Conversation line="I feel weak." speaker="0" flags="bacterial1.two">
+        <Conversation line="Call the medic to see what's wrong with this guy." speaker="1" flags="bacterial1.two" />
+    </Conversation>
+    <Conversation line="I'm feeling extremely bad, perhaps I'm sick." speaker="0" flags="bacterial1.two" />
+
+    <Conversation line="My skin is looking weird: there is something wrong with my blood." speaker="0" flags="hemolysis.one" />
+
+    <Conversation line="My lungs are gone!" speaker="0" flags="lungmissing"/>
+
+    <Conversation line="Someone took my liver!" speaker="0" flags="livermissing"/>
+
+    <Conversation line="Help! I can't survive without a heart." speaker="0" flags="heartmissing"/>
+
+    <Conversation line="Feeling cool." speaker="0" flags="iced.one"/>
+    <Conversation line="Chiling." speaker="0" flags="iced.two"/>
+</Conversations>

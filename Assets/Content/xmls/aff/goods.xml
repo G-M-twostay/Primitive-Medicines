@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Afflictions>
+  <Bandaged identifier="bandaged" type="treatment" limbspecific="true" AffectMachines="false" targets="human" MaxStrength="36" HealableInMedicalClinic="false" Duration="120">
+    <Description textidentifier="affdesc.bandaged" minstrength="0" maxstrength="36" />
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="7,2" sheetelementsize="128,128" color="0,255,255,255" origin="0,0" />
+  </Bandaged>
+
+  <Iced identifier="iced" type="treatment" limbspecific="true" AffectMachines="false" targets="human" MaxStrength="3" HealableInMedicalClinic="false" ShowInHealthScannerThreshold="101" Duration="40">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="6,2" sheetelementsize="128,128" color="0,127,0,255" origin="0,0" />
+    <Effect minstrength="0" maxstrength="1" >
+      <StatusEffect target="Limb" interval="1" disabledeltatime="true">
+        <ReduceAffliction identifier="blunttrauma" strength="0.02" DialogFlag="iced.one"/>
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="1" maxstrength="2" >
+      <StatusEffect target="Limb" interval="1" disabledeltatime="true">
+        <ReduceAffliction identifier="blunttrauma" strength="0.04" DialogFlag="iced.two"/>
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="2" maxstrength="3" >
+      <StatusEffect target="Limb" interval="1" disabledeltatime="true">
+        <ReduceAffliction identifier="blunttrauma" strength="0.06" />
+      </StatusEffect>
+    </Effect>
+    <Description textidentifier="affdesc.iced.one" minstrength="0" maxstrength="1" />
+    <Description textidentifier="affdesc.iced.two" minstrength="1" maxstrength="2" />
+    <Description textidentifier="affdesc.iced.three" minstrength="2" maxstrength="3" />
+  </Iced>
+  <Heated identifier="heated" type="treatment" limbspecific="true" AffectMachines="false" targets="human" MaxStrength="3" HealableInMedicalClinic="false" ShowInHealthScannerThreshold="101" Duration="40">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="6,2" sheetelementsize="128,128" color="127,0,0,255" origin="0,0" />
+    <Description textidentifier="affdesc.heated.one" minstrength="0" maxstrength="1" />
+    <Description textidentifier="affdesc.heated.two" minstrength="1" maxstrength="2" />
+    <Description textidentifier="affdesc.heated.three" minstrength="2" maxstrength="3" />
+  </Heated>
+
+  <Asprin identifier="asprin" type="resistance" IsBuff="true" AffectMachines="false" limbspecific="false" MedicalSkillGain="0.005" MaxStrength="100">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="6,2" sheetelementsize="128,128" color="0,127,127,255" origin="0,0" />
+    <Description textidentifier="affdesc.asprin" minstrength="0" maxstrength="100" />
+    <Effect MinStrength="0" MaxStrength="100" StrengthChange="-0.75" MinResistance="0.1" MaxResistance="0.4" resistancefor="oxygenlow,hyperthermia,hemolysis" />
+  </Asprin>
+
+  <Analgesic identifier="analgesictrival" type="resistance" IsBuff="true" AffectMachines="false" limbspecific="false" MedicalSkillGain="0.005" MaxStrength="100">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="9,4" sheetelementsize="128,128" color="0,127,0,255" origin="0,0" />
+    <Description textidentifier="affdesc.analgesic.universal" minstrength="0" maxstrength="100" />
+    <Effect MinStrength="0" MaxStrength="100" StrengthChange="-0.5" MinResistance="0.05" MaxResistance="0.25" resistancefor="pain" />
+  </Analgesic>
+  <Analgesic identifier="analgesicweak" type="resistance" IsBuff="true" AffectMachines="false" limbspecific="false" MedicalSkillGain="0.005" MaxStrength="100">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="9,4" sheetelementsize="128,128" color="0,127,0,255" origin="0,0" />
+    <Description textidentifier="affdesc.analgesic.universal" minstrength="0" maxstrength="100" />
+    <Effect MinStrength="0" MaxStrength="100" StrengthChange="-0.5" MinResistance="0.2" MaxResistance="0.5" resistancefor="pain" />
+  </Analgesic>
+  <Analgesic identifier="analgesicstrong" type="resistance" IsBuff="true" AffectMachines="false" limbspecific="false" MedicalSkillGain="0.005" MaxStrength="100">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="9,4" sheetelementsize="128,128" color="0,127,0,255" origin="0,0" />
+    <Description textidentifier="affdesc.analgesic.universal" minstrength="0" maxstrength="100" />
+    <Effect MinStrength="0" MaxStrength="100" StrengthChange="-0.5" MinResistance="0.5" MaxResistance="0.8" resistancefor="pain" />
+  </Analgesic>
+  <Analgesic identifier="analgesiclong" type="resistance" IsBuff="true" AffectMachines="false" limbspecific="false" MedicalSkillGain="0.005" MaxStrength="100">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="9,4" sheetelementsize="128,128" color="0,127,0,255" origin="0,0" />
+    <Description textidentifier="affdesc.analgesic.universal" minstrength="0" maxstrength="100" />
+    <Effect MinStrength="0" MaxStrength="100" StrengthChange="-0.25" MinResistance="0.3" MaxResistance="0.6" resistancefor="pain" />
+  </Analgesic>
+  <!-- for combat stim see overrides. need to separate out the stun resistance here-->
+  <Analgesic identifier="analgesicfull" type="resistance" IsBuff="true" AffectMachines="false" limbspecific="false" MaxStrength="100" ShowBarInHealthMenu="false" ShowIconThreshold="101" ShowInHealthScannerThreshold="101">
+    <Effect MinStrength="0" MaxStrength="60" StrengthChange="-1" MinResistance="0.85" MaxResistance="1.0" resistancefor="pain" />
+    <Effect MinStrength="60" MaxStrength="100" StrengthChange="-0.5" MinResistance="1.0" MaxResistance="1.0" resistancefor="pain" />
+  </Analgesic>
+  <Analgesic identifier="analgesicshort" type="resistance" IsBuff="true" AffectMachines="false" limbspecific="false" MaxStrength="100" ShowBarInHealthMenu="true">
+    <Description textidentifier="affdesc.analgesic.universal" minstrength="0" maxstrength="100" />
+    <Effect MinStrength="0" MaxStrength="100" StrengthChange="-5" MinResistance="0" MaxResistance="1.0" resistancefor="pain" />
+  </Analgesic>
+  <!-- for combat stim see overrides. need to separate out the bloodloss resistance here-->
+  <Affliction identifier="ironwill" type="resistance" IsBuff="true" AffectMachines="false" limbspecific="false" MaxStrength="100" ShowBarInHealthMenu="false" ShowIconThreshold="101" ShowInHealthScannerThreshold="101">
+    <Effect MinStrength="0" MaxStrength="100" StrengthChange="-1" MinResistance="0.25" MaxResistance="1" resistancefor="bloodloss" />
+  </Affliction>
+
+  <Affliction identifier="bacterialimmune" type="resistance" IsBuff="true" AffectMachines="false" limbspecific="false" MaxStrength="600" ShowBarInHealthMenu="true">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="1,5" sheetelementsize="128,128" color="0,127,0,255" origin="0,0" />
+    <Description textidentifier="affdesc.bacterialimmune.universal" minstrength="0" maxstrength="600" />
+    <Effect MinStrength="0" MaxStrength="600" MinResistance="0" MaxResistance="0.75" StrengthChange="-1" resistancefor="bacterial" />
+  </Affliction>
+
+  <Affliction identifier="immunesuppresed" type="resistance" IsBuff="true" AffectMachines="false" limbspecific="false" targets="human" MaxStrength="600" ShowBarInHealthMenu="true" ShowIconThreshold="200" ShowIconToOthersThreshold="400" HealableInMedicalClinic="true" ShowInHealthScannerThreshold="50" BaseHealCost="25" HealCostMultiplier="0.25">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="6,8" sheetelementsize="128,128" color="0,0,255,255" origin="0,0" />
+    <Effect MinStrength="0" MaxStrength="600" MinResistance="0" MaxResistance="-0.6" StrengthChange="-1" resistancefor="bacterial" />
+    <Description textidentifier="affdesc.immunesuppresed" minstrength="0" maxstrength="600" />
+  </Affliction>
+	<!--separate out resistance for immune rejection, this is triggered from the code-->
+    <Affliction identifier="reject_resistance" type="resistance" IsBuff="true" AffectMachines="false" limbspecific="false" targets="human" MaxStrength="600" ShowBarInHealthMenu="false" ShowIconThreshold="601" ShowIconToOthersThreshold="601" HealableInMedicalClinic="false" ShowInHealthScannerThreshold="601" duration="1.06666666">
+	    <Effect MinStrength="0" MaxStrength="600" MinResistance="0" MaxResistance="0.875" resistancefor="bacterial" />
+    </Affliction>
+
+  <Vessel identifier="vsealed" type="treatment" IsBuff="false" AffectMachines="false" limbspecific="true" targets="human" MaxStrength="1" HealableInMedicalClinic="true" ShowIconThreshold="101" ShowIconToOthersThreshold="0" ShowInHealthScannerThreshold="0">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="8,2" sheetelementsize="128,128" color="0,0,127,255" origin="0,0" />
+    <Description textidentifier="affdesc.vsealed" minstrength="0" maxstrength="100" />
+  </Vessel>
+
+  <Vessel identifier="vconnected" type="treatment" IsBuff="true" AffectMachines="false" limbspecific="true" targets="human" MaxStrength="100" ShowIconThreshold="101" ShowIconToOthersThreshold="0" ShowInHealthScannerThreshold="0" >
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="8,2" sheetelementsize="128,128" color="0,127,0,255" origin="0,0" />
+    <Effect MinStrength="0" MaxStrength="100" strengthchange="-1"/>
+    <Description textidentifier="affdesc.vconnected" minstrength="0" maxstrength="100" />
+  </Vessel>
+
+  <Incision identifier="incision" type="surgery" limbspecific="true" AffectMachines="false" targets="human" MaxStrength="200" HealableInMedicalClinic="true" ShowIconThreshold="0" ShowIconToOthersThreshold="0" ShowInHealthScannerThreshold="201">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,2" sheetelementsize="128,128" color="0,255,255,255" origin="0,0" />
+    <Effect MinStrength="0" MaxStrength="200" minvitalitydecrease="0" maxvitalitydecrease="100" MultiplyByMaxVitality="false" />
+    <Description textidentifier="affdesc.incision" minstrength="0" maxstrength="200" />
+  </Incision>
+
+  <sutural identifier="sutural" type="surgery" limbspecific="true" AffectMachines="false" targets="human" MaxStrength="100" HealableInMedicalClinic="true" ShowIconThreshold="0" ShowIconToOthersThreshold="0" ShowInHealthScannerThreshold="101">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="3,2" sheetelementsize="128,128" color="127,255,0,255" origin="0,0" />
+    <Effect MinStrength="0" MaxStrength="100" minvitalitydecrease="0" maxvitalitydecrease="25" strengthchange="-0.25" />
+    <Description textidentifier="affdesc.sutural" minstrength="0" maxstrength="100" />
+  </sutural>
+
+  <Adrenline identifier="vitalityboosted" type="buff" IsBuff="true" AffectMachines="false" limbspecific="false" MaxStrength="100">
+    <icon texture="Content/UI/TalentsIcons1.png" sheetindex="1,2" sheetelementsize="128,128" color="0,127,0,255" origin="0,0" />
+    <Description textidentifier="affdesc.vitalityboosted" minstrength="0" maxstrength="100" />
+    <Effect MinStrength="0" MaxStrength="100" StrengthChange="-1" minvitalitydecrease="0" maxvitalitydecrease="-60"/>
+  </Adrenline>
+
+  <Affliction
+  identifier="anesthetized"
+  type="treatment"
+  limbspecific="false"
+  indicatorlimb="Torso"
+  showiconthreshold="200"
+  showinhealthscannerthreshold="100"
+  maxstrength="600"
+  affectmachines="false" targets ="human" HealableInMedicalClinic="false">
+  <Description
+    textidentifier="afflictiondescription.paralysis.low.self"
+    target="Self"
+    minstrength="0"
+    maxstrength="300"/>
+  <Description
+    textidentifier="afflictiondescription.paralysis"
+    target="OtherCharacter"
+    minstrength="0"
+    maxstrength="300"/>
+  <Description
+    textidentifier="affdesc.anesthetized"
+    target="OtherCharacter"
+    minstrength="300"
+    maxstrength="600"/>
+  <!-- Slow the character down and paralyze in the end-->
+  <Effect minstrength="0" maxstrength="150"
+    strengthchange="-7.5"
+    minscreendistort="0.0"
+    maxscreendistort="0.1"
+    minscreenblur="0.0"
+    maxscreenblur="0.1"
+    minspeedmultiplier="1.0"
+    maxspeedmultiplier="0.75">
+  </Effect>
+  <Effect minstrength="150" maxstrength="300"
+    strengthchange="-10"
+    minscreendistort="0.1"
+    maxscreendistort="0.8"
+    minscreenblur="0.1"
+    maxscreenblur="0.8"
+    minspeedmultiplier="0.75"
+    maxspeedmultiplier="0.5" resistancefor="pain" MinResistance="0.25" MaxResistance="0.5">
+  </Effect>
+  <Effect minstrength="300" maxstrength="600"
+    strengthchange="-10"
+    minscreenblur="0.8"
+    maxscreenblur="1">
+    <StatusEffect target="Character" setvalue="true" stackable="false">
+      <Affliction identifier="stun" amount="1" />
+    </StatusEffect>
+  </Effect>
+  <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="2,8" sheetelementsize="128,128" color="255,0,127,255" origin="0,0" />
+</Affliction>
+</Afflictions>

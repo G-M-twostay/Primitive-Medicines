@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Afflictions>
+  <Mortal name="mortal" identifier="mortal" type="mortality" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="10" HealableInMedicalClinic="false" ShowIconThreshold="200">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,9" sheetelementsize="128,128" color="255,0,0,0" origin="0,0" />
+  </Mortal >
+
+  <BloodType name="Blood Type: A+" identifier="blooda0" type="bloodtype" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="10" HealableInMedicalClinic="false" ShowIconThreshold="200">
+  </BloodType>
+  <BloodType name="Blood Type: A-" identifier="blooda1" type="bloodtype" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="10" HealableInMedicalClinic="false" ShowIconThreshold="200">
+  </BloodType>
+  <BloodType name="Blood Type: B+" identifier="bloodb0" type="bloodtype" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="10" HealableInMedicalClinic="false" ShowIconThreshold="200">
+  </BloodType>
+  <BloodType name="Blood Type: B-" identifier="bloodb1" type="bloodtype" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="10" HealableInMedicalClinic="false" ShowIconThreshold="200">
+  </BloodType>
+  <BloodType name="Blood Type: AB+" identifier="bloodab0" type="bloodtype" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="10" HealableInMedicalClinic="false" ShowIconThreshold="200">
+  </BloodType>
+  <BloodType name="Blood Type: AB-" identifier="bloodab1" type="bloodtype" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="10" HealableInMedicalClinic="false" ShowIconThreshold="200">
+  </BloodType>
+  <BloodType name="Blood Type: O+" identifier="bloodo0" type="bloodtype" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="10" HealableInMedicalClinic="false" ShowIconThreshold="200">
+  </BloodType>
+  <BloodType name="Blood Type: O-" identifier="bloodo1" type="bloodtype" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="10" HealableInMedicalClinic="false" ShowIconThreshold="200">
+  </BloodType>
+  <Affliction identifier="hemolysis" type="blood" AffectMachines="false" limbspecific="false" targets="human" MaxStrength="100" ShowBarInHealthMenu="false" ShowIconThreshold="90" ShowIconToOthersThreshold="101" HealableInMedicalClinic="true" ShowInHealthScannerThreshold="40">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="1,6" sheetelementsize="128,128" color="255,0,0,255" origin="0,0" />
+    <Effect minstrength="0" maxstrength="100" minvitalitydecrease="0" maxvitalitydecrease="5" strengthchange="-0.025" DialogFlag="hemolysis.one"/>
+    <Description textidentifier="affdesc.hemolysis" minstrength="90" maxstrength="100" />
+  </Affliction>
+
+  <Affliction identifier="immunereject" type="blood" AffectMachines="false" limbspecific="false" targets="human" MaxStrength="100" ShowBarInHealthMenu="false" ShowIconThreshold="75" ShowIconToOthersThreshold="101" HealableInMedicalClinic="true" ShowInHealthScannerThreshold="0" BaseHealCost="25" HealCostMultiplier="1">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="6,8" sheetelementsize="128,128" color="255,0,0,255" origin="0,0" />
+    <Effect minstrength="0" maxstrength="100" minvitalitydecrease="0" maxvitalitydecrease="20" strengthchange="-0.05"/>
+    <Description textidentifier="affdesc.immunereject" minstrength="0" maxstrength="100" />
+  </Affliction>
+  
+  <Afflicton identifier="SurfacePain" type="pain" AffectMachines="false" limbspecific="true" targets="human" MaxStrength="100" ShowBarInHealthMenu="true" ShowIconThreshold="5" ShowIconToOthersThreshold="101" HealableInMedicalClinic="false">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="9,4" sheetelementsize="128,128" color="0,127,127,127" origin="0,0" />
+    <Effect minstrength="0" maxstrength="25" DialogFlag="surfacepain.one"/>
+    <Effect minstrength="25" maxstrength="50" DialogFlag="surfacepain.two"/>    
+    <Effect minstrength="50" maxstrength="100" minskillmultiplier="1" maxskillmultiplier="0.75" DialogFlag="surfacepain.three"/>
+    <Description textidentifier="affdesc.surfacepain.one" minstrength="0" maxstrength="30" target="self" />
+    <Description textidentifier="affdesc.surfacepain.two" minstrength="30" maxstrength="65" target="self" />
+    <Description textidentifier="affdesc.surfacepain.three" minstrength="65" maxstrength="100" target="self" />
+  </Afflicton>
+
+  <Afflicton identifier="trauma" type="painsrc" AffectMachines="false" limbspecific="true" targets="human" MaxStrength="100" ShowIconThreshold="101" ShowIconToOthersThreshold="101" HealableInMedicalClinic="true">
+  </Afflicton>
+
+  <Affliction identifier="scar" type="scar" limbspecific="true" AffectMachines="false" targets="human" MaxStrength="110" HealableInMedicalClinic="true" HealCostMultiplier="1.5" BaseHealCost="10">
+    <Effect minstrength="0" maxstrength="110" minvitalitydecrease="0" maxvitalitydecrease="110" strengthchange="-0.05" />
+    <Description textidentifier="affdesc.scar" minstrength="0" maxstrength="110" />
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,5" sheetelementsize="128,128" color="127,0,0,127" origin="0,0" />
+  </Affliction>
+
+  <Affliction identifier="bacterial0" type="bacterial" limbspecific="true" AffectMachines="false" targets="human" MaxStrength="200" ShowIconThreshold="15" ShowIconToOthersThreshold="15" showinhealthscannerthreshold="5" BaseHealCost="10">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="1,5" sheetelementsize="128,128" color="127,10,127,127" origin="0,0" />
+    <Effect minstrength="5" maxstrength="30" minvitalitydecrease="0" maxvitalitydecrease="25" DialogFlag="bacterial0.one"/>
+    <Effect minstrength="30" maxstrength="200" minvitalitydecrease="25" maxvitalitydecrease="195" DialogFlag="bacterial0.two"/>
+    <Description textidentifier="affdesc.bacterial0.one" minstrength="15" maxstrength="40" />
+    <Description textidentifier="affdesc.bacterial0.two" minstrength="40" maxstrength="200" />
+  </Affliction>
+  <Affliction identifier="bacterial1" type="bacterial" limbspecific="true" AffectMachines="false" targets="human" MaxStrength="200" ShowIconThreshold="201" ShowIconToOthersThreshold="201" showinhealthscannerthreshold="40" BaseHealCost="10" HealCostMultiplier="2">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="1,5" sheetelementsize="128,128" color="255,10,255,255" origin="0,0" />
+    <Effect minstrength="10" maxstrength="70" minvitalitydecrease="0" maxvitalitydecrease="60" DialogFlag="bacterial1.one"/>
+    <Effect minstrength="70" maxstrength="200" minvitalitydecrease="60" maxvitalitydecrease="190" DialogFlag="bacterial1.two"/>
+    <Description textidentifier="affdesc.bacterial1" minstrength="60" maxstrength="200" />
+  </Affliction>
+
+  <Affliction identifier="hyperthermia" type="temperature" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="40" ShowIconThreshold="16" ShowIconToOthersThreshold="16" showinhealthscannerthreshold="8" BaseHealCost="0" HealCostMultiplier="1.25">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,7" sheetelementsize="128,128" color="255,0,0,255" origin="0,0" />
+    <Effect minstrength="32" maxstrength="40" minvitalitydecrease="0" maxvitalitydecrease="1" MultiplyByMaxVitality="true"/>
+    <Description textidentifier="affdesc.hyperthermia" minstrength="16" maxstrength="40" />
+  </Affliction>
+
+  <Affliction identifier="hypothermia" type="temperature" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="40" ShowIconThreshold="16" ShowIconToOthersThreshold="16" showinhealthscannerthreshold="8" BaseHealCost="0" HealCostMultiplier="1.25">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="5,6" sheetelementsize="128,128" color="0,0,255,255" origin="0,0" />
+    <Effect minstrength="32" maxstrength="40" minvitalitydecrease="0" maxvitalitydecrease="0.75" MultiplyByMaxVitality="true"/>
+    <Description textidentifier="affdesc.hypothermia" minstrength="16" maxstrength="40" />
+  </Affliction>
+
+  <Pierce identifier="pierce" type="damage" limbspecific="true" AffectMachines="false" MaxStrength="200" ShowIconThreshold="0" ShowIconToOthersThreshold="0" showinhealthscannerthreshold="2" BaseHealCost="0" HealCostMultiplier="1">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="7,4" sheetelementsize="128,128" color="0,0,255,0" origin="0,0" />
+    <Effect minstrength="0" maxstrength="200" minvitalitydecrease="0" maxvitalitydecrease="200" strengthchange="-0.05"/>
+    <Description textidentifier="affdesc.pierce.one" minstrength="0" maxstrength="10" />
+    <Description textidentifier="affdesc.pierce.two" minstrength="10" maxstrength="200" />
+  </Pierce>
+
+  <Lung identifier="lungdmg" type="organdmg" limbspecific="false" AffectMachines="false" MaxStrength="100" ShowIconThreshold="20" ShowIconToOthersThreshold="25" showinhealthscannerthreshold="5" BaseHealCost="0" HealCostMultiplier="20">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="7,3" sheetelementsize="128,128" color="255,0,255,0" origin="0,0" />
+    <Effect minstrength="0" maxstrength="10" minvitalitydecrease="0" maxvitalitydecrease="0.025" MultiplyByMaxVitality="true" strengthchange="-0.02"/>
+    <Effect minstrength="10" maxstrength="100" minvitalitydecrease="0.025" maxvitalitydecrease="0.2" MultiplyByMaxVitality="true"/>
+    <Description textidentifier="affdesc.lungdmg" minstrength="10" maxstrength="100" />
+  </Lung>
+  <Lung identifier="lungmissing" type="failure" limbspecific="false" AffectMachines="false" MaxStrength="1" ShowIconThreshold="0" ShowIconToOthersThreshold="0" showinhealthscannerthreshold="0" BaseHealCost="2000" HealCostMultiplier="0">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="9,3" sheetelementsize="128,128" color="255,255,255,0" origin="0,0" />
+    <Effect minstrength="0" maxstrength="1" minvitalitydecrease="0" maxvitalitydecrease="0.25" MultiplyByMaxVitality="true" MinResistance="1" MaxResistance="1" resistancefor="lungdmg" DialogFlag="lungmissing"/>
+    <Description textidentifier="affdesc.lungmissing" minstrength="0" maxstrength="100" />
+  </Lung>
+
+  <Liver identifier="liverdmg" type="organdmg" limbspecific="false" AffectMachines="false" MaxStrength="100" ShowIconThreshold="50" ShowIconToOthersThreshold="55" showinhealthscannerthreshold="12.5" BaseHealCost="0" HealCostMultiplier="20">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="7,6" sheetelementsize="128,128" color="255,0,255,0" origin="0,0" />
+    <Effect minstrength="0" maxstrength="25" minvitalitydecrease="0" maxvitalitydecrease="0.1" MultiplyByMaxVitality="true" strengthchange="-0.03"/>
+    <Effect minstrength="25" maxstrength="100" minvitalitydecrease="0.1" maxvitalitydecrease="0.4" MultiplyByMaxVitality="true"/>
+    <Description textidentifier="affdesc.liverdmg.one" minstrength="10" maxstrength="25" />
+    <Description textidentifier="affdesc.liverdmg.two" minstrength="25" maxstrength="100" />
+  </Liver>
+
+  <Liver identifier="livermissing" type="failure" limbspecific="false" AffectMachines="false" MaxStrength="1" ShowIconThreshold="0" ShowIconToOthersThreshold="0" showinhealthscannerthreshold="0" BaseHealCost="2000" HealCostMultiplier="0">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="9,6" sheetelementsize="128,128" color="255,255,255,0" origin="0,0" />
+    <Effect minstrength="0" maxstrength="1" minvitalitydecrease="0" maxvitalitydecrease="0.5" MultiplyByMaxVitality="true" MinResistance="1" MaxResistance="1" resistancefor="liverdmg" DialogFlag="livermissing"/>
+    <Description textidentifier="affdesc.livermissing" minstrength="0" maxstrength="100" />
+  </Liver>
+
+  <Heart identifier="heartdmg" type="organdmg" limbspecific="false" AffectMachines="false" MaxStrength="100" ShowIconThreshold="30" ShowIconToOthersThreshold="35" showinhealthscannerthreshold="15" BaseHealCost="0" HealCostMultiplier="20">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="7,2" sheetelementsize="128,128" color="255,0,255,0" origin="0,0" />
+    <Effect minstrength="0" maxstrength="15" minvitalitydecrease="0" maxvitalitydecrease="0.045" MultiplyByMaxVitality="true" strengthchange="-0.025"/>
+    <Effect minstrength="15" maxstrength="100" minvitalitydecrease="0.045" maxvitalitydecrease="0.3" MultiplyByMaxVitality="true"/>
+    <Description textidentifier="affdesc.heartdmg.one" minstrength="10" maxstrength="15" />
+    <Description textidentifier="affdesc.heartdmg.two" minstrength="15" maxstrength="100" />
+  </Heart>
+
+  <Heart identifier="heartmissing" type="failure" limbspecific="false" AffectMachines="false" MaxStrength="1" ShowIconThreshold="0" ShowIconToOthersThreshold="0" showinhealthscannerthreshold="0" BaseHealCost="2000" HealCostMultiplier="0">
+    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="9,1" sheetelementsize="128,128" color="255,255,255,0" origin="0,0" />
+    <Effect minstrength="0" maxstrength="1" minvitalitydecrease="0" maxvitalitydecrease="0.4" MultiplyByMaxVitality="true" MinResistance="1" MaxResistance="1" resistancefor="heartdmg" DialogFlag="heartmissing"/>
+    <Description textidentifier="affdesc.heartmissing" minstrength="0" maxstrength="100" />
+  </Heart>
+
+</Afflictions>

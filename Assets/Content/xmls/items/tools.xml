@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+    <bloodextractor identifier="bloodextractor" category="Medical" maxstacksize="1" cargocontaineridentifier="mediccrate" Tags="smallitem,medicaltool" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
+        <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="1" spawnprobability="0.25" />
+        <PreferredContainer primary="medcab" secondary="medcontainer" />
+        <Price baseprice="250" minavailable="1">
+          <Price storeidentifier="merchantoutpost" multiplier="1.5" />
+          <Price storeidentifier="merchantcity" multiplier="1.2" />
+          <Price storeidentifier="merchantresearch" multiplier="0.9" />
+          <Price storeidentifier="merchantmilitary" sold="false" />
+          <Price storeidentifier="merchantmine" sold="false" />
+        </Price>
+        <Fabricate suitablefabricators="fabricator" requiredtime="15">
+          <RequiredSkill identifier="medical" level="15" />
+          <RequiredSkill identifier="mechanical" level="30" />
+          <RequiredItem identifier="steel" amount="1" />
+          <RequiredItem identifier="tin" amount="1" />
+          <RequiredItem identifier="plastic" amount="1" />
+          <RequiredItem identifier="rubber" amount="1" />
+        </Fabricate>
+        <Deconstruct time="15">
+          <Item identifier="plastic" amount="1" />
+          <Item identifier="iron" amount="1" />
+        </Deconstruct>
+        <Holdable canBeCombined="false" removeOnCombined="false" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect"/>
+        <ItemContainer capacity="1" maxstacksize="1" hideitems="false" itempos="8,-35" containedspritedepth="0.56" containedstateindicatorstyle="syringe">
+          <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="64,448,64,64" origin="0.5,0.5" />
+          <Containable items="raw_empty" />
+        </ItemContainer>
+        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="5,2" sheetelementsize="64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="6,2" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
+        <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
+    </bloodextractor>
+    
+    <Item identifier="heatclothes" category="Equipment" tags="smallitem,heat,clothing" fireproof="false" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_soft">
+        <PreferredContainer primary="crewcab"/>
+        <Price baseprice="400" sold="false" />
+        <Deconstruct time="10">
+          <Item identifier="organicfiber" />
+          <Item identifier="ballisticfiber" />
+          <Item identifier="aluminium" />
+        </Deconstruct>
+        <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="256,320,64,64" origin="0.5,0.5" />
+        <Sprite texture="Content/Items/Jobgear/MiscJobGear.png" sourcerect="123,144,121,62" depth="0.6" origin="0.5,0.5" />
+        <Body width="100" height="50" density="15" friction="0.8" restitution="0.01" />
+        <Wearable slots="Any,InnerClothes" variants="1" msg="ItemMsgPickUpSelect">
+          <sprite name="Watchman Torso" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="Torso" hidelimb="false" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Right Hand" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="RightHand" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Left Hand" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="LeftHand" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Right Lower Arm" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="RightArm" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Left Lower Arm" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="LeftArm" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Right Upper Arm" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="RightForearm" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Left Upper Arm" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="LeftForearm" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Waist" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="Waist" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Right Thigh" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="RightThigh" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Left Thigh" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="LeftThigh" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Right Leg" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="RightLeg" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Left Leg" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="LeftLeg" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Left Shoe" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="LeftFoot" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <sprite name="Watchman Right Shoe" texture="Content/Items/Jobgear/Watchman/watchman.png" limb="RightFoot" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" />
+          <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="explosiondamage,burn,lacerations" damagemultiplier="0.85" deflectprojectiles="false" />
+        </Wearable>
+        <Fabricate suitablefabricators="fabricator" requiredtime="30" requiresrecipe="true">
+          <RequiredSkill identifier="mechanical" level="30" />
+          <RequiredSkill identifier="electrical" level="25"/>
+          <RequiredSkill identifier="medical" level="35"/>
+          <RequiredItem identifier="minerclothes" />
+          <RequiredItem identifier="ballisticfiber" amount="3" />
+          <RequiredItem identifier="rubber" amount="1" />
+          <RequiredItem identifier="aluminium" amount="2"/>
+          <RequiredItem identifier="fpgacircuit" />
+        </Fabricate>
+        <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="battery">
+            <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+            <Containable items="incendium">
+            </Containable>
+        </ItemContainer>
+      </Item>
+    
+      <Item identifier="bloodsampler" category="medical" Tags="smallitem,medicaltool" useinhealthinterface="True" cargocontaineridentifier="metalcrate" Scale="0.5" impactsoundtag="impact_metal_light">
+        <PreferredContainer primary="medcab" secondary="storagecab" />
+        <PreferredContainer secondary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
+        <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
+        <PreferredContainer secondary="outpostmedcompartment" minamount="0" maxamount="1" spawnprobability="0.05" />
+        <Price baseprice="165" minavailable="1">
+          <Price storeidentifier="merchantoutpost" maxamount="2"/>
+          <Price storeidentifier="merchantcity" minamount="1" maxamount="3" multiplier="1.1"/>
+          <Price storeidentifier="merchantresearch" multiplier="0.9" />
+          <Price storeidentifier="merchantmedical" minamount="2" maxamount="4" multiplier="1.25" />
+          <Price storeidentifier="merchantmilitary" minamount="1" maxamount="4" multiplier="1.15" />
+        </Price>
+        <Deconstruct time="15">
+          <Item identifier="ethanol" />
+          <Item identifier="plastic" amount="1" />
+        </Deconstruct>
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="1">
+          <RequiredSkill identifier="medical" level="30"/>
+          <RequiredItem identifier="greenpaint" amount="1" />
+          <RequiredItem identifier="alienblood" />
+          <RequiredItem identifier="plastic" amount="1" />
+			<RequiredItem identifier="silicon" amount="1" />
+          <RequiredItem identifier="enzyme" amount="1" />
+        </Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="1">
+		    <RequiredSkill identifier="medical" level="30"/>
+		    <RequiredItem identifier="greenpaint" amount="1" />
+		    <RequiredItem identifier="alienblood" />
+		    <RequiredItem identifier="bloodsampler" amount="1" mincondition="0.0" maxcondition="0" usecondition="false"/>
+		    <RequiredItem identifier="enzyme" amount="1" />
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="1">
+			<RequiredSkill identifier="medical" level="30"/>
+			<RequiredItem identifier="greenpaint" amount="1" />
+			<RequiredItem identifier="alienblood" />
+			<RequiredItem identifier="bloodsamplevial" amount="1" mincondition="0.0" maxcondition="0" usecondition="false"/>
+			<RequiredItem identifier="enzyme" amount="1" />
+		</Fabricate>
+		<InventoryIcon texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="320,448,64,64" origin="0.5,0.5" />
+		<Sprite texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="419,268,16,46" depth="0.6" origin="0.5,0.5" />
+		<Body width="25" height="65" density="10.2" waterdragcoefficient="1" />
+        <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="0,0" msg="ItemMsgPickUpSelect" >
+          <StatusEffect type="OnUse" target="This" Condition="-20" disabledeltatime="True"/>
+        </Holdable>
+        <CustomInterface canbeselected="false" drawhudwhenequipped="true" allowuioverlap="true">
+          <GuiFrame relativesize="0.16,0.1" anchor="CenterLeft" pivot="BottomLeft" relativeoffset="0.006,-0.05" style="ItemUI" />
+          <TextBox text="bloodsampler.title" propertyname="note" maxtextlength="50"/>
+        </CustomInterface>
+        <Quality>
+          <QualityStat stattype="Condition" value="0.2" />
+        </Quality>
+      </Item>
+
+      <Item identifier="coldcrate" category="Medical" tags="crate,allowcleanup" scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_metal_heavy" waterproof="true">
+        <Deconstruct time="0.5"/>
+        <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="0,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
+        <Body width="145" height="65" density="25" />
+        <Deconstruct time="15">
+          <Item identifier="fpgacircuit" amount="1" />
+          <Item identifier="copper" amount="1" />
+          <Item identifier="plastic" amount="1" />
+        </Deconstruct>
+        <Fabricate suitablefabricators="fabricator" requiredtime="15" amount="1">
+          <RequiredSkill identifier="mechanical" level="10"/>
+          <RequiredSkill identifier="electrical" level="35" />
+          <RequiredItem identifier="fpgacircuit" amount="3" />
+          <RequiredItem identifier="mediccrate" />
+          <RequiredItem identifier="copper" amount="2" />
+          <RequiredItem identifier="icepack" amount="1" />
+        </Fabricate>
+        <ItemContainer capacity="1" maxstacksize="1" slotsperrow="3" hideitems="true" containedstateindicatorslot="0" containedstateindicatorstyle="battery">
+          <Containable items="mobilebattery" />
+          <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+          <StatusEffect type="always" targettype="Contained" TargetSlot="0" Condition="-0.15">
+            <RequiredItem items="organ" type="Contained" />
+          </StatusEffect>
+          <StatusEffect type="Always" target="This" TargetSlot="0" tags="freezed" interval="1" duration="1" setvalue="true" stackable="false">
+            <RequiredItem items="mobilebattery" type="Contained" />
+          </StatusEffect>
+          <SubContainer capacity="11" maxstacksize="64">
+            <Containable items="organ" />
+          </SubContainer>
+        </ItemContainer>
+        <Holdable slots="RightHand+LeftHand" holdpos="0,-80" handle1="-20,14" handle2="20,14" aimable="false" msg="ItemMsgPickUpSelect" />
+      </Item>
+      
+      <Item identifier="scalpel" category="Weapon" Tags="smallitem,weapon,surgery" cargocontaineridentifier="metalcrate" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+        <PreferredContainer secondary="wreckarmcab,abandonedarmcab" amount="1" spawnprobability="0.25" />
+        <PreferredContainer secondary="abandonedstoragecab" amount="1" spawnprobability="0.05" />
+        <PreferredContainer secondary="beaconsupplycab" amount="1" spawnprobability="0.05" />
+        <PreferredContainer primary="secarmcab" secondary="armcab" />
+        <Price baseprice="29">
+          <Price storeidentifier="merchantoutpost" multiplier="1.5" minavailable="6" />
+          <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="8" />
+          <Price storeidentifier="merchantresearch" multiplier="1.25" minavailable="2" />
+          <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="15" />
+          <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="2" />
+          <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="15" />
+          <Price storeidentifier="merchanthusk" minavailable="0" maxavailable="2"/>
+        </Price>
+        <Deconstruct time="10">
+          <Item identifier="iron" />
+        </Deconstruct>
+        <Fabricate suitablefabricators="fabricator" requiredtime="10">
+          <RequiredSkill identifier="weapons" level="15" />
+          <RequiredSkill identifier="medical" level="25" />
+          <RequiredItem identifier="iron" amount="2" />
+          <RequiredItem identifier="plastic" amount="1" />
+        </Fabricate>
+        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="0,0" sheetelementsize="64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="1,1" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
+        <Body width="65" height="15" density="25" />
+        <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="50,0" handle1="-10,0" holdangle="30" reload="0.75" range="50" combatPriority="25" msg="ItemMsgPickUpSelect">
+          <Attack targetimpulse="2" severlimbsprobability="0.1" itemdamage="3" structuredamage="2" structuresoundtype="StructureSlash">
+            <Affliction identifier="lacerations" strength="5" />
+            <Affliction identifier="pierce" strength="2.5" />
+            <Affliction identifier="bleeding" strength="5" />
+            <Affliction identifier="stun" strength="0.2" />
+            <StatusEffect type="OnUse" target="UseTarget">
+              <Conditional entitytype="eq Character" />
+              <Sound file="Content/Sounds/Damage/LimbSlash1.ogg" selectionmode="random" range="500" />
+              <Sound file="Content/Sounds/Damage/LimbSlash2.ogg" range="500" />
+              <Sound file="Content/Sounds/Damage/LimbSlash3.ogg" range="500" />
+              <Sound file="Content/Sounds/Damage/LimbSlash4.ogg" range="500" />
+              <Sound file="Content/Sounds/Damage/LimbSlash5.ogg" range="500" />
+              <Sound file="Content/Sounds/Damage/LimbSlash6.ogg" range="500" />
+            </StatusEffect>
+          </Attack>
+        </MeleeWeapon>
+        <aitarget sightrange="500" soundrange="250" fadeouttime="1" />
+        <Quality>
+          <QualityStat stattype="StrikingPowerMultiplier" value="0.1" />
+        </Quality>
+        <Choose canbeselected="true" drawhudwhenequipped="true" allowuioverlap="true">
+          <GuiFrame relativesize="0.16,0.3" anchor="CenterLeft" pivot="TopLeft" relativeoffset="0.1125,0.001"  style="ItemUI" />
+          <TextBox text="scalpel.action" propertyname="note" maxtextlength="20"/>
+          <Button text="scalpel.incise" connection="incise">
+            <StatusEffect type="OnUse" targettype="This" />
+          </Button>
+          <Button text="scalpel.lung" connection="lung">
+            <StatusEffect type="OnUse" targettype="This" />
+          </Button>
+          <Button text="scalpel.liver" connection="liver">
+            <StatusEffect type="OnUse" targettype="This" />
+          </Button>
+          <Button text="scalpel.heart" connection="heart">
+            <StatusEffect type="OnUse" targettype="This" />
+          </Button>
+        </Choose>
+      </Item>
+
+      <Item identifier="scissors" category="Weapon" Tags="smallitem,weapon,surgery" useinhealthinterface="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+        <PreferredContainer secondary="wreckarmcab,abandonedarmcab" amount="1" spawnprobability="0.25" />
+        <PreferredContainer secondary="abandonedstoragecab" amount="1" spawnprobability="0.05" />
+        <PreferredContainer secondary="beaconsupplycab" amount="1" spawnprobability="0.05" />
+        <PreferredContainer primary="secarmcab" secondary="armcab" />
+        <Price baseprice="29">
+          <Price storeidentifier="merchantoutpost" multiplier="1.5" minavailable="6" />
+          <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="8" />
+          <Price storeidentifier="merchantresearch" multiplier="1.25" minavailable="2" />
+          <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="15" />
+          <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="2" />
+          <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="15" />
+          <Price storeidentifier="merchanthusk" minavailable="0" maxavailable="2"/>
+        </Price>
+        <Deconstruct time="10">
+          <Item identifier="iron" amount="2"/>
+        </Deconstruct>
+        <Fabricate suitablefabricators="fabricator" requiredtime="10">
+          <RequiredSkill identifier="medical" level="25" />
+          <RequiredItem identifier="steel" amount="1" />
+          <RequiredItem identifier="iron" amount="1" />
+        </Fabricate>
+        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="3,0" sheetelementsize="64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="3,0" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
+        <Body width="65" height="15" density="25" />
+        <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="50,0" handle1="-10,0" holdangle="30" reload="1" range="50" combatPriority="25" msg="ItemMsgPickUpSelect">
+          <Attack targetimpulse="2" severlimbsprobability="0.1" itemdamage="3" structuredamage="2" structuresoundtype="StructureSlash">
+            <Affliction identifier="lacerations" strength="5" />
+            <Affliction identifier="pierce" strength="2.5" />
+            <Affliction identifier="bleeding" strength="5" />
+            <Affliction identifier="stun" strength="0.2" />
+            <StatusEffect type="OnUse" target="UseTarget">
+              <Conditional entitytype="eq Character" />
+              <Sound file="Content/Sounds/Damage/LimbSlash1.ogg" selectionmode="random" range="500" />
+              <Sound file="Content/Sounds/Damage/LimbSlash2.ogg" range="500" />
+              <Sound file="Content/Sounds/Damage/LimbSlash3.ogg" range="500" />
+              <Sound file="Content/Sounds/Damage/LimbSlash4.ogg" range="500" />
+              <Sound file="Content/Sounds/Damage/LimbSlash5.ogg" range="500" />
+              <Sound file="Content/Sounds/Damage/LimbSlash6.ogg" range="500" />
+            </StatusEffect>
+          </Attack>
+        </MeleeWeapon>
+        <ItemContainer capacity="1" maxstacksize="4" hideitems="false" itempos="8,-35" containedspritedepth="0.56" containedstateindicatorstyle="syringe">
+          <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="64,448,64,64" origin="0.5,0.5" />
+          <Containable items="sulture" />
+        </ItemContainer>
+        <aitarget sightrange="500" soundrange="250" fadeouttime="1" />
+        <Quality>
+          <QualityStat stattype="StrikingPowerMultiplier" value="0.1" />
+        </Quality>
+      </Item>
+
+      <Item identifier="stapler" category="medical" Tags="smallitem,medicaltool" useinhealthinterface="True" cargocontaineridentifier="metalcrate" Scale="0.5" impactsoundtag="impact_metal_light">
+        <PreferredContainer primary="medcab" secondary="storagecab" />
+        <PreferredContainer secondary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
+        <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
+        <PreferredContainer secondary="outpostmedcompartment" minamount="0" maxamount="1" spawnprobability="0.05" />
+        <Price baseprice="175" minavailable="1">
+          <Price storeidentifier="merchantoutpost" maxamount="2"/>
+          <Price storeidentifier="merchantcity" minamount="1" maxamount="3" multiplier="1.1"/>
+          <Price storeidentifier="merchantresearch" multiplier="0.9" />
+          <Price storeidentifier="merchantmedical" minamount="2" maxamount="4" multiplier="1.25" />
+          <Price storeidentifier="merchantmilitary" minamount="1" maxamount="4" multiplier="1.15" />
+        </Price>
+        <Deconstruct time="15">
+          <RequiredItem identifier="steel" amount="1" />
+          <RequiredItem identifier="tin" amount="1" />
+        </Deconstruct>
+        <Fabricate suitablefabricators="fabricator" requiredtime="15" amount="2">
+          <RequiredSkill identifier="mechanical" level="35"/>
+          <RequiredSkill identifier="medical" level="25"/>
+          <RequiredItem identifier="plastic" amount="1" />
+          <RequiredItem identifier="silicon" amount="1" />
+          <RequiredItem identifier="titaniumaluminiumalloy" amount="1" />
+        </Fabricate>
+        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="7,1" sheetelementsize="64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="6,0" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
+        <Body width="27" height="60" density="12" />
+        <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="0,-15" msg="ItemMsgPickUpSelect" >
+        </Holdable>
+        <ItemContainer capacity="1" maxstacksize="8" slotsperrow="3" hideitems="true" containedstateindicatorslot="0" containedstateindicatorstyle="battery">
+          <Containable items="sulture" />
+          <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        </ItemContainer>
+      </Item>
+
+      <Item identifier="anestheticgas0" category="Equipment,Medical" health="200" maxstacksize="8" maxstacksizecharacterinventory="1" MaxStackSizeHoldableOrWearableInventory="1" Tags="smallitem,anestheticgas" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+        <PreferredContainer primary="engcab" secondary="supplycab"/>
+        <PreferredContainer primary="wreckengcab,abandonedengcab" amount="1" spawnprobability="0.05"/>
+        <PreferredContainer primary="wreckstoragecab,abandonedstoragecab" amount="1" spawnprobability="0.02"/> 
+        <Price baseprice="150" sold="true" displaynonempty="true">
+          <Price storeidentifier="merchantcity" />
+          <Price storeidentifier="merchantarmory" multiplier="1.1" />
+          <Price storeidentifier="merchantresearch" multiplier="1.25" />
+          <Price storeidentifier="merchantmilitary" multiplier="1.25" />
+          <Price storeidentifier="merchantmine" multiplier="1.4" />
+        </Price>
+        <Deconstruct time="10">
+          <Item identifier="aluminium" />
+        </Deconstruct>
+        <Fabricate suitablefabricators="fabricator" requiredtime="15">
+          <RequiredSkill identifier="mechanical" level="40" />
+          <RequiredItem identifier="aluminium" amount="2" />
+          <RequiredItem identifier="nitroglycerin" />
+          <RequiredItem identifier="liquidoxygenite"/>
+        </Fabricate>
+        <Fabricate suitablefabricators="fabricator" displayname="recycleitem" requiredtime="10">
+          <RequiredSkill identifier="mechanical" level="30" />
+          <RequiredItem identifier="anestheticgas0" mincondition="0.0" maxcondition="0.1" usecondition="false"/>
+          <RequiredItem identifier="nitroglycerin" />
+          <RequiredItem identifier="liquidoxygenite"/>
+        </Fabricate>
+        <Fabricate suitablefabricators="fabricator" displayname="recycleitem" requiredtime="10">
+          <RequiredSkill identifier="mechanical" level="30" />
+          <RequiredItem identifier="anestheticgas1" mincondition="0.0" maxcondition="0.0" usecondition="false"/>
+          <RequiredItem identifier="nitroglycerin" />
+          <RequiredItem identifier="liquidoxygenite"/>
+        </Fabricate>
+        <Fabricate suitablefabricators="vendingmachine" requiredtime="1" requiredmoney="200" fabricationlimitmin="0" fabricationlimitmax="4" quality="0"/>
+        <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="960,0,64,64" origin="0.5,0.5" />
+        <Sprite texture="Content/Items/Tools/tools.png" sourcerect="436,71,22,66" depth="0.55" />
+        <Body width="20" height="65" density="9.7" />
+        <Holdable canbecombined="true" slots="Any,RightHand,LeftHand" holdpos="30,-15" handle1="0,5" handle2="0,-5" msg="ItemMsgPickUpSelect">
+          <StatusEffect type="OnFire" target="This" Condition="-4" tags="onfire" duration="1" stackable="false" />
+          <StatusEffect type="OnBroken" target="This" delay="1" stackable="false">
+            <Conditional HasStatusTag="onfire" />
+            <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" range="2000" />
+            <sound file="Content/Items/Weapons/ExplosionSmall2.ogg" range="2000" />
+            <sound file="Content/Items/Weapons/ExplosionSmall3.ogg" range="2000" />
+            <Explosion range="150.0" force="3">
+              <Affliction identifier="burn" strength="50" />
+              <Affliction identifier="stun" strength="5" />
+            </Explosion>
+          </StatusEffect>
+        </Holdable>
+        <Quality>
+          <QualityStat stattype="Condition" value="0.1"/>
+        </Quality>
+        <Upgrade gameversion="0.10.0.0" scale="0.5" />
+      </Item>
+
+      <Item identifier="anestheticgas1" category="Equipment,medical" health="200" maxstacksize="8" maxstacksizecharacterinventory="1" MaxStackSizeHoldableOrWearableInventory="1" Tags="smallitem,anestheticgas" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+        <PreferredContainer primary="engcab" secondary="supplycab"/>
+        <PreferredContainer primary="wreckengcab,abandonedengcab" amount="1" spawnprobability="0.05"/>
+        <PreferredContainer primary="wreckstoragecab,abandonedstoragecab" amount="1" spawnprobability="0.02"/> 
+        <Price baseprice="250" sold="true" displaynonempty="true">
+          <Price storeidentifier="merchantcity" multiplier="1.1"/>
+          <Price storeidentifier="merchantarmory" multiplier="1.2" />
+          <Price storeidentifier="merchantresearch" multiplier="1" />
+          <Price storeidentifier="merchantmilitary" multiplier="1.2" />
+          <Price storeidentifier="merchantmine" multiplier="1.3" />
+        </Price>
+        <Deconstruct time="10">
+          <Item identifier="aluminium" />
+        </Deconstruct>
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="15">
+          <RequiredSkill identifier="mechanical" level="40" />
+          <RequiredItem identifier="aluminium" amount="2" />
+          <RequiredItem identifier="paralyxis" amount="1"/>
+          <RequiredItem identifier="carbon" amount="1"/>
+          <RequiredItem identifier="liquidoxygenite"/>
+        </Fabricate>
+        <Fabricate suitablefabricators="medicalfabricator" displayname="recycleitem" requiredtime="10">
+          <RequiredSkill identifier="mechanical" level="30" />
+          <RequiredItem identifier="anestheticgas0" mincondition="0.0" maxcondition="0" usecondition="false"/>
+          <RequiredItem identifier="paralyxis" amount="1"/>
+          <RequiredItem identifier="carbon" amount="1"/>
+          <RequiredItem identifier="liquidoxygenite"/>
+        </Fabricate>
+        <Fabricate suitablefabricators="medicalfabricator" displayname="recycleitem" requiredtime="10">
+          <RequiredSkill identifier="mechanical" level="30" />
+          <RequiredItem identifier="anestheticgas1" mincondition="0.0" maxcondition="0.1" usecondition="false"/>
+          <RequiredItem identifier="paralyxis" amount="1"/>
+          <RequiredItem identifier="carbon" amount="1"/>
+          <RequiredItem identifier="liquidoxygenite"/>
+        </Fabricate>
+        <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="960,0,64,64" origin="0.5,0.5" />
+        <Sprite texture="Content/Items/Tools/tools.png" sourcerect="436,71,22,66" depth="0.55" />
+        <Body width="20" height="65" density="9.7" />
+        <Holdable canbecombined="true" slots="Any,RightHand,LeftHand" holdpos="30,-15" handle1="0,5" handle2="0,-5" msg="ItemMsgPickUpSelect">
+          <StatusEffect type="OnFire" target="This" Condition="-1" tags="onfire" duration="1" stackable="false" />
+        </Holdable>
+        <Quality>
+          <QualityStat stattype="Condition" value="0.1"/>
+        </Quality>
+        <Upgrade gameversion="0.10.0.0" scale="0.5" />
+      </Item>
+
+      <Item identifier="analgesicgas0" category="Equipment,medical" health="200" maxstacksize="8" maxstacksizecharacterinventory="1" MaxStackSizeHoldableOrWearableInventory="1" Tags="smallitem,anestheticgas" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+        <PreferredContainer primary="engcab" secondary="supplycab"/>
+        <PreferredContainer primary="wreckengcab,abandonedengcab" amount="1" spawnprobability="0.05"/>
+        <PreferredContainer primary="wreckstoragecab,abandonedstoragecab" amount="1" spawnprobability="0.02"/> 
+        <Price baseprice="450" sold="false" displaynonempty="true">
+          <Price storeidentifier="merchantcity" multiplier="1.1"/>
+          <Price storeidentifier="merchantarmory" multiplier="1.2" />
+          <Price storeidentifier="merchantresearch" multiplier="1" />
+          <Price storeidentifier="merchantmilitary" multiplier="1.2" />
+          <Price storeidentifier="merchantmine" multiplier="1.3" />
+        </Price>
+        <Deconstruct time="10">
+          <Item identifier="aluminium" />
+        </Deconstruct>
+        <Fabricate suitablefabricators="fabricator" requiredtime="15">
+          <RequiredSkill identifier="mechanical" level="40" />
+          <RequiredSkill identifier="medical" level="58" />
+          <RequiredItem identifier="antidama1" amount="1" />
+          <RequiredItem identifier="chlorine" amount="2"/>
+          <RequiredItem identifier="incendium" amount="1"/>
+          <RequiredItem identifier="aluminium" amount="2" />
+        </Fabricate>
+        <Fabricate suitablefabricators="fabricator" displayname="recycleitem" requiredtime="10">
+          <RequiredSkill identifier="mechanical" level="30" />
+          <RequiredSkill identifier="medical" level="58" />
+          <RequiredItem identifier="analgesicgas0" mincondition="0.0" maxcondition="0.1" usecondition="false"/>
+          <RequiredItem identifier="antidama1" amount="1" />
+          <RequiredItem identifier="chlorine" amount="2"/>
+          <RequiredItem identifier="incendium" amount="1"/>
+        </Fabricate>
+        <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="960,0,64,64" origin="0.5,0.5" />
+        <Sprite texture="Content/Items/Tools/tools.png" sourcerect="436,71,22,66" depth="0.55" />
+        <Body width="20" height="65" density="9.7" />
+        <Holdable canbecombined="true" slots="Any,RightHand,LeftHand" holdpos="30,-15" handle1="0,5" handle2="0,-5" msg="ItemMsgPickUpSelect">
+          <StatusEffect type="OnFire" target="This" Condition="-1" tags="onfire" duration="1" stackable="false" />
+        </Holdable>
+        <Quality>
+          <QualityStat stattype="Condition" value="0.1"/>
+        </Quality>
+        <Upgrade gameversion="0.10.0.0" scale="0.5" />
+      </Item>
+
+</Items>
