@@ -84,19 +84,19 @@
     <Description textidentifier="affdesc.pierce.two" minstrength="10" maxstrength="200" />
   </Pierce>
 
-  <Lung identifier="lungdmg" type="organdmg" limbspecific="false" AffectMachines="false" MaxStrength="100" ShowIconThreshold="20" ShowIconToOthersThreshold="25" showinhealthscannerthreshold="5" BaseHealCost="0" HealCostMultiplier="20">
+  <Lung identifier="lungdmg" type="organdmg" targets="human" limbspecific="false" AffectMachines="false" MaxStrength="100" ShowIconThreshold="20" ShowIconToOthersThreshold="25" showinhealthscannerthreshold="5" BaseHealCost="0" HealCostMultiplier="20">
     <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="7,3" sheetelementsize="128,128" color="255,0,255,0" origin="0,0" />
     <Effect minstrength="0" maxstrength="10" minvitalitydecrease="0" maxvitalitydecrease="0.025" MultiplyByMaxVitality="true" strengthchange="-0.02"/>
     <Effect minstrength="10" maxstrength="100" minvitalitydecrease="0.025" maxvitalitydecrease="0.2" MultiplyByMaxVitality="true"/>
     <Description textidentifier="affdesc.lungdmg" minstrength="10" maxstrength="100" />
   </Lung>
-  <Lung identifier="lungmissing" type="failure" limbspecific="false" AffectMachines="false" MaxStrength="1" ShowIconThreshold="0" ShowIconToOthersThreshold="0" showinhealthscannerthreshold="0" BaseHealCost="2000" HealCostMultiplier="0">
+  <Lung identifier="lungmissing" type="failure" targets="human" limbspecific="false" AffectMachines="false" MaxStrength="1" ShowIconThreshold="0" ShowIconToOthersThreshold="0" showinhealthscannerthreshold="0" BaseHealCost="2000" HealCostMultiplier="0">
     <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="9,3" sheetelementsize="128,128" color="255,255,255,0" origin="0,0" />
     <Effect minstrength="0" maxstrength="1" minvitalitydecrease="0" maxvitalitydecrease="0.25" MultiplyByMaxVitality="true" MinResistance="1" MaxResistance="1" resistancefor="lungdmg" DialogFlag="lungmissing"/>
     <Description textidentifier="affdesc.lungmissing" minstrength="0" maxstrength="100" />
   </Lung>
 
-  <Liver identifier="liverdmg" type="organdmg" limbspecific="false" AffectMachines="false" MaxStrength="100" ShowIconThreshold="50" ShowIconToOthersThreshold="55" showinhealthscannerthreshold="12.5" BaseHealCost="0" HealCostMultiplier="20">
+  <Liver identifier="liverdmg" type="organdmg" targets="human" limbspecific="false" AffectMachines="false" MaxStrength="100" ShowIconThreshold="50" ShowIconToOthersThreshold="55" showinhealthscannerthreshold="12.5" BaseHealCost="0" HealCostMultiplier="20">
     <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="7,6" sheetelementsize="128,128" color="255,0,255,0" origin="0,0" />
     <Effect minstrength="0" maxstrength="25" minvitalitydecrease="0" maxvitalitydecrease="0.1" MultiplyByMaxVitality="true" strengthchange="-0.03"/>
     <Effect minstrength="25" maxstrength="100" minvitalitydecrease="0.1" maxvitalitydecrease="0.4" MultiplyByMaxVitality="true"/>
@@ -104,13 +104,13 @@
     <Description textidentifier="affdesc.liverdmg.two" minstrength="25" maxstrength="100" />
   </Liver>
 
-  <Liver identifier="livermissing" type="failure" limbspecific="false" AffectMachines="false" MaxStrength="1" ShowIconThreshold="0" ShowIconToOthersThreshold="0" showinhealthscannerthreshold="0" BaseHealCost="2000" HealCostMultiplier="0">
+  <Liver identifier="livermissing" type="failure" targets="human" limbspecific="false" AffectMachines="false" MaxStrength="1" ShowIconThreshold="0" ShowIconToOthersThreshold="0" showinhealthscannerthreshold="0" BaseHealCost="2000" HealCostMultiplier="0">
     <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="9,6" sheetelementsize="128,128" color="255,255,255,0" origin="0,0" />
     <Effect minstrength="0" maxstrength="1" minvitalitydecrease="0" maxvitalitydecrease="0.5" MultiplyByMaxVitality="true" MinResistance="1" MaxResistance="1" resistancefor="liverdmg" DialogFlag="livermissing"/>
     <Description textidentifier="affdesc.livermissing" minstrength="0" maxstrength="100" />
   </Liver>
 
-  <Heart identifier="heartdmg" type="organdmg" limbspecific="false" AffectMachines="false" MaxStrength="100" ShowIconThreshold="30" ShowIconToOthersThreshold="35" showinhealthscannerthreshold="15" BaseHealCost="0" HealCostMultiplier="20">
+  <Heart identifier="heartdmg" type="organdmg" targets="human" limbspecific="false" AffectMachines="false" MaxStrength="100" ShowIconThreshold="30" ShowIconToOthersThreshold="35" showinhealthscannerthreshold="15" BaseHealCost="0" HealCostMultiplier="20">
     <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="7,2" sheetelementsize="128,128" color="255,0,255,0" origin="0,0" />
     <Effect minstrength="0" maxstrength="15" minvitalitydecrease="0" maxvitalitydecrease="0.045" MultiplyByMaxVitality="true" strengthchange="-0.025"/>
     <Effect minstrength="15" maxstrength="100" minvitalitydecrease="0.045" maxvitalitydecrease="0.3" MultiplyByMaxVitality="true"/>
@@ -118,10 +118,52 @@
     <Description textidentifier="affdesc.heartdmg.two" minstrength="15" maxstrength="100" />
   </Heart>
 
-  <Heart identifier="heartmissing" type="failure" limbspecific="false" AffectMachines="false" MaxStrength="1" ShowIconThreshold="0" ShowIconToOthersThreshold="0" showinhealthscannerthreshold="0" BaseHealCost="2000" HealCostMultiplier="0">
+  <Heart identifier="heartmissing" type="failure" targets="human" limbspecific="false" AffectMachines="false" MaxStrength="1" ShowIconThreshold="0" ShowIconToOthersThreshold="0" showinhealthscannerthreshold="0" BaseHealCost="2000" HealCostMultiplier="0">
     <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="9,1" sheetelementsize="128,128" color="255,255,255,0" origin="0,0" />
     <Effect minstrength="0" maxstrength="1" minvitalitydecrease="0" maxvitalitydecrease="0.4" MultiplyByMaxVitality="true" MinResistance="1" MaxResistance="1" resistancefor="heartdmg" DialogFlag="heartmissing"/>
     <Description textidentifier="affdesc.heartmissing" minstrength="0" maxstrength="100" />
   </Heart>
 
+	<Affliction
+  identifier="Phenothiazinepoisoning"
+  type="poison"
+  targets=""
+  limbspecific="false"
+  indicatorlimb="Torso"
+  showiconthreshold="85"
+  showinhealthscannerthreshold="65"
+  treatmentthreshold="20"
+  karmachangeonapplied="-75"
+  maxstrength="100"
+  affectmachines="false"
+  healcostmultiplier="0"
+  basehealcost="200"
+  MedicalSkillGain="3.0">
+		<Description
+		  textidentifier="afflictiondescription.Phenothiazinepoisoning.self"
+		  target="Self"
+		  minstrength="85"
+		  maxstrength="100"/>
+		<Description
+		  textidentifier="afflictiondescription.Phenothiazinepoisoning.low"
+		  target="OtherCharacter"
+		  minstrength="85"
+		  maxstrength="100"/>
+		<Effect minstrength="0" maxstrength="20"
+		  strengthchange="-0.25"
+		  minchromaticaberration="0.0"
+		  maxchromaticaberration="0.2">
+		</Effect>
+		<!-- lethal after str 20 -->
+		<Effect minstrength="20" maxstrength="100"
+		  strengthchange="1"
+		  minscreendistort="0"
+		  maxscreendistort="02"
+		  minchromaticaberration="0.2"
+		  maxchromaticaberration="0.5"
+		  tag="poisoned">
+		</Effect>
+		<icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="1,7" sheetelementsize="128,128" color="255,0,0,0" origin="0,0" />
+	</Affliction>
+	
 </Afflictions>
