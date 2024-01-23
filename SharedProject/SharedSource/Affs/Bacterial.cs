@@ -1,4 +1,3 @@
-using System;
 using Barotrauma;
 namespace PrimMed.Affs
 {
@@ -63,29 +62,17 @@ namespace PrimMed.Affs
                 {
                     elapsed = INTV;
 
-                    LimbType[] spreads;
-                    switch (targetLimb.type)
+                    LimbType[] spreads = targetLimb.type switch
                     {
-                        case LimbType.LeftFoot:
-                        case LimbType.RightFoot:
-                        case LimbType.LeftForearm:
-                        case LimbType.RightForearm:
-                            spreads = new LimbType[] { LimbType.Torso };
-                            break;
-                        case LimbType.Waist:
-                            spreads = new LimbType[] { LimbType.LeftLeg, LimbType.RightLeg, LimbType.LeftArm, LimbType.RightArm };
-                            break;
-                        case LimbType.Head:
-                            spreads = new LimbType[] { LimbType.Torso };
-                            break;
-                        default:
-                            spreads = new LimbType[0];
-                            break;
-                    }
+                        LimbType.LeftFoot or LimbType.RightFoot or LimbType.LeftForearm or LimbType.RightForearm => new LimbType[] { LimbType.Torso },
+                        LimbType.Waist => new LimbType[] { LimbType.LeftLeg, LimbType.RightLeg, LimbType.LeftArm, LimbType.RightArm },
+                        LimbType.Head => new LimbType[] { LimbType.Torso },
+                        _ => Array.Empty<LimbType>(),
+                    };
                     foreach (LimbType d in spreads)
                         if (Rand.Value(Rand.RandSync.ServerAndClient) < (Strength - SPREAD_TH) / Prefab.MaxStrength)
-                            ch.addLimbAffFast(ch.limbHealths[ch.Character.AnimController.GetLimb(d).HealthIndex], new Bacterial(Utils.BACTERIAL1_PFB, SPREAD_RESULT),true,true);
-                            
+                            ch.addLimbAffFast(ch.limbHealths[ch.Character.AnimController.GetLimb(d).HealthIndex], new Bacterial(Utils.BACTERIAL1_PFB, SPREAD_RESULT), true, true);
+
                 }
 
 

@@ -14,48 +14,6 @@ namespace PrimMed.Patches
                 __instance.irremovableAfflictions.Add(new Affs.Mortal(AfflictionPrefab.Prefabs["mortal"], 1f));
         }
 
-        private static float rmvBdgProb(in Identifier id) => id.Value switch
-        {
-            "lacerations" => 0.7f,
-            "bitewounds" => 0.9f,
-            "blunttrauma" => 0.2f,
-            "gunshotwound" => 0.9f,
-            "explosiondamage" => 0.8f,
-            "burn" => 0.6f,
-            "acidburn" => 0.95f,
-            "pierce" => 0.1f,
-            _ => 0f
-        };
-        private const float STEP = 3f;
-        [HarmonyPrefix]
-        [HarmonyPatch("AddLimbAffliction", new Type[] { typeof(Limb), typeof(Affliction), typeof(bool) })]
-        public static bool _AddLimbAffliction(CharacterHealth __instance, Limb limb, Affliction newAffliction, bool allowStacking)
-        {
-            if (newAffliction.Prefab.LimbSpecific && limb is not null)
-            {
-                //if (limb.HealthIndex < 0 || limb.HealthIndex >= limbHealths.Count)
-                var lhs = __instance.limbHealths;
-                if (__instance.Character.IsHuman)
-                    foreach ((Affliction aff, CharacterHealth.LimbHealth lh) in __instance.afflictions)
-                        if (aff is Affs.Bandaged)
-                            if (lh == lhs[limb.HealthIndex])
-                            {
-                                float prob = rmvBdgProb(newAffliction.Identifier);
-                                if (prob > 0f)
-                                    if (Rand.Value(Rand.RandSync.ServerAndClient) < prob)
-                                    {
-                                        float dec = aff.Prefab.MaxStrength / STEP;
-                                        aff.SetStrength(Math.Max(0f, aff.Strength - dec));
-                                        __instance.addLimbAffFast(lh, Utils.SCAR_PFB, dec, newAffliction.Source, true, true);
-                                    }
-                                break;
-                            }
-
-
-                __instance.AddLimbAffliction(lhs[limb.HealthIndex], newAffliction, allowStacking);
-            }
-            return false;
-        }
         [HarmonyPostfix]
         [HarmonyPatch("GetStatValue", new Type[] { typeof(StatTypes) })]
         public static void _GetStatValue(CharacterHealth __instance, ref float __result, in StatTypes statType)
@@ -81,7 +39,7 @@ namespace PrimMed.Patches
                     break;
                 case StatTypes.MeleeAttackMultiplier:
                     {
-                        Limb leftArm = __instance.Character.AnimController.GetLimb(LimbType.LeftArm), rightArm = __instance.Character.AnimController.GetLimb(LimbType.RightArm), torso = __instance.Character.AnimController.GetLimb(LimbType.Torso);
+                        Limb leftArm = __instance.Character.AnimController.GetLimb(LimbType.LeftArm), rightArm = __instance.Character.AnimController.GetLimb(LimbType.RightArm);
                         mod = (Utils.getLimbPain(leftArm, __instance) + Utils.getLimbPain(rightArm, __instance)) / 2f;
                     }
                     break;
@@ -105,7 +63,7 @@ namespace PrimMed.Patches
         }
         [HarmonyPostfix]
         [HarmonyPatch("Load", new Type[] { typeof(XElement), typeof(Func<AfflictionPrefab, bool>) })]
-        public static void _Load(CharacterHealth __instance, XElement element, Func<AfflictionPrefab, bool> afflictionPredicate)
+        public static void _Load(CharacterHealth __instance)
         {//ensure blood type on character load(backward compatibility) and respawn.
             if (__instance.Character.IsHuman)
             {

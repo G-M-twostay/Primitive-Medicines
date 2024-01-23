@@ -1,11 +1,8 @@
-using System;
-using Barotrauma.Networking;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
-using System.Globalization;
-using Barotrauma.Items.Components;
 using Barotrauma;
+using Barotrauma.Items.Components;
+using Barotrauma.Networking;
+using System.Globalization;
+using System.Xml.Linq;
 namespace PrimMed.Replace
 {
     partial class Choose : ItemComponent, IClientSerializable, IServerSerializable
@@ -13,13 +10,13 @@ namespace PrimMed.Replace
         private readonly struct EventData : IEventData
         {
             public readonly CustomInterfaceElement BtnElement;
-            
+
             public EventData(CustomInterfaceElement btnElement)
             {
                 BtnElement = btnElement;
             }
         }
-        
+
         public class CustomInterfaceElement : ISerializableEntity
         {
             public bool ContinuousSignal;
@@ -28,31 +25,73 @@ namespace PrimMed.Replace
             public Connection Connection;
 
             [Serialize("", IsPropertySaveable.No, translationTextTag: "Label.", description: "The text displayed on this button/tickbox."), Editable]
-            public string Label { get; set; }
+            public string Label
+            {
+                get; set;
+            }
 
             [Serialize("1", IsPropertySaveable.No, description: "The signal sent out when this button is pressed or this tickbox checked."), Editable]
-            public string Signal { get; set; }
+            public string Signal
+            {
+                get; set;
+            }
 
-            public Identifier PropertyName { get; }
-            public bool TargetOnlyParentProperty { get; }
+            public Identifier PropertyName
+            {
+                get;
+            }
+            public bool TargetOnlyParentProperty
+            {
+                get;
+            }
 
-            public string NumberInputMin { get; }
-            public string NumberInputMax { get; }
-            public string NumberInputStep { get; }
-            public int NumberInputDecimalPlaces { get; }
+            public string NumberInputMin
+            {
+                get;
+            }
+            public string NumberInputMax
+            {
+                get;
+            }
+            public string NumberInputStep
+            {
+                get;
+            }
+            public int NumberInputDecimalPlaces
+            {
+                get;
+            }
 
-            public int MaxTextLength { get; }
+            public int MaxTextLength
+            {
+                get;
+            }
 
             public const string DefaultNumberInputMin = "0", DefaultNumberInputMax = "99", DefaultNumberInputStep = "1";
             public const int DefaultNumberInputDecimalPlaces = 0;
-            public bool IsNumberInput { get; }
-            public NumberType? NumberType { get; }
-            public bool HasPropertyName { get; }
-            public bool ShouldSetProperty { get; set; }
+            public bool IsNumberInput
+            {
+                get;
+            }
+            public NumberType? NumberType
+            {
+                get;
+            }
+            public bool HasPropertyName
+            {
+                get;
+            }
+            public bool ShouldSetProperty
+            {
+                get; set;
+            }
 
             public string Name => "CustomInterfaceElement";
 
-            public Dictionary<Identifier, SerializableProperty> SerializableProperties { get; set; }
+            public Dictionary<Identifier, SerializableProperty> SerializableProperties
+            {
+                get; set;
+            }
 
             public List<StatusEffect> StatusEffects = new List<StatusEffect>();
 
@@ -60,7 +99,7 @@ namespace PrimMed.Replace
             /// Pass the parent component to the constructor to access the serializable properties
             /// for elements which change property values.
             /// </summary>
-            public CustomInterfaceElement(Item item, ContentXElement element, Choose parent)
+            public CustomInterfaceElement(Item _, ContentXElement element, Choose parent)
             {
                 Label = element.GetAttributeString("text", "");
                 ConnectionName = element.GetAttributeString("connection", "");
@@ -113,7 +152,10 @@ namespace PrimMed.Replace
                     {
                         foreach (ISerializableEntity e in parent.item.AllPropertyObjects)
                         {
-                            if (!e.SerializableProperties.ContainsKey(PropertyName)) { continue; }
+                            if (!e.SerializableProperties.ContainsKey(PropertyName))
+                            {
+                                continue;
+                            }
                             Signal = e.SerializableProperties[PropertyName].GetValue(e) as string;
                             break;
                         }
@@ -139,10 +181,16 @@ namespace PrimMed.Replace
 
         public string Labels
         {
-            get { return string.Join(",", labels); }
+            get
+            {
+                return string.Join(",", labels);
+            }
             set
             {
-                if (value == null) { return; }
+                if (value == null)
+                {
+                    return;
+                }
                 if (customInterfaceElementList.Count > 0)
                 {
                     string[] splitValues = value == "" ? Array.Empty<string>() : value.Split(',');
@@ -157,10 +205,16 @@ namespace PrimMed.Replace
         {
             //use semicolon as a separator because comma may be needed in the signals (for color or vector values for example)
             //kind of hacky, we should probably add support for (string) arrays to SerializableEntityEditor so this wouldn't be needed
-            get { return signals == null ? string.Empty : string.Join(";", signals); }
+            get
+            {
+                return signals == null ? string.Empty : string.Join(";", signals);
+            }
             set
             {
-                if (value == null) { return; }
+                if (value == null)
+                {
+                    return;
+                }
                 if (customInterfaceElementList.Count > 0)
                 {
                     string[] splitValues = value == "" ? Array.Empty<string>() : value.Split(';');
@@ -173,16 +227,25 @@ namespace PrimMed.Replace
         [Serialize("", IsPropertySaveable.Yes, description: "", alwaysUseInstanceValues: true)]
         public string ElementStates
         {
-            get { return elementStates == null ? string.Empty : string.Join(",", elementStates); }
+            get
+            {
+                return elementStates == null ? string.Empty : string.Join(",", elementStates);
+            }
             set
             {
-                if (value == null) { return; }
+                if (value == null)
+                {
+                    return;
+                }
                 if (customInterfaceElementList.Count > 0)
                 {
                     string[] splitValues = value == "" ? Array.Empty<string>() : value.Split(',');
                     for (int i = 0; i < customInterfaceElementList.Count && i < splitValues.Length; i++)
                     {
-                        if (!bool.TryParse(splitValues[i], out bool val)) { continue; }
+                        if (!bool.TryParse(splitValues[i], out bool val))
+                        {
+                            continue;
+                        }
                         customInterfaceElementList[i].State = val;
 #if CLIENT
                         if (uiElements != null && i < uiElements.Count && uiElements[i] is GUITickBox tickBox)
@@ -196,7 +259,7 @@ namespace PrimMed.Replace
         }
 
         public readonly List<CustomInterfaceElement> customInterfaceElementList = new List<CustomInterfaceElement>();
-        
+
         public Choose(Item item, ContentXElement element)
             : base(item, element)
         {
@@ -245,7 +308,7 @@ namespace PrimMed.Replace
             for (int i = 0; i < labels.Length; i++)
             {
                 labels[i] = i < newLabels.Length ? newLabels[i] : customInterfaceElementList[i].Label;
-                customInterfaceElementList[i].Label = labels[i];                
+                customInterfaceElementList[i].Label = labels[i];
             }
             UpdateLabelsProjSpecific();
         }
@@ -281,7 +344,10 @@ namespace PrimMed.Replace
                     {
                         foreach (var po in item.AllPropertyObjects)
                         {
-                            if (!po.SerializableProperties.ContainsKey(element.PropertyName)) { continue; }
+                            if (!po.SerializableProperties.ContainsKey(element.PropertyName))
+                            {
+                                continue;
+                            }
                             po.SerializableProperties[element.PropertyName].TrySetValue(po, element.Signal);
                         }
                     }
@@ -305,7 +371,10 @@ namespace PrimMed.Replace
                 {
                     CoroutineManager.Invoke(() =>
                     {
-                        if (!item.Removed) { item.CreateServerEvent(this); }
+                        if (!item.Removed)
+                        {
+                            item.CreateServerEvent(this);
+                        }
                     }, delay: 0.1f);
                 }
             }
@@ -316,39 +385,42 @@ namespace PrimMed.Replace
 
         partial void UpdateSignalsProjSpecific();
 
-        partial void InitProjSpecific();     
-        
+        partial void InitProjSpecific();
+
         private void ButtonClicked(CustomInterfaceElement btnElement)
         {
-            if (btnElement == null) return;
-            //DebugConsole.ThrowError(btnElement.Label+" "+customInterfaceElementList[0].Label);
-            TextChanged(customInterfaceElementList[0],btnElement.Label);
+            if (btnElement == null)
+                return;
+            TextChanged(customInterfaceElementList[0], btnElement.Label);
+#if CLIENT
             UpdateSignalsProjSpecific();
-            // if (btnElement.Connection != null)
-            // {
-            //     item.SendSignal(new Signal(btnElement.Signal, 0, null, item), btnElement.Connection);
-            // }
-            // foreach (StatusEffect effect in btnElement.StatusEffects)
-            // {
-            //     item.ApplyStatusEffect(effect, ActionType.OnUse, 1.0f, character: item.ParentInventory?.Owner as Character);
-            // }
+#endif
         }
 
         private void TickBoxToggled(CustomInterfaceElement tickBoxElement, bool state)
         {
-            if (tickBoxElement == null) { return; }
+            if (tickBoxElement == null)
+            {
+                return;
+            }
             tickBoxElement.State = state;
         }
 
         private void TextChanged(CustomInterfaceElement textElement, string text)
         {
-            if (textElement == null) { return; }
+            if (textElement == null)
+            {
+                return;
+            }
             textElement.Signal = text;
             if (!textElement.TargetOnlyParentProperty)
             {
                 foreach (ISerializableEntity e in item.AllPropertyObjects)
                 {
-                    if (!e.SerializableProperties.ContainsKey(textElement.PropertyName)) { continue; }
+                    if (!e.SerializableProperties.ContainsKey(textElement.PropertyName))
+                    {
+                        continue;
+                    }
                     e.SerializableProperties[textElement.PropertyName].TrySetValue(e, text);
                 }
             }
@@ -360,13 +432,19 @@ namespace PrimMed.Replace
 
         private void ValueChanged(CustomInterfaceElement numberInputElement, int value)
         {
-            if (numberInputElement == null) { return; }
+            if (numberInputElement == null)
+            {
+                return;
+            }
             numberInputElement.Signal = value.ToString();
             if (!numberInputElement.TargetOnlyParentProperty)
             {
                 foreach (ISerializableEntity e in item.AllPropertyObjects)
                 {
-                    if (!e.SerializableProperties.ContainsKey(numberInputElement.PropertyName)) { continue; }
+                    if (!e.SerializableProperties.ContainsKey(numberInputElement.PropertyName))
+                    {
+                        continue;
+                    }
                     e.SerializableProperties[numberInputElement.PropertyName].TrySetValue(e, value);
                 }
             }
@@ -378,13 +456,19 @@ namespace PrimMed.Replace
 
         private void ValueChanged(CustomInterfaceElement numberInputElement, float value)
         {
-            if (numberInputElement == null) { return; }
+            if (numberInputElement == null)
+            {
+                return;
+            }
             numberInputElement.Signal = value.ToString();
             if (!numberInputElement.TargetOnlyParentProperty)
             {
                 foreach (ISerializableEntity e in item.AllPropertyObjects)
                 {
-                    if (!e.SerializableProperties.ContainsKey(numberInputElement.PropertyName)) { continue; }
+                    if (!e.SerializableProperties.ContainsKey(numberInputElement.PropertyName))
+                    {
+                        continue;
+                    }
                     e.SerializableProperties[numberInputElement.PropertyName].TrySetValue(e, value);
                 }
             }
@@ -398,7 +482,10 @@ namespace PrimMed.Replace
         {
             foreach (CustomInterfaceElement ciElement in customInterfaceElementList)
             {
-                if (!ciElement.ContinuousSignal) { continue; }
+                if (!ciElement.ContinuousSignal)
+                {
+                    continue;
+                }
                 //TODO: allow changing output when a tickbox is not selected
                 if (!string.IsNullOrEmpty(ciElement.Signal) && ciElement.Connection != null)
                 {

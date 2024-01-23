@@ -2,7 +2,6 @@ using Barotrauma;
 using Barotrauma.Items.Components;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
-using System.Collections.Immutable;
 namespace PrimMed.Patches
 {
     [HarmonyPatch(typeof(Character))]
@@ -10,14 +9,14 @@ namespace PrimMed.Patches
     {
         [HarmonyPrefix]
         [HarmonyPatch("GetSkillLevel", new Type[] { typeof(Identifier) })]
-        public static bool _GetSkillLevel(Character __instance, ImmutableDictionary<Identifier, StatTypes> ___overrideStatTypes, ref/*only ref has default value*/ float __result, Identifier skillIdentifier)
+        public static bool _GetSkillLevel(Character __instance, ref/*only ref has default value*/ float __result, Identifier skillIdentifier)
         {
             //be careful of when skillIdentifier is null. This should be invalid and return 0f in the original implementation, but I'm not sure.   
             if (__instance.Info?.Job is not null && skillIdentifier != null)
             {
                 float skillLevel = __instance.Info.Job.GetSkillLevel(skillIdentifier);
 
-                if (___overrideStatTypes.TryGetValue(skillIdentifier, out StatTypes statType))
+                if (Character.overrideStatTypes.TryGetValue(skillIdentifier, out StatTypes statType))
                 {
                     float skillOverride = __instance.GetStatValue(statType);
                     if (skillOverride > skillLevel)
@@ -34,13 +33,13 @@ namespace PrimMed.Patches
 
                 skillLevel += __instance.GetStatValue(Character.GetSkillStatType(skillIdentifier));
 
-                static float helmMod(in float leftLegPain, in float rightLegPain, in float curSkill)
+                static float helmMod(in float leftLegPain, in float rightLegPain, in float _)
                 {
                     float total = leftLegPain + rightLegPain;
                     //linear interpolate between (0, 1) and (200,0.7)
                     return MathHelper.Lerp(1f, 0.7f, total / (2f * Utils.PAIN_PFB.MaxStrength));
                 }
-                static float weaponsMod(in float leftArmPain, in float rightArmPain, in float curSkill)
+                static float weaponsMod(in float leftArmPain, in float rightArmPain, in float _)
                 {
                     const float leftArmWei = 0.9f;
                     //right arm weighs more.

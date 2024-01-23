@@ -1,11 +1,8 @@
 ﻿using Barotrauma;
-using System.Reflection;
-using System;
 using HarmonyLib;
-using System.Runtime.CompilerServices;
-using Barotrauma.Items.Components;
 using System.Collections.Immutable;
-using System.Collections.Generic;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 [assembly: IgnoresAccessChecksTo("Barotrauma")]
 [assembly: IgnoresAccessChecksTo("DedicatedServer")]
 namespace PrimMed

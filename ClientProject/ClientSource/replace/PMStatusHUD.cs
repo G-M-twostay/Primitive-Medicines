@@ -1,179 +1,17 @@
+using Barotrauma;
 using FarseerPhysics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Barotrauma;
-using Barotrauma.Items.Components;
 namespace PrimMed.Replace
 {
-    partial class PMStatusHUD : ItemComponent
+    partial class PMStatusHUD
     {
-        private static readonly LocalizedString[] BleedingTexts = 
-        {
-            TextManager.Get("MinorBleeding"),
-            TextManager.Get("Bleeding"),
-            TextManager.Get("HeavyBleeding"),
-            TextManager.Get("CatastrophicBleeding")
-        };
-
-        private static readonly LocalizedString[] OxygenTexts = 
-        {
-            TextManager.Get("OxygenNormal"),
-            TextManager.Get("OxygenReduced"),
-            TextManager.Get("OxygenLow"),
-            TextManager.Get("NotBreathing")
-        };
-
-        [Serialize(500.0f, IsPropertySaveable.No, description: "How close to a target the user must be to see their health data (in pixels).")]
-        public float Range
-        {
-            get;
-            private set;
-        }
-
-        [Serialize(50.0f, IsPropertySaveable.No, description: "The range within which the health info texts fades out.")]
-        public float FadeOutRange
-        {
-            get;
-            private set;
-        }
-
-        [Serialize(false, IsPropertySaveable.No)]
-        public bool ThermalGoggles
-        {
-            get;
-            private set;
-        }
-
-        [Serialize(false, IsPropertySaveable.No)]
-        public bool DebugWiring
-        {
-            get;
-            private set;
-        }
-
-        [Serialize(true, IsPropertySaveable.No)]
-        public bool ShowDeadCharacters
-        {
-            get;
-            private set;
-        }
-
-        [Serialize(true, IsPropertySaveable.No)]
-        public bool ShowTexts
-        {
-            get;
-            private set;
-        }
-
-        [Serialize("72,119,72,120", IsPropertySaveable.No)]
-        public Color OverlayColor
-        {
-            get;
-            private set;
-        }
-
-        private readonly List<Character> visibleCharacters = new List<Character>();
-
-        private const float UpdateInterval = 1f;
-        private float updateTimer;
-
-        private Character equipper;
-
-        private bool isEquippable;
-
-        private float thermalEffectState;
-
-        public IEnumerable<Character> VisibleCharacters
-        {
-            get 
-            {
-                if (equipper == null || equipper.Removed) { return Enumerable.Empty<Character>(); }
-                return visibleCharacters; 
-            }
-        }
-
-        public override void OnItemLoaded()
-        {
-            isEquippable = item.GetComponent<Pickable>() != null;
-            if (!isEquippable) { IsActive = true; }
-        }
-
-        public override void Update(float deltaTime, Camera cam)
-        {
-            base.Update(deltaTime, cam);
-
-            Entity refEntity = equipper;
-            if (isEquippable)
-            {
-                if (equipper == null || equipper.Removed)
-                {
-                    IsActive = false;
-                    return;
-                }
-            }
-            else
-            {
-                refEntity = item;
-            }
-
-            if (equipper != null && equipper == Character.Controlled && DebugWiring)
-            {
-                ConnectionPanel.DebugWiringEnabledUntil = Timing.TotalTimeUnpaused + 0.5;
-            }
-
-            thermalEffectState += deltaTime;
-            thermalEffectState %= 10000.0f;
-
-            if (updateTimer > 0.0f)
-            {
-                updateTimer -= deltaTime;
-                return;
-            }
-
-            visibleCharacters.Clear();
-            foreach (Character c in Character.CharacterList)
-            {
-                if (c == equipper || !c.Enabled || c.Removed) { continue; }
-                if (!ShowDeadCharacters && c.IsDead) { continue; }
-
-                float dist = Vector2.DistanceSquared(refEntity.WorldPosition, c.WorldPosition);
-                if (dist < Range * Range)
-                {
-                    Vector2 diff = c.WorldPosition - refEntity.WorldPosition;
-                    if (Submarine.CheckVisibility(refEntity.SimPosition, refEntity.SimPosition + ConvertUnits.ToSimUnits(diff)) == null)
-                    {
-                        visibleCharacters.Add(c);
-                    }
-                }
-            }
-
-            updateTimer = UpdateInterval;
-        }
-        
-        public override void Equip(Character character)
-        {
-            updateTimer = 0.0f;
-            equipper = character;
-            IsActive = true;
-        }
-
-        public override void Unequip(Character character)
-        {
-            equipper = null;
-            IsActive = false;
-        }
-
-        public override void Drop(Character dropper, bool setTransform = true)
-        {
-            Unequip(dropper);
-        }
-
         public override void DrawHUD(SpriteBatch spriteBatch, Character character)
         {
-            if (character == null) { return; }
+            if (character == null)
+            {
+                return;
+            }
 
             if (OverlayColor.A > 0)
             {
@@ -187,14 +25,17 @@ namespace PrimMed.Replace
                 float closestDist = float.PositiveInfinity;
                 foreach (Character c in visibleCharacters)
                 {
-                    if (c == character || !c.Enabled || c.Removed) { continue; }
+                    if (c == character || !c.Enabled || c.Removed)
+                    {
+                        continue;
+                    }
 
                     float dist = Vector2.DistanceSquared(GameMain.GameScreen.Cam.ScreenToWorld(PlayerInput.MousePosition), c.WorldPosition);
                     if (dist < closestDist)
                     {
                         closestCharacter = c;
                         closestDist = dist;
-                    }              
+                    }
                 }
 
                 if (closestCharacter != null)
@@ -221,30 +62,43 @@ namespace PrimMed.Replace
 
                 foreach (Character c in Character.CharacterList)
                 {
-                    if (c == character || !c.Enabled || c.Removed || c.Params.HideInThermalGoggles) { continue; }
-                    if (!ShowDeadCharacters && c.IsDead) { continue; }
+                    if (c == character || !c.Enabled || c.Removed || c.Params.HideInThermalGoggles)
+                    {
+                        continue;
+                    }
+                    if (!ShowDeadCharacters && c.IsDead)
+                    {
+                        continue;
+                    }
 
                     float dist = Vector2.DistanceSquared(refEntity.WorldPosition, c.WorldPosition);
-                    if (dist > Range * Range) { continue; }
-                    
-                    const float hideInThermalGogglesTemp=-60f;
-                    if(c.IsHuman)
-                        foreach(var aff in c.CharacterHealth.afflictions.Keys)
-                            if(aff is Affs.Mortal m)
-                                if(m.temp<=hideInThermalGogglesTemp)
+                    if (dist > Range * Range)
+                    {
+                        continue;
+                    }
+
+                    const float hideInThermalGogglesTemp = -60f;
+                    if (c.IsHuman)
+                        foreach (var aff in c.CharacterHealth.afflictions.Keys)
+                            if (aff is Affs.Mortal m)
+                                if (m.temp <= hideInThermalGogglesTemp)
                                     goto END;
 
                     Sprite pingCircle = GUIStyle.UIThermalGlow.Value.Sprite;
                     foreach (Limb limb in c.AnimController.Limbs)
                     {
-                        if (limb.Mass < 0.5f && limb != c.AnimController.MainLimb) { continue; }
+                        if (limb.Mass < 0.5f && limb != c.AnimController.MainLimb)
+                        {
+                            continue;
+                        }
                         float noise1 = PerlinNoise.GetPerlin((thermalEffectState + limb.Params.ID + c.ID) * 0.01f, (thermalEffectState + limb.Params.ID + c.ID) * 0.02f);
                         float noise2 = PerlinNoise.GetPerlin((thermalEffectState + limb.Params.ID + c.ID) * 0.01f, (thermalEffectState + limb.Params.ID + c.ID) * 0.008f);
                         Vector2 spriteScale = ConvertUnits.ToDisplayUnits(limb.body.GetSize()) / pingCircle.size * (noise1 * 0.5f + 2f);
                         Vector2 drawPos = new Vector2(limb.body.DrawPosition.X + (noise1 - 0.5f) * 100, -limb.body.DrawPosition.Y + (noise2 - 0.5f) * 100);
                         pingCircle.Draw(spriteBatch, drawPos, 0.0f, scale: Math.Max(spriteScale.X, spriteScale.Y));
                     }
-                    END:;
+                END:
+                    ;
                 }
 
                 spriteBatch.End();
@@ -252,7 +106,7 @@ namespace PrimMed.Replace
             }
         }
 
-        private void DrawCharacterInfo(SpriteBatch spriteBatch, Character target, float alpha = 1.0f)
+        new private void DrawCharacterInfo(SpriteBatch spriteBatch, Character target, float alpha = 1.0f)
         {
             Vector2 hudPos = GameMain.GameScreen.Cam.WorldToScreen(target.DrawPosition);
             hudPos += Vector2.UnitX * 50.0f;
@@ -266,7 +120,7 @@ namespace PrimMed.Replace
                 nameColor = target.TeamID == CharacterTeamType.FriendlyNPC ? Color.SkyBlue : GUIStyle.Red;
             }
             textColors.Add(nameColor);
-            
+
             if (target.IsDead)
             {
                 texts.Add(TextManager.Get("Deceased"));
@@ -328,20 +182,23 @@ namespace PrimMed.Replace
                 Dictionary<AfflictionPrefab, float> combinedAfflictionStrengths = new Dictionary<AfflictionPrefab, float>();
                 foreach (Affliction affliction in allAfflictions)
                 {
-                    if (affliction.Strength <= 0f) 
-                        continue; 
+                    if (affliction.Strength <= 0f)
+                        continue;
 
-                    const float maxSeeSkill=170f;//170 is dr.sub+medical expertise+self care+medic officer cloth.
-                    if(affliction.Prefab.AfflictionType == AfflictionPrefab.PoisonType||affliction.Prefab.AfflictionType==AfflictionPrefab.ParalysisType){
-                        if(target.IsHuman || target.IsOnPlayerTeam){//poison types on monsters should always be displayed.
-                            float chance=Math.Min((affliction.Strength-affliction.Prefab.ShowInHealthScannerThreshold)/affliction.Prefab.MaxStrength,1f);
-                            chance*=equipper.GetSkillLevel("medical")/maxSeeSkill;
-                            if(equipper.HasTalent("whatastench"))
-                                chance*=1.125f;
-                            if(Rand.Value(Rand.RandSync.Unsynced)>chance)
+                    const float maxSeeSkill = 170f;//170 is dr.sub+medical expertise+self care+medic officer cloth.
+                    if (affliction.Prefab.AfflictionType == AfflictionPrefab.PoisonType || affliction.Prefab.AfflictionType == AfflictionPrefab.ParalysisType)
+                    {
+                        if (target.IsHuman || target.IsOnPlayerTeam)
+                        {//poison types on monsters should always be displayed.
+                            float chance = Math.Min((affliction.Strength - affliction.Prefab.ShowInHealthScannerThreshold) / affliction.Prefab.MaxStrength, 1f);
+                            chance *= equipper.GetSkillLevel("medical") / maxSeeSkill;
+                            if (equipper.HasTalent("whatastench"))
+                                chance *= 1.125f;
+                            if (Rand.Value(Rand.RandSync.Unsynced) > chance)
                                 continue;
                         }
-                    }else if(affliction.Strength < affliction.Prefab.ShowInHealthScannerThreshold)
+                    }
+                    else if (affliction.Strength < affliction.Prefab.ShowInHealthScannerThreshold)
                         continue;
 
                     if (combinedAfflictionStrengths.ContainsKey(affliction.Prefab))

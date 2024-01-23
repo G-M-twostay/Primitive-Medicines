@@ -7,7 +7,6 @@ namespace PrimMed.Patches
     [HarmonyPatch(typeof(Repairable))]
     static class _Repairable
     {
-        private static float fixItemSpeedMod(in float pain, in float curSkill) => 1f - pain / Utils.PAIN_PFB.MaxStrength;
         [HarmonyPrefix]
         [HarmonyPatch("RepairDegreeOfSuccess", new Type[] { typeof(Character), typeof(List<Skill>) })]
         public static bool _RepairDegreeOfSuccess(Repairable __instance, out float __result, Character character, List<Skill> skills)
@@ -20,6 +19,8 @@ namespace PrimMed.Patches
                 __result = 0.0f;
             else
             {
+                static float fixItemSpeedMod(in float pain, in float _) => 1f - pain / Utils.PAIN_PFB.MaxStrength;
+
                 float pain;
                 if (object.ReferenceEquals(character.Inventory.GetItemInLimbSlot(InvSlotType.RightHand), __instance.currentRepairItem))//if item is null and nothing is on hand, then we assume character use right hand to do stuff.
                     pain = Utils.getLimbPain(character.AnimController.GetLimb(LimbType.RightArm), character.CharacterHealth);

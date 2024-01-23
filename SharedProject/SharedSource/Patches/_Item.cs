@@ -7,7 +7,7 @@ namespace PrimMed.Patches
     [HarmonyPatch(typeof(Item))]
     static class _Item
     {
-        private static bool sulturable(in Identifier id) => id.Value switch
+        private static bool Sulturable(in Identifier id) => id.Value switch
         {
             "lacerations" => true,
             "bitewounds" => true,
@@ -84,9 +84,10 @@ namespace PrimMed.Patches
                             {
                                 Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["raw_" + aff.Identifier], user.Inventory);
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, 2f, user);
-                                var tempAff = new AfflictionBleeding(BLEEDING_PFB, 2f);
-                                tempAff.Source = user;
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], tempAff);
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 2f)
+                                {
+                                    Source = user
+                                });
                                 ch.addLimbAffFast(null, Utils.BLOODLOSS_PFB, user.HasTalent("bloodybusiness") ? 25f : 40f, user, true, true);
                                 break;
                             }
@@ -112,8 +113,8 @@ namespace PrimMed.Patches
                                 break;
                             }
 #if CLIENT
-                        if(packCounts==0)
-                            GUI.AddMessage(TextManager.Get("packs.not_equipped"), GUIStyle.Blue);  
+                        if (packCounts == 0)
+                            GUI.AddMessage(TextManager.Get("packs.not_equipped"), GUIStyle.Blue);
 #endif
                         while (packCounts-- > 0)
                             Entity.Spawner.AddItemToSpawnQueue(Utils.RAW_EMPTY_PFB, user.Inventory);
@@ -124,9 +125,10 @@ namespace PrimMed.Patches
                             if (aff is Affs.BloodType)
                             {
                                 float hemoStrg = Utils.bloodTypeCompat(id.Remove(0, 9), aff.Identifier.Value.Remove(0, 5)) ? 5f : 36f;
-                                var tempAff = new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, hemoStrg);
-                                tempAff.Source = user;
-                                ch.addLimbAffFast(null, tempAff, true, true);
+                                ch.addLimbAffFast(null, new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, hemoStrg)
+                                {
+                                    Source = user
+                                }, true, true);
                                 break;
                             }
                         Entity.Spawner.AddItemToSpawnQueue(Utils.RAW_EMPTY_PFB, user.Inventory);
@@ -139,9 +141,10 @@ namespace PrimMed.Patches
                         {
                             if (!Utils.bloodTypeCompat(id.Remove(0, 10), aff.Identifier.Value.Remove(0, 5)))
                             {
-                                var tempAff = new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, 20f);
-                                tempAff.Source = user;
-                                ch.addLimbAffFast(null, tempAff, true, true);
+                                ch.addLimbAffFast(null, new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, 20f)
+                                {
+                                    Source = user
+                                }, true, true);
                             }
                             break;
                         }
@@ -190,7 +193,7 @@ namespace PrimMed.Patches
                         {
                             ic.TextChanged(textBox, aff.Name);
 #if CLIENT
-                                    ic.UpdateSignalsProjSpecific();
+                            ic.UpdateSignalsProjSpecific();
 #endif
                             break;
                         }
@@ -227,9 +230,10 @@ namespace PrimMed.Patches
                                         affs.Remove(aff);
                                         break;
                                     }
-                                var tempAff = new AfflictionBleeding(BLEEDING_PFB, 15f * bleedMod * qualMod * patientPainMod * assMod);
-                                tempAff.Source = user;
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], tempAff);
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 15f * bleedMod * qualMod * patientPainMod * assMod)
+                                {
+                                    Source = user
+                                });
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod, user);
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.INCISION_PFB, Math.Abs(surgeryReady(minInci)) * inciMod * patientPainMod, user, true, true);
                                 break;
@@ -240,13 +244,15 @@ namespace PrimMed.Patches
                                 var o = organCond(Utils.LUNG_DMG_PFB);
                                 Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["lung"], user.Inventory, o is null ? 100f : Utils.LUNG_DMG_PFB.MaxStrength - o.Strength);
 
-                                Affliction tempAff = new AfflictionBleeding(BLEEDING_PFB, 6f * bleedMod * qualMod * patientPainMod);
-                                tempAff.Source = user;
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], tempAff);
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 6f * bleedMod * qualMod * patientPainMod)
+                                {
+                                    Source = user
+                                });
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 4f * lacMod * qualMod * patientPainMod, user);
-                                tempAff = new Affs.LungDmg(LUNG_M_PFB, 1f);
-                                tempAff.Source = user;
-                                ch.addLimbAffFast(null, tempAff, false, true);
+                                ch.addLimbAffFast(null, new Affs.LungDmg(LUNG_M_PFB, 1f)
+                                {
+                                    Source = user
+                                }, false, true);
                             }
 #if CLIENT
                             else
@@ -259,13 +265,15 @@ namespace PrimMed.Patches
                                 var o = organCond(Utils.LIVER_DMG_PFB);
                                 Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["liver"], user.Inventory, o is null ? 100f : Utils.LIVER_DMG_PFB.MaxStrength - o.Strength);
 
-                                Affliction tempAff = new AfflictionBleeding(BLEEDING_PFB, 5f * bleedMod * qualMod * patientPainMod);
-                                tempAff.Source = user;
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], tempAff);
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 5f * bleedMod * qualMod * patientPainMod)
+                                {
+                                    Source = user
+                                });
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 3f * lacMod * qualMod * patientPainMod, user);
-                                tempAff = new Affs.LiverDmg(LIVER_M_PFB, 1f);
-                                tempAff.Source = user;
-                                ch.addLimbAffFast(null, tempAff, false, true);
+                                ch.addLimbAffFast(null, new Affs.LiverDmg(LIVER_M_PFB, 1f)
+                                {
+                                    Source = user
+                                }, false, true);
                             }
 #if CLIENT
                             else
@@ -278,13 +286,15 @@ namespace PrimMed.Patches
                                 var o = organCond(Utils.HEART_DMG_PFB);
                                 Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["heart"], user.Inventory, o is null ? 100f : Utils.HEART_DMG_PFB.MaxStrength - o.Strength);
 
-                                Affliction tempAff = new AfflictionBleeding(BLEEDING_PFB, 7f * bleedMod * qualMod * patientPainMod);
-                                tempAff.Source = user;
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], tempAff);
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 7f * bleedMod * qualMod * patientPainMod)
+                                {
+                                    Source = user
+                                });
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 4f * lacMod * qualMod * patientPainMod, user);
-                                tempAff = new Affs.HeartDmg(HEART_M_PFB, 1f);
-                                tempAff.Source = user;
-                                ch.addLimbAffFast(null, tempAff, false, true);
+                                ch.addLimbAffFast(null, new Affs.HeartDmg(HEART_M_PFB, 1f)
+                                {
+                                    Source = user
+                                }, false, true);
                             }
 #if CLIENT
                             else
@@ -334,9 +344,10 @@ namespace PrimMed.Patches
 
                                     ch.addLimbAffFast(null, AfflictionPrefab.Prefabs[holding.Prefab.Identifier + "dmg"], holding.Condition, user, false);
                                     ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, 10f * qualMod * pierceMod, user);
-                                    var tempAff = new Affs.Rejection(REJECT_PFB, rv * rejectMod * REJECT_PFB.MaxStrength);
-                                    tempAff.Source = user;
-                                    ch.addLimbAffFast(null, tempAff, true, true);
+                                    ch.addLimbAffFast(null, new Affs.Rejection(REJECT_PFB, rv * rejectMod * REJECT_PFB.MaxStrength)
+                                    {
+                                        Source = user
+                                    }, true, true);
 
                                     Entity.Spawner.AddItemToRemoveQueue(contained);
                                     Entity.Spawner.AddItemToRemoveQueue(holding);
@@ -344,8 +355,8 @@ namespace PrimMed.Patches
                                 }
                             }
 #if CLIENT
-                                else
-                                    GUI.AddMessage(TextManager.Get("surgery.cannot"), GUIStyle.Red);
+                            else
+                                GUI.AddMessage(TextManager.Get("surgery.cannot"), GUIStyle.Red);
 #endif
                         }
                     }
@@ -359,7 +370,7 @@ namespace PrimMed.Patches
                             {
                                 float strg = 0f;
                                 foreach (var (aff, lh) in affs)
-                                    if (lh == lhs[targetLimb.HealthIndex] && sulturable(aff.Identifier))
+                                    if (lh == lhs[targetLimb.HealthIndex] && Sulturable(aff.Identifier))
                                     {
                                         strg += aff.Strength / aff.Prefab.MaxStrength;
                                         affs.Remove(aff);
@@ -393,9 +404,10 @@ namespace PrimMed.Patches
                                     float bleedMod = (user.HasTalent("bloodybusiness") ? BLEED_MOD_TALENT : BLEED_MOD_NORM) * (rv < r ? 1f : 1.125f);
                                     float lacMod = (user.HasTalent("drsubmarine") ? LAC_MOD_TALENT : LAC_MOD_NORM) * (rv < r ? 1f : 1.125f);
                                     ch.addLimbAffFast(lh, Utils.SCAR_PFB, 5f * lacMod * qualMod * assMod, user);
-                                    var tempAff = new AfflictionBleeding(BLEEDING_PFB, 7.5f * bleedMod * qualMod * assMod);
-                                    tempAff.Source = user;
-                                    ch.addLimbAffFast(lh, tempAff);
+                                    ch.addLimbAffFast(lh, new AfflictionBleeding(BLEEDING_PFB, 7.5f * bleedMod * qualMod * assMod)
+                                    {
+                                        Source = user
+                                    });
                                     ch.addLimbAffFast(lh, Utils.INCISION_PFB, aff.Strength, user, true, true);
                                     affs.Remove(aff);
                                     break;
@@ -428,9 +440,10 @@ namespace PrimMed.Patches
                     }
                     else
                     {
-                        var tempAff = new AfflictionBleeding(BLEEDING_PFB, 2f);
-                        tempAff.Source = user;
-                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], tempAff);
+                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 2f)
+                        {
+                            Source = user
+                        });
                         ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, 2f, user, true, true);
                     }
                 }
@@ -439,7 +452,7 @@ namespace PrimMed.Patches
         }
         [HarmonyPrefix]//auto injector headset
         [HarmonyPatch("ApplyStatusEffects", new Type[] { typeof(ActionType), typeof(float), typeof(Character), typeof(Limb), typeof(Entity), typeof(bool), typeof(Vector2?) })]
-        public static void _ApplyStatusEffects(Item __instance, ActionType type, in float deltaTime, Character character, Limb limb, Entity useTarget, in bool isNetworkEvent, in Vector2? worldPosition)
+        public static void _ApplyStatusEffects(Item __instance, ActionType type, Character character, Entity useTarget)
         {
             if (type == ActionType.OnSuccess && useTarget is Character target)
             {
@@ -452,9 +465,10 @@ namespace PrimMed.Patches
                         if (aff is Affs.BloodType)
                         {
                             float hemoStrg = Utils.bloodTypeCompat(id.Remove(0, 9), aff.Identifier.Value.Remove(0, 5)) ? 5f : 36f;
-                            var tempAff = new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, hemoStrg);
-                            tempAff.Source = character;
-                            ch.addLimbAffFast(null, tempAff, true, true);
+                            ch.addLimbAffFast(null, new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, hemoStrg)
+                            {
+                                Source = character
+                            }, true, true);
                             break;
                         }
                     Entity.Spawner.AddItemToSpawnQueue(Utils.RAW_EMPTY_PFB, character.Inventory);
@@ -466,9 +480,10 @@ namespace PrimMed.Patches
                         {
                             if (!Utils.bloodTypeCompat(id.Remove(0, 10), aff.Identifier.Value.Remove(0, 5)))
                             {
-                                var tempAff = new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, 20f);
-                                tempAff.Source = character;
-                                ch.addLimbAffFast(null, tempAff, true, true);
+                                ch.addLimbAffFast(null, new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, 20f)
+                                {
+                                    Source = character
+                                }, true, true);
                             }
                             break;
                         }

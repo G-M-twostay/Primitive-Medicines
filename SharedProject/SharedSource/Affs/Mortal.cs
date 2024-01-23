@@ -16,7 +16,7 @@ namespace PrimMed.Affs
             (LimbType.RightLeg,0.875f)
             };
         private static readonly AfflictionPrefab HYPERTHERMIA_PFB = AfflictionPrefab.Prefabs["hyperthermia"], HYPOTHERMIA_PFB = AfflictionPrefab.Prefabs["hypothermia"];
-        private static (float, sbyte) affPainMod(in Identifier id) => id.Value switch
+        private static (float, sbyte) AffPainMod(in Identifier id) => id.Value switch
         {
             "lacerations" => (1f, -1),
             "blunttrauma" => (0.875f, -1),
@@ -37,7 +37,7 @@ namespace PrimMed.Affs
             "sutural" => (0.625f, -1),
             _ => (0, -1),
         };
-        private static float affInfectMod(in Identifier id) => id.Value switch
+        private static float AffInfectMod(in Identifier id) => id.Value switch
         {
             "lacerations" => 1f,
             "blunttrauma" => 0.7f,
@@ -78,7 +78,7 @@ namespace PrimMed.Affs
                 if (!(ch.IsUnconscious || ch.Stun > 0f))//unconscious or stunned characters don't feel pain
                     foreach ((Affliction aff, CharacterHealth.LimbHealth lh) in affs)
                     {
-                        (float aff_mod, sbyte limbId) = affPainMod(aff.Identifier);
+                        (float aff_mod, sbyte limbId) = AffPainMod(aff.Identifier);
                         if (aff_mod > 0)
                             if (lh is null)
                                 limbStrengths[limbId] += aff_mod * aff.Strength / aff.Prefab.MaxStrength;
@@ -110,7 +110,7 @@ namespace PrimMed.Affs
                                 }
                     foreach ((Affliction aff, CharacterHealth.LimbHealth lh) in affs)
                     {
-                        float infMod = affInfectMod(aff.Identifier);
+                        float infMod = AffInfectMod(aff.Identifier);
                         if (infMod > 0f)
                             for (byte i = 0; i < LIMB_MODS.Length; ++i)
                                 if (lh == lhs[limbs[i].HealthIndex])
@@ -240,9 +240,10 @@ namespace PrimMed.Affs
                 for (byte i = 0; i < LIMB_MODS.Length; ++i)
                     if (limbStrengths[i] < 0f)
                     {
-                        var tempAff = new Sealed(Utils.SEALED_PFB, 1f);
-                        tempAff.Source = inciSrcs[i];
-                        ch.addLimbAffFast(lhs[limbs[i].HealthIndex], tempAff, false);
+                        ch.addLimbAffFast(lhs[limbs[i].HealthIndex], new Sealed(Utils.SEALED_PFB, 1f)
+                        {
+                            Source = inciSrcs[i]
+                        }, false);
                     }
             }
 
