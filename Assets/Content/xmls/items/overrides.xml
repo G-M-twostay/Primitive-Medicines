@@ -356,6 +356,9 @@
       <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="384,704,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Medical/Medicines.png" sourcerect="226,306,38,72" depth="0.6" origin="0.5,0.5" />
       <SuitableTreatment type="pain" suitability="50" />
+		<SuitableTreatment type="hallucinating" suitability="-10" />
+		<SuitableTreatment type="opiateaddiction" suitability="-1" />
+		<SuitableTreatment type="opiatewithdrawal" suitability="2.5" />
       <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
       <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
         <RequiredSkill identifier="medical" level="72" />
@@ -364,12 +367,15 @@
         <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
           <Affliction identifier="analgesiclong" amount="6.5" />
           <Affliction identifier="hallucinating" amount="1" />
+			<Affliction identifier="opiateaddiction" amount="0.1" />
+			<ReduceAffliction identifier="opiatewithdrawal" amount="0.25" />
         </StatusEffect>
         <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="10">
           <Affliction identifier="analgesiclong" amount="3.5" />
           <Affliction identifier="opiateaddiction" amount="6" />
           <Affliction identifier="opiateoverdose" amount="6" />
           <Affliction identifier="hallucinating" amount="3" />
+			<ReduceAffliction identifier="opiatewithdrawal" amount="2" />
         </StatusEffect>
         <StatusEffect type="OnSuccess" target="UseTarget">
           <Conditional entitytype="eq Character" />
@@ -992,7 +998,7 @@
     <InventoryIcon />
     <Sprite texture="Content/Items/JobGear/TalentGear.png" sourcerect="354,429,145,78" depth="0.7" origin="0.5,0.5" />
     <Body width="90" height="74" density="25" />
-    <RangedWeapon launchimpulse="10.0" barrelpos="71,30" spread="0" unskilledspread="10" drawhudwhenequipped="true" crosshairscale="0.2">
+    <AltGun launchimpulse="10.0" barrelpos="71,30" spread="0" unskilledspread="10" drawhudwhenequipped="true" crosshairscale="0.2" projectilecount="2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <Sound file="Content/Items/Weapons/SyringeGun1.ogg" type="OnUse" range="1000" volume="0.75"/>
@@ -1000,13 +1006,12 @@
       <RequiredItems items="syringe" type="Contained" msg="ItemMsgSyringeRequired" />
       <RequiredSkill identifier="weapons" level="30" />
       <RequiredSkill identifier="medical" level="50" />
-    </RangedWeapon>
+    </AltGun>
     <ItemContainer capacity="2" maxstacksize="8" itempos="0,25" itemrotation="-90" hideitems="false" containedstateindicatorstyle="syringe" ShowTotalStackCapacityInContainedStateIndicator="true" containedstateindicatorslot="0">
       <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="384,448,64,64" origin="0.5,0.5" />
       <SlotIcon slotindex="1" texture="Content/UI/StatusMonitorUI.png" sourcerect="384,448,64,64" origin="0.5,0.5" />
       <Containable items="syringe" />
     </ItemContainer>
-    <PMStatusHUD drawhudwhenequipped="true" />
     <SkillRequirementHint identifier="weapons" level="30" />
     <SkillRequirementHint identifier="medical" level="50" />
   </Item>
