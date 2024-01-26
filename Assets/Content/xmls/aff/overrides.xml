@@ -57,7 +57,7 @@
       selfcauseofdeathdescription=""
       limbspecific="false"
       indicatorlimb="Torso"
-      maxstrength="1000"
+      maxstrength="200"
       affectmachines="false"
       damageoverlayalpha="0"
       damageparticles="false"
@@ -68,9 +68,9 @@
       <Description
         textidentifier="afflictiondescription.organdamage"
         target="OtherCharacter " />
-      <Effect minstrength="0" maxstrength="1000" multiplybymaxvitality="false"
+      <Effect minstrength="0" maxstrength="1000" multiplybymaxvitality="true"
         minvitalitydecrease="0"
-        maxvitalitydecrease="1000" />
+        maxvitalitydecrease="2" />
       <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="128,384,128,128" color="195,136,60,255" origin="0,0" />
     </InternalDamage>
 
@@ -102,7 +102,7 @@
     causeofdeathdescription="Died of internal injuries"
     selfcauseofdeathdescription="You have succumbed to your internal injuries."
     limbspecific="true"
-    maxstrength="1000"
+    maxstrength="200"
     damageoverlayalpha="0.1">
     <Description 
       textidentifier="afflictiondescription.internaldamage.low"
@@ -111,10 +111,10 @@
     <Description
       textidentifier="afflictiondescription.internaldamage"
       minstrength="40"
-      maxstrength="1000"/>
-    <Effect minstrength="0" maxstrength="1000" multiplybymaxvitality="false"
+      maxstrength="200"/>
+    <Effect minstrength="0" maxstrength="200" multiplybymaxvitality="true"
       minvitalitydecrease="0"
-      maxvitalitydecrease="1000" strengthchange="-0.025"/>
+      maxvitalitydecrease="2" strengthchange="-0.025"/>
     <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="128,768,128,128" color="195,136,60,255" origin="0,0"/>
   </InternalDamage>
 
