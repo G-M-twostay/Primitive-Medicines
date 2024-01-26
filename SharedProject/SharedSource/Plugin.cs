@@ -9,6 +9,8 @@ namespace PrimMed
 {
     public partial class PMMod : IAssemblyPlugin
     {
+        internal static readonly ContentPackage CntPkg = ContentPackageManager.EnabledPackages.All.FirstOrDefault(static p => p.Name == "Primitive Medicines");
+
         private static readonly Harmony harmony = new Harmony("PMMod.patches");
         private static void regAffs(string[] bloodTypes)
         {

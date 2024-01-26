@@ -6,10 +6,9 @@
     <SharedGUID>3c1540c8-8235-4e85-8bff-9af5fe32fe99</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>SharedProject</Import_RootNamespace>
+    <Import_RootNamespace>PrimMed</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)SharedSource\**\*.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)sharedsource\patches\_RangedWeapon.cs" />
   </ItemGroup>
 </Project>
