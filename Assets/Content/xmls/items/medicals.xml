@@ -111,8 +111,8 @@
       <Price storeidentifier="merchantmine" />
       <Price storeidentifier="merchantmedical" multiplier="0.9" />
     </Price>
-    <SuitableTreatment identifier="hyperthermia" suitability="1" />
-    <SuitableTreatment identifier="hypothermia" suitability="-1" />
+    <SuitableTreatment identifier="hyperthermia" suitability="10" />
+    <SuitableTreatment identifier="hypothermia" suitability="-10" />
     <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="6,1" sheetelementsize="64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="0,3" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
     <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
@@ -156,8 +156,8 @@
       <Price storeidentifier="merchantmine" />
       <Price storeidentifier="merchantmedical" multiplier="0.9" />
     </Price>
-    <SuitableTreatment identifier="hyperthermia" suitability="-1" />
-    <SuitableTreatment identifier="hypothermia" suitability="1" />
+    <SuitableTreatment identifier="hyperthermia" suitability="-10" />
+    <SuitableTreatment identifier="hypothermia" suitability="10" />
     <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="6,1" sheetelementsize="64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="0,3" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
     <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
