@@ -56,12 +56,12 @@ namespace PrimMed
 
                 if (donorType is not null)
                 {
-                    Dictionary<Identifier, float> suites = new Dictionary<Identifier, float>(8);
+                    Dictionary<Identifier, float> suites = new(8);
                     float a = raw ? 96f : 80f;
                     suites.Add(Utils.BLOODLOSS_PFB.Identifier, a);
                     foreach (string recipType in bloodTypes)
                         if (!Utils.bloodTypeCompat(donorType, recipType))
-                            suites.Add("blood" + recipType, -a);
+                            suites.Add("blood" + recipType, -200);
 
                     ItemPrefab_treatmentSuitability_(pfb) = suites.ToImmutableDictionary();
                 }

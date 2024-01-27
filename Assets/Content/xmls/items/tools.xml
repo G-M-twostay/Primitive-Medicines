@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Items>
-	<transfusionset identifier="transfusionset" category="Medical" maxstacksize="1" cargocontaineridentifier="mediccrate" Tags="smallitem,medicaltool" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
-        <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="1" spawnprobability="0.25" />
+	<transfusionset identifier="transfusionset" category="Medical" aliases="bloodextractor" maxstacksize="1" cargocontaineridentifier="mediccrate" Tags="smallitem,medicaltool" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
+		<Upgrade modversion="0.3.7" scale="0.5" />
+		<PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="1" spawnprobability="0.25" />
         <PreferredContainer primary="medcab" secondary="medcontainer" />
         <Price baseprice="250" minavailable="1">
           <Price storeidentifier="merchantoutpost" multiplier="1.5" />

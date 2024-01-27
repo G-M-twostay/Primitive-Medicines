@@ -218,8 +218,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="96" />
-    <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
   <ProcBlood identifier="proc_blooda0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
@@ -294,8 +292,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="96" />
-    <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
   <ProcBlood identifier="proc_blooda1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
@@ -338,7 +334,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
@@ -371,8 +366,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="96" />
-    <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
   <ProcBlood identifier="proc_bloodb0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
@@ -415,7 +408,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
@@ -448,8 +440,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="96" />
-    <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
   <ProcBlood identifier="proc_bloodb1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
@@ -492,7 +482,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
@@ -525,8 +514,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="96" />
-    <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
   <ProcBlood identifier="proc_bloodab0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
@@ -569,7 +556,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
@@ -602,8 +588,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="96" />
-    <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
   <ProcBlood identifier="proc_bloodab1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
@@ -646,7 +630,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
@@ -681,8 +664,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="96" />
-    <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
   <ProcBlood identifier="proc_bloodo0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
@@ -725,7 +706,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
@@ -760,8 +740,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="96" />
-    <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
   <ProcBlood identifier="proc_bloodo1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
@@ -804,7 +782,6 @@
 		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
-    <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
   <Prednisone identifier="prednisone" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,syringe" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
@@ -1329,8 +1306,7 @@
     <Body width="35" height="65" density="10.2" waterdragcoefficient="1"/>
   </enzyme>
 
-	<Phenothiazine identifier="Phenothiazine" category="Medical" maxstacksize="32" maxstacksizecharacterinventory="8" cargocontaineridentifier="chemicalcrate" Tags="smallitem,chem,poison,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
-		<Upgrade gameversion="0.10.0.0" scale="0.5" />
+	<Phenothiazine identifier="Phenothiazine" category="Medical" maxstacksize="32" maxstacksizecharacterinventory="8" cargocontaineridentifier="chemicalcrate" Tags="smallitem,chem,poison,syringe" hideinmenus="true" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
 		<PreferredContainer primary="toxcab" secondary="toxcontainer"/>
 		<PreferredContainer primary="wrecktoxcab,abandonedtoxcab" spawnprobability="0.02" />
 		<Price baseprice="250" minavailable="1">

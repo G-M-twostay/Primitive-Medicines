@@ -20,28 +20,16 @@ namespace PrimMed.Patches
         private static readonly AfflictionPrefab BLEEDING_PFB = AfflictionPrefab.Prefabs["bleeding"], LAC_PFB = AfflictionPrefab.Prefabs["lacerations"], REJECT_PFB = AfflictionPrefab.Prefabs["immunereject"], LUNG_M_PFB = AfflictionPrefab.Prefabs["lungmissing"], LIVER_M_PFB = AfflictionPrefab.Prefabs["livermissing"], HEART_M_PFB = AfflictionPrefab.Prefabs["heartmissing"];
         [HarmonyPrefix]
         [HarmonyPatch("ApplyTreatment", new Type[] { typeof(Character), typeof(Character), typeof(Limb) })]
-        public static bool _ApplyTreatment(Item __instance, Character user, Character character, Limb targetLimb)
+        public static bool PreApplyTreatment(Item __instance, Character user, Character character, Limb targetLimb)
         {
             if (!character.IsDead)
             {
                 string id = __instance.Prefab.Identifier.Value;
-                #region DEBUG
-                if (character is null)
+                if (targetLimb is null)//this can happen when bots are applying treatments, for some unknown reasons.
                 {
-                    DebugConsole.AddWarning("Target is null when applying: " + id);
-                    return true;
+                    targetLimb = character.AnimController.MainLimb;
+                    DebugConsole.AddWarning($"Limb is null when applying {id} by {user.Name} to {character.Name}. Setting limb to main limb: {targetLimb.Name}.");
                 }
-                if (user is null)
-                {
-                    DebugConsole.AddWarning("User is null when applying: " + id);
-                    return true;
-                }
-                if (targetLimb is null)
-                {
-                    DebugConsole.AddWarning("Limb is null when applying: " + id);
-                    return true;
-                }
-                #endregion
                 const float SURGERY_TH_NORM = 100f, SURGERY_TH_TALENT = 75f, SCALPEL_SKILL = 135f, LAC_MOD_NORM = 1f, LAC_MOD_TALENT = 0.875f, BLEED_MOD_NORM = 1f, BLEED_MOD_TALENT = 0.75f, ASSISTANCE_MOD = 0.9375f;
 
                 var ch = character.CharacterHealth;
