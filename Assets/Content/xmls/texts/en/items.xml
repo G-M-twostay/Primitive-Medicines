@@ -32,8 +32,8 @@
     <entityname.disinfectant>Bleach</entityname.disinfectant>
     <entitydescription.disinfectant>Classic chemical that's very effective against ranges of microbes. Can be traced back to earth. Do not drink.</entitydescription.disinfectant>
 
-    <entityname.raw_empty>Liquid Pack</entityname.raw_empty>
-    <entitydescription.raw_empty>An empty bag used to contain liquids(or solids). Apply it on any limbs with ice/heat packs to remove them(this will also deplete them).</entitydescription.raw_empty>
+	<entityname.liquidbag>Liquid Pack</entityname.liquidbag>
+	<entitydescription.liquidbag>An empty bag used to contain liquids(or solids). Apply it on any limbs with ice/heat packs to remove them(this will also deplete them).</entitydescription.liquidbag>
 	<packs.not_equipped>No packs to remove.</packs.not_equipped>
 	
     <entityname.raw_blooda0>Raw Blood</entityname.raw_blooda0>

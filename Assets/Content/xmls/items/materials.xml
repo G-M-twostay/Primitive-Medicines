@@ -69,7 +69,7 @@
       <Body width="35" height="65" density="10.2" waterdragcoefficient="1"/>
     </enzyme>
 
-    <RawBlood identifier="raw_empty" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" >
+    <RawBlood identifier="liquidbag" aliases="raw_empty" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" >
       <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
       <PreferredContainer primary="medfabcab" secondary="medcontainer" />
       <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />

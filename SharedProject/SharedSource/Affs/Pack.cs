@@ -11,7 +11,7 @@ namespace PrimMed.Affs
             if(Duration<0.125f)
             {
                 for(byte i=(byte)Math.Ceiling(Strength);i>0;--i)
-                    Entity.Spawner.AddItemToSpawnQueue(Utils.RAW_EMPTY_PFB, ch.Character.Inventory);
+                    Entity.Spawner.AddItemToSpawnQueue(Utils.LIQUIDBAG_PFB, ch.Character.Inventory);
                 Duration=0f;
             }
         }

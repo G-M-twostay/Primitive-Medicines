@@ -26,7 +26,7 @@
         <Holdable canBeCombined="false" removeOnCombined="false" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect"/>
         <ItemContainer capacity="1" maxstacksize="1" hideitems="false" itempos="8,-35" containedspritedepth="0.56" containedstateindicatorstyle="syringe">
           <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="64,448,64,64" origin="0.5,0.5" />
-          <Containable items="raw_empty,proc_bloodpack,raw_bloodpack,antibloodloss1,antibloodloss2,alienblood" />
+          <Containable items="liquidbag,proc_bloodpack,raw_bloodpack,antibloodloss1,antibloodloss2,alienblood" />
         </ItemContainer>
         <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="5,2" sheetelementsize="64,64" origin="0.5,0.5" />
         <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="6,2" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />

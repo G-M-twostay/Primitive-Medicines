@@ -122,10 +122,10 @@
       <RequiredItem identifier="antibloodloss1" />
       <RequiredItem identifier="chlorine" />
       <RequiredItem identifier="potassium" />
-      <RequiredItem identifier="raw_empty" amount="2"/>
+      <RequiredItem identifier="liquidbag" amount="2"/>
     </Fabricate>
     <Deconstruct time="20">
-      <Item identifier="raw_empty" />
+      <Item identifier="liquidbag" />
       <Item identifier="antibloodloss1" />
     </Deconstruct>
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" holdangle="30" aimable="false" msg="ItemMsgPickUpSelect">
@@ -166,11 +166,11 @@
       <RequiredSkill identifier="mechanical" level="25" />
       <RequiredItem identifier="iron" />
       <RequiredItem identifier="aluminium" amount="2" />
-      <RequiredItem identifier="raw_empty" amount="2"/>
+      <RequiredItem identifier="liquidbag" amount="2"/>
     </Fabricate>
     <Deconstruct time="5">
-      <Item identifier="raw_empty" />
-      <RequiredItem identifier="aluminium" amount="1" />
+      <Item identifier="liquidbag" />
+      <Item identifier="aluminium" amount="1" />
     </Deconstruct>
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" holdangle="30" aimable="false" msg="ItemMsgPickUpSelect">
       <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true">
@@ -215,7 +215,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This" disabledealtatime="true">
 		  <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </RawBlood>
@@ -237,7 +237,7 @@
       <RequiredSkill identifier="medical" level="35" />
       <RequiredItem identifier="raw_blooda0" amount="1" />
       <RequiredItem identifier="antibloodloss2" amount="1" />
-      <RequiredItem identifier="raw_empty" />
+      <RequiredItem identifier="liquidbag" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="antibloodloss2" />
@@ -257,7 +257,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </ProcBlood>
@@ -289,7 +289,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </RawBlood>
@@ -311,7 +311,7 @@
       <RequiredSkill identifier="medical" level="35" />
       <RequiredItem identifier="raw_blooda1" amount="1" />
       <RequiredItem identifier="antibloodloss2" amount="1" />
-      <RequiredItem identifier="raw_empty" />
+      <RequiredItem identifier="liquidbag" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="antibloodloss2" />
@@ -331,7 +331,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </ProcBlood>
@@ -363,7 +363,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </RawBlood>
@@ -385,7 +385,7 @@
       <RequiredSkill identifier="medical" level="35" />
       <RequiredItem identifier="raw_bloodb0" amount="1" />
       <RequiredItem identifier="antibloodloss2" amount="1" />
-      <RequiredItem identifier="raw_empty" />
+      <RequiredItem identifier="liquidbag" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="antibloodloss2" />
@@ -405,7 +405,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </ProcBlood>
@@ -437,7 +437,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </RawBlood>
@@ -459,7 +459,7 @@
       <RequiredSkill identifier="medical" level="35" />
       <RequiredItem identifier="raw_bloodb1" amount="1" />
       <RequiredItem identifier="antibloodloss2" amount="1" />
-      <RequiredItem identifier="raw_empty" />
+      <RequiredItem identifier="liquidbag" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="antibloodloss2" />
@@ -479,7 +479,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </ProcBlood>
@@ -511,7 +511,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </RawBlood>
@@ -533,7 +533,7 @@
       <RequiredSkill identifier="medical" level="35" />
       <RequiredItem identifier="raw_bloodab0" amount="1" />
       <RequiredItem identifier="antibloodloss2" amount="1" />
-      <RequiredItem identifier="raw_empty" />
+      <RequiredItem identifier="liquidbag" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="antibloodloss2" />
@@ -553,7 +553,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </ProcBlood>
@@ -585,7 +585,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </RawBlood>
@@ -607,7 +607,7 @@
       <RequiredSkill identifier="medical" level="35" />
       <RequiredItem identifier="raw_bloodab1" amount="1" />
       <RequiredItem identifier="antibloodloss2" amount="1" />
-      <RequiredItem identifier="raw_empty" />
+      <RequiredItem identifier="liquidbag" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="antibloodloss2" />
@@ -627,7 +627,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </ProcBlood>
@@ -661,7 +661,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </RawBlood>
@@ -683,7 +683,7 @@
       <RequiredSkill identifier="medical" level="35" />
       <RequiredItem identifier="raw_bloodo0" amount="1" />
       <RequiredItem identifier="antibloodloss2" amount="1" />
-      <RequiredItem identifier="raw_empty" />
+      <RequiredItem identifier="liquidbag" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="antibloodloss2" />
@@ -703,7 +703,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </ProcBlood>
@@ -737,7 +737,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </RawBlood>
@@ -759,7 +759,7 @@
       <RequiredSkill identifier="medical" level="35" />
       <RequiredItem identifier="raw_bloodo1" amount="1" />
       <RequiredItem identifier="antibloodloss2" amount="1" />
-      <RequiredItem identifier="raw_empty" />
+      <RequiredItem identifier="liquidbag" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="antibloodloss2" />
@@ -779,7 +779,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
-		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </ProcBlood>

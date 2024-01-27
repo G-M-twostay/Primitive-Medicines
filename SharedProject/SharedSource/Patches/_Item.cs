@@ -70,7 +70,7 @@ namespace PrimMed.Patches
                         {
                             Source = user
                         });
-                        if (ReferenceEquals(contained.Prefab, Utils.RAW_EMPTY_PFB))
+                        if (ReferenceEquals(contained.Prefab, Utils.LIQUIDBAG_PFB))
                         {
                             Entity.Spawner.AddItemToRemoveQueue(contained);
                             foreach (Affliction aff in affs.Keys)
@@ -94,7 +94,7 @@ namespace PrimMed.Patches
                     if (user.IsPlayer)
                         return false;
                 }
-                else if (ReferenceEquals(__instance.Prefab, Utils.RAW_EMPTY_PFB))//applying empty packs means removing exisitng packs.
+                else if (ReferenceEquals(__instance.Prefab, Utils.LIQUIDBAG_PFB))//applying empty packs means removing exisitng packs.
                 {
                     byte packCounts = 0;
                     foreach (var (aff, lh) in affs)
@@ -116,7 +116,7 @@ namespace PrimMed.Patches
                         GUI.AddMessage(TextManager.Get("packs.not_equipped"), GUIStyle.Blue);
 #endif
                     while (packCounts-- > 0)
-                        Entity.Spawner.AddItemToSpawnQueue(Utils.RAW_EMPTY_PFB, user.Inventory);
+                        Entity.Spawner.AddItemToSpawnQueue(Utils.LIQUIDBAG_PFB, user.Inventory);
 
                 }
                 else if (id.StartsWith("antibleeding"))
