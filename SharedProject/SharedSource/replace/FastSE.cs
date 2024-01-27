@@ -2,13 +2,13 @@ using Barotrauma;
 using Microsoft.Xna.Framework;
 namespace PrimMed.Replace
 {
-    partial class FastSE : StatusEffect
+    public partial class FastSE : StatusEffect
     {
-        public delegate float CondAffStrg(Character user, IReadOnlyList<ISerializableEntity> targets);
-        private readonly CondAffStrg affCond;
-        public FastSE(ContentXElement element, string parentDebugName, CondAffStrg userCond) : base(element, parentDebugName)
+        public delegate bool FuncCond(FastSE se, IReadOnlyList<ISerializableEntity> targets);
+        private readonly FuncCond cond;
+        public FastSE(ContentXElement element, string parentDebugName, FuncCond userCond) : base(element, parentDebugName)
         {
-            this.affCond = userCond;
+            this.cond = userCond;
         }
         public override void Apply(ActionType type, float deltaTime, Entity entity, ISerializableEntity target, Vector2? worldPosition = null)
         {
@@ -27,16 +27,16 @@ namespace PrimMed.Replace
                 return;
             }
 
-            /*            if (Duration > 0.0f && !Stackable)
-                        {
-                            //ignore if not stackable and there's already an identical statuseffect
-                            DurationListElement existingEffect = DurationList.Find(d => d.Parent == this && d.Targets.FirstOrDefault() == target);
-                            if (existingEffect != null)
-                            {
-                                existingEffect.Reset(Math.Max(existingEffect.Timer, Duration), user);
-                                return;
-                            }
-                        }*/
+            if (Duration > 0.0f && !Stackable)
+            {
+                //ignore if not stackable and there's already an identical statuseffect
+                DurationListElement existingEffect = DurationList.Find(d => d.Parent == this && d.Targets.FirstOrDefault() == target);
+                if (existingEffect != null)
+                {
+                    existingEffect.Reset(Math.Max(existingEffect.Timer, Duration), user);
+                    return;
+                }
+            }
 
             currentTargets.Clear();
             currentTargets.Add(target);
@@ -44,11 +44,9 @@ namespace PrimMed.Replace
                         {
                             return;
                         }*/
-            float m = affCond(user, currentTargets);
-            /*            if (m < 0)
-                            return;*/
-            foreach (var aff in Afflictions)
-                aff.SetStrength(m);
+            if (!cond(this, currentTargets))
+                return;
+
             Apply(deltaTime, entity, currentTargets, worldPosition);
         }
         public override void Apply(ActionType type, float deltaTime, Entity entity, IReadOnlyList<ISerializableEntity> targets, Vector2? worldPosition = null)
@@ -93,21 +91,18 @@ namespace PrimMed.Replace
                             return;
                         }*/
 
-            /*            if (Duration > 0.0f && !Stackable)
-                        {
-                            //ignore if not stackable and there's already an identical statuseffect
-                            DurationListElement existingEffect = DurationList.Find(d => d.Parent == this && d.Targets.SequenceEqual(currentTargets));
-                            if (existingEffect != null)
-                            {
-                                existingEffect?.Reset(Math.Max(existingEffect.Timer, Duration), user);
-                                return;
-                            }
-                        }*/
-            float m = affCond(user, currentTargets);
-            /*            if (m < 0)
-                            return;*/
-            foreach (var aff in Afflictions)
-                aff.SetStrength(m);
+            if (Duration > 0.0f && !Stackable)
+            {
+                //ignore if not stackable and there's already an identical statuseffect
+                DurationListElement existingEffect = DurationList.Find(d => d.Parent == this && d.Targets.SequenceEqual(currentTargets));
+                if (existingEffect != null)
+                {
+                    existingEffect?.Reset(Math.Max(existingEffect.Timer, Duration), user);
+                    return;
+                }
+            }
+            if (!cond(this, currentTargets))
+                return;
             Apply(deltaTime, entity, currentTargets, worldPosition);
         }
     }
