@@ -54,10 +54,10 @@
     <entityname.proc_bloodab1>AB- Blood</entityname.proc_bloodab1>
     <entityname.proc_bloodo0>O+ Blood</entityname.proc_bloodo0>
     <entityname.proc_bloodo1>O- Blood</entityname.proc_bloodo1>
-    <entitydescription.proc_blood>Processed blood that's safe to use and good for long term storage.</entitydescription.proc_blood>   
+    <entitydescription.proc_blood>Processed blood that's safe to use and good for long term storage.</entitydescription.proc_blood>
 
-    <entityname.bloodextractor>Blood Extractor</entityname.bloodextractor>
-    <entitydescription.bloodextractor>A device used for extracting blood from patients, causes minor wound.</entitydescription.bloodextractor>
+	<entityname.transfusionset>Transfusion Set</entityname.transfusionset>
+	<entitydescription.transfusionset>A device used for transfering large amounts of liquids in or out of the body.</entitydescription.transfusionset>
 
     <entityname.prednisone>Prednisone</entityname.prednisone>
     <entitydescription.prednisone>Immunosuppressant that mitigates Hemolysis.</entitydescription.prednisone>

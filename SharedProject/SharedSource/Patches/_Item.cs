@@ -1,7 +1,6 @@
 using Barotrauma;
 using Barotrauma.Items.Components;
 using HarmonyLib;
-using Microsoft.Xna.Framework;
 namespace PrimMed.Patches
 {
     [HarmonyPatch(typeof(Item))]
@@ -73,82 +72,64 @@ namespace PrimMed.Patches
                     return -th;
                 }
 
-                if (id == "bloodextractor")
+                if (id == "transfusionset")
                 {
                     var contained = __instance.GetComponent<ItemContainer>().Inventory.FirstOrDefault();
                     if (contained is not null)
                     {
-                        Entity.Spawner.AddItemToRemoveQueue(contained);
-                        foreach (Affliction aff in affs.Keys)
-                            if (aff is Affs.BloodType)
-                            {
-                                Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["raw_" + aff.Identifier], user.Inventory);
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, 2f, user);
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 2f)
-                                {
-                                    Source = user
-                                });
-                                ch.addLimbAffFast(null, Utils.BLOODLOSS_PFB, user.HasTalent("bloodybusiness") ? 25f : 40f, user, true, true);
-                                break;
-                            }
-                    }
-                }
-                else if (id.StartsWith("raw_"))
-                {
-                    if (id.EndsWith("_empty"))//applying empty packs means removing exisitng packs.
-                    {
-                        byte packCounts = 0;
-                        foreach (var (aff, lh) in affs)
-                            if (lh == lhs[targetLimb.HealthIndex] && object.ReferenceEquals(aff.Prefab, Utils.HEATED_PFB))
-                            {
-                                packCounts += (byte)Math.Ceiling(aff.Strength);
-                                affs.Remove(aff);
-                                break;
-                            }
-                        foreach (var (aff, lh) in affs)
-                            if (lh == lhs[targetLimb.HealthIndex] && object.ReferenceEquals(aff.Prefab, Utils.ICED_PFB))
-                            {
-                                packCounts += (byte)Math.Ceiling(aff.Strength);
-                                affs.Remove(aff);
-                                break;
-                            }
-#if CLIENT
-                        if (packCounts == 0)
-                            GUI.AddMessage(TextManager.Get("packs.not_equipped"), GUIStyle.Blue);
-#endif
-                        while (packCounts-- > 0)
-                            Entity.Spawner.AddItemToSpawnQueue(Utils.RAW_EMPTY_PFB, user.Inventory);
-                    }
-                    else
-                    {
-                        foreach (Affliction aff in affs.Keys)
-                            if (aff is Affs.BloodType)
-                            {
-                                float hemoStrg = Utils.bloodTypeCompat(id.Remove(0, 9), aff.Identifier.Value.Remove(0, 5)) ? 5f : 36f;
-                                ch.addLimbAffFast(null, new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, hemoStrg)
-                                {
-                                    Source = user
-                                }, true, true);
-                                break;
-                            }
-                        Entity.Spawner.AddItemToSpawnQueue(Utils.RAW_EMPTY_PFB, user.Inventory);
-                    }
-                }
-                else if (id.StartsWith("proc_"))
-                {
-                    foreach (Affliction aff in affs.Keys)
-                        if (aff is Affs.BloodType)
+                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, user.HasTalent("deliverysystem") ? 1f : 2f, user);
+                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, user.HasTalent("bloodybusiness") ? 1.5f : 2f)
                         {
-                            if (!Utils.bloodTypeCompat(id.Remove(0, 10), aff.Identifier.Value.Remove(0, 5)))
-                            {
-                                ch.addLimbAffFast(null, new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, 20f)
+                            Source = user
+                        });
+                        if (ReferenceEquals(contained.Prefab, Utils.RAW_EMPTY_PFB))
+                        {
+                            Entity.Spawner.AddItemToRemoveQueue(contained);
+                            foreach (Affliction aff in affs.Keys)
+                                if (aff is Affs.BloodType)
                                 {
-                                    Source = user
-                                }, true, true);
-                            }
+                                    Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["raw_" + aff.Identifier], user.Inventory);
+                                    ch.addLimbAffFast(null, Utils.BLOODLOSS_PFB, user.HasTalent("bloodybusiness") ? 25f : 40f, user, true, true);
+                                    break;
+                                }
+                        }
+                        else
+                        {
+                            contained.ApplyStatusEffects(contained.GetComponent<Holdable>().DegreeOfSuccess(user) < Rand.Value(Rand.RandSync.ServerAndClient) ? ActionType.OnSuccess : ActionType.OnFailure, 1f, user, useTarget: character);
+                            contained.ApplyStatusEffects(ActionType.OnUse, 1f, user, useTarget: character);
+                            contained.ApplyStatusEffects(ActionType.OnBroken, 1f, user, useTarget: character);
+                        }
+                    }
+                }
+                else if (id.StartsWith("raw_") || id.StartsWith("proc_") || id.StartsWith("antibloodloss"))
+                {
+                    if (user.IsPlayer)
+                        return false;
+                }
+                else if (ReferenceEquals(__instance.Prefab, Utils.RAW_EMPTY_PFB))//applying empty packs means removing exisitng packs.
+                {
+                    byte packCounts = 0;
+                    foreach (var (aff, lh) in affs)
+                        if (lh == lhs[targetLimb.HealthIndex] && object.ReferenceEquals(aff.Prefab, Utils.HEATED_PFB))
+                        {
+                            packCounts += (byte)Math.Ceiling(aff.Strength);
+                            affs.Remove(aff);
                             break;
                         }
-                    Entity.Spawner.AddItemToSpawnQueue(Utils.RAW_EMPTY_PFB, user.Inventory);
+                    foreach (var (aff, lh) in affs)
+                        if (lh == lhs[targetLimb.HealthIndex] && object.ReferenceEquals(aff.Prefab, Utils.ICED_PFB))
+                        {
+                            packCounts += (byte)Math.Ceiling(aff.Strength);
+                            affs.Remove(aff);
+                            break;
+                        }
+#if CLIENT
+                    if (packCounts == 0)
+                        GUI.AddMessage(TextManager.Get("packs.not_equipped"), GUIStyle.Blue);
+#endif
+                    while (packCounts-- > 0)
+                        Entity.Spawner.AddItemToSpawnQueue(Utils.RAW_EMPTY_PFB, user.Inventory);
+
                 }
                 else if (id.StartsWith("antibleeding"))
                 {
@@ -449,47 +430,6 @@ namespace PrimMed.Patches
                 }
             }
             return true;
-        }
-        [HarmonyPrefix]//auto injector headset
-        [HarmonyPatch("ApplyStatusEffects", new Type[] { typeof(ActionType), typeof(float), typeof(Character), typeof(Limb), typeof(Entity), typeof(bool), typeof(Vector2?) })]
-        public static void _ApplyStatusEffects(Item __instance, ActionType type, Character character, Entity useTarget)
-        {
-            if (type == ActionType.OnSuccess && useTarget is Character target)
-            {
-                string id = __instance.Prefab.Identifier.Value;
-                var ch = target.CharacterHealth;
-                var affs = ch.afflictions;
-                if (id.StartsWith("raw_"))
-                {
-                    foreach (Affliction aff in affs.Keys)
-                        if (aff is Affs.BloodType)
-                        {
-                            float hemoStrg = Utils.bloodTypeCompat(id.Remove(0, 9), aff.Identifier.Value.Remove(0, 5)) ? 5f : 36f;
-                            ch.addLimbAffFast(null, new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, hemoStrg)
-                            {
-                                Source = character
-                            }, true, true);
-                            break;
-                        }
-                    Entity.Spawner.AddItemToSpawnQueue(Utils.RAW_EMPTY_PFB, character.Inventory);
-                }
-                else if (id.StartsWith("proc_"))
-                {
-                    foreach (Affliction aff in affs.Keys)
-                        if (aff is Affs.BloodType)
-                        {
-                            if (!Utils.bloodTypeCompat(id.Remove(0, 10), aff.Identifier.Value.Remove(0, 5)))
-                            {
-                                ch.addLimbAffFast(null, new Affs.Hemolysis(Utils.HEMOLYSIS_PFB, 20f)
-                                {
-                                    Source = character
-                                }, true, true);
-                            }
-                            break;
-                        }
-                    Entity.Spawner.AddItemToSpawnQueue(Utils.RAW_EMPTY_PFB, character.Inventory);
-                }
-            }
         }
     }
 }

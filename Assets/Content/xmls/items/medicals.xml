@@ -51,7 +51,7 @@
     <SkillRequirementHint identifier="medical" level="85" />
   </Item>
 
-  <Item identifier="disinfectant" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" useinhealthinterface="true" scale="0.3" impactsoundtag="impact_soft">
+  <Item identifier="disinfectant" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.3" impactsoundtag="impact_soft">
     <PreferredContainer secondary="wreckmedcab,abandonedmedcab" amount="1" spawnprobability="0.2" />
     <PreferredContainer secondary="outpostmedcab" amount="1" spawnprobability="0.1" />
     <PreferredContainer secondary="outpostmedcompartment" amount="1" spawnprobability="0.1" />
@@ -187,7 +187,7 @@
   </HeatPack>
 
   <!-- blood types-->
-  <RawBlood identifier="raw_blooda0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
+  <RawBlood identifier="raw_blooda0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,raw_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -213,15 +213,16 @@
         <ReduceAffliction identifier="bloodloss" amount="4" />
         <Affliction identifier="hemolysis" amount="0.4" />
       </StatusEffect>
-      <StatusEffect type="OnBroken" target="This">
-        <Remove />
+      <StatusEffect type="OnBroken" target="This" disabledealtatime="true">
+		  <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="96" />
     <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
-  <ProcBlood identifier="proc_blooda0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
+  <ProcBlood identifier="proc_blooda0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -258,12 +259,13 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </ProcBlood>
 
 
-  <RawBlood identifier="raw_blooda1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
+  <RawBlood identifier="raw_blooda1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,raw_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -289,13 +291,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="96" />
     <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
-  <ProcBlood identifier="proc_blooda1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
+  <ProcBlood identifier="proc_blooda1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -332,13 +335,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
-  <RawBlood identifier="raw_bloodb0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
+  <RawBlood identifier="raw_bloodb0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,raw_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -364,13 +368,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="96" />
     <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
-  <ProcBlood identifier="proc_bloodb0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
+  <ProcBlood identifier="proc_bloodb0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -407,13 +412,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
-  <RawBlood identifier="raw_bloodb1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
+  <RawBlood identifier="raw_bloodb1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,raw_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -439,13 +445,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="96" />
     <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
-  <ProcBlood identifier="proc_bloodb1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
+  <ProcBlood identifier="proc_bloodb1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -482,13 +489,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
-  <RawBlood identifier="raw_bloodab0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
+  <RawBlood identifier="raw_bloodab0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,raw_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -514,13 +522,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="96" />
     <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
-  <ProcBlood identifier="proc_bloodab0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
+  <ProcBlood identifier="proc_bloodab0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -557,13 +566,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
-  <RawBlood identifier="raw_bloodab1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
+  <RawBlood identifier="raw_bloodab1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,raw_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -589,13 +599,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="96" />
     <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
-  <ProcBlood identifier="proc_bloodab1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
+  <ProcBlood identifier="proc_bloodab1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -632,13 +643,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
-  <RawBlood identifier="raw_bloodo0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
+  <RawBlood identifier="raw_bloodo0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,raw_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -666,13 +678,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="96" />
     <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
-  <ProcBlood identifier="proc_bloodo0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
+  <ProcBlood identifier="proc_bloodo0" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -709,13 +722,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="80" />
   </ProcBlood>
 
 
-  <RawBlood identifier="raw_bloodo1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
+  <RawBlood identifier="raw_bloodo1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,raw_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="raw_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -743,13 +757,14 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="96" />
     <SuitableTreatment identifier="hemolysis" suitability="-6" />
   </RawBlood>
 
-  <ProcBlood identifier="proc_bloodo1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
+  <ProcBlood identifier="proc_bloodo1" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical,proc_bloodpack" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" RequireAimToUse="True" descriptionidentifier="proc_blood">
     <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer primary="medfabcab" secondary="medcontainer" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
@@ -786,6 +801,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="raw_empty" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
     <SuitableTreatment identifier="bloodloss" suitability="80" />
@@ -1267,7 +1283,7 @@
     <SkillRequirementHint identifier="medical" level="42" />
   </Item>
 
-  <enzyme identifier="vitamins" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
+  <enzyme identifier="vitamins" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,medical" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
     <PreferredContainer primary="medcab" secondary="medcontainer" />
     <PreferredContainer secondary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="3" spawnprobability="0.1" />
