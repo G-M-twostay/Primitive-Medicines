@@ -118,5 +118,28 @@ namespace PrimMed
             _ => true
         };
 
+        internal static bool addSE(this Dictionary<ActionType, List<StatusEffect>> all, StatusEffect se, string tag)
+        {
+            if (all.TryGetValue(se.type, out List<StatusEffect> l))
+            {
+                /*this method somehow gets called multiple times for the same item.
+                 * I suspect that the reason is of follows:
+                 * the first time is when the meleeweapon or holdable component gets created,
+                 * the second time is when the projectile component copies everything from meleeweapon by having `inheritstatuseffectsfrom="MeleeWeapon"`.
+                 */
+                if (l.Find(i => i.HasTag(tag)) is null)
+                {
+                    l.Add(se);
+                    return true;
+                }
+            }
+            else
+            {
+                all[se.type] = new List<StatusEffect>() { se };
+                return true;
+            }
+            return false;
+        }
+
     }
 }

@@ -17,30 +17,15 @@ namespace PrimMed.Patches
         [HarmonyPatch(MethodType.Constructor, new Type[] { typeof(Item), typeof(ContentXElement) })]
         public static void PostCtor(ItemComponent __instance, Item item)
         {
-            void addSE(StatusEffect se, string tag)
-            {
-                if (__instance.statusEffectLists.TryGetValue(se.type, out List<StatusEffect> l))
-                {
-                    /*this method somehow gets called multiple times for the same item.
-                     * I suspect that the reason is of follows:
-                     * the first time is when the meleeweapon or holdable component gets created,
-                     * the second time is when the projectile component copies everything from meleeweapon by having `inheritstatuseffectsfrom="MeleeWeapon"`.
-                     */
-                    if (l.Find(i => i.HasTag(tag)) is null)
-                        l.Add(se);
-                }
-                else
-                    __instance.statusEffectLists[se.type] = new List<StatusEffect>() { se };
-            }
             void LoadStatusEffect(ContentXElement ele, string tag, FastSE.FuncCond cond)
             {
                 ele.SetAttributeValue("tags", tag);
                 ele.SetAttributeValue("type", "OnSuccess");
                 var se = new FastSE(ele, item.Name, cond);
-                addSE(se, tag);
+                __instance.statusEffectLists.addSE(se, tag);
                 ele.SetAttributeValue("type", "OnFailure");
                 se = new FastSE(ele, item.Name, cond);
-                addSE(se, tag);
+                __instance.statusEffectLists.addSE(se, tag);
             }
             if (item.HasTag("syringe"))
             {

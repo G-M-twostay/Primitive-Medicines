@@ -315,7 +315,7 @@
         </ItemContainer>
       </Item>
 
-      <Item identifier="anestheticgas0" category="Equipment,Medical" health="200" maxstacksize="8" maxstacksizecharacterinventory="1" MaxStackSizeHoldableOrWearableInventory="1" Tags="smallitem,anestheticgas" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+      <Item identifier="anestheticgas0" category="Equipment,Medical" health="200" maxstacksize="8" maxstacksizecharacterinventory="1" MaxStackSizeHoldableOrWearableInventory="1" Tags="smallitem,medicalgas" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
         <PreferredContainer primary="engcab" secondary="supplycab"/>
         <PreferredContainer primary="wreckengcab,abandonedengcab" amount="1" spawnprobability="0.05"/>
         <PreferredContainer primary="wreckstoragecab,abandonedstoragecab" amount="1" spawnprobability="0.02"/> 
@@ -370,7 +370,7 @@
         <Upgrade gameversion="0.10.0.0" scale="0.5" />
       </Item>
 
-      <Item identifier="anestheticgas1" category="Equipment,medical" health="200" maxstacksize="8" maxstacksizecharacterinventory="1" MaxStackSizeHoldableOrWearableInventory="1" Tags="smallitem,anestheticgas" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+      <Item identifier="anestheticgas1" category="Equipment,medical" health="200" maxstacksize="8" maxstacksizecharacterinventory="1" MaxStackSizeHoldableOrWearableInventory="1" Tags="smallitem,medicalgas" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
         <PreferredContainer primary="engcab" secondary="supplycab"/>
         <PreferredContainer primary="wreckengcab,abandonedengcab" amount="1" spawnprobability="0.05"/>
         <PreferredContainer primary="wreckstoragecab,abandonedstoragecab" amount="1" spawnprobability="0.02"/> 
@@ -417,7 +417,7 @@
         <Upgrade gameversion="0.10.0.0" scale="0.5" />
       </Item>
 
-      <Item identifier="analgesicgas0" category="Equipment,medical" health="200" maxstacksize="8" maxstacksizecharacterinventory="1" MaxStackSizeHoldableOrWearableInventory="1" Tags="smallitem,anestheticgas" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+      <Item identifier="analgesicgas0" category="Equipment,medical" health="200" maxstacksize="8" maxstacksizecharacterinventory="1" MaxStackSizeHoldableOrWearableInventory="1" Tags="smallitem,medicalgas" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
         <PreferredContainer primary="engcab" secondary="supplycab"/>
         <PreferredContainer primary="wreckengcab,abandonedengcab" amount="1" spawnprobability="0.05"/>
         <PreferredContainer primary="wreckstoragecab,abandonedstoragecab" amount="1" spawnprobability="0.02"/> 
