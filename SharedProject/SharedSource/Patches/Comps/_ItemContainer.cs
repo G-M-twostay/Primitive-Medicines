@@ -27,9 +27,9 @@ namespace PrimMed.Patches
                             if (cloth is not null)//this is just to see if this item is wearable since we don't want to be able to store them in oxygen tank shelves. The SE, though, can be defined under any components.
                             {
                                 element.Add(MedicalGasTags);
-                                cloth.statusEffectLists.addSE(new StatusEffect(N2OGasSE, item.Name), null);
-                                cloth.statusEffectLists.addSE(new StatusEffect(DsFGasSE, item.Name), null);
-                                cloth.statusEffectLists.addSE(new StatusEffect(OpiGasSE, item.Name), null);
+                                cloth.statusEffectLists.addSE(new StatusEffect(N2OGasSE, item.Name));
+                                cloth.statusEffectLists.addSE(new StatusEffect(DsFGasSE, item.Name));
+                                cloth.statusEffectLists.addSE(new StatusEffect(OpiGasSE, item.Name));
                                 break;
                             }
                         }

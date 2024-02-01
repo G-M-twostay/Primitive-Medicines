@@ -36,12 +36,7 @@
           <Sound file="Content/Items/Medical/Bandage1.ogg" range="500" />
           <Sound file="Content/Items/Medical/Bandage2.ogg" range="500" />
         </StatusEffect>
-        <StatusEffect tags="medical" type="OnSuccess" target="Limb" disabledeltatime="true">
-          <Affliction identifier="bandaged" amount="2" />
-        </StatusEffect>
-        <StatusEffect tags="medical" type="OnFailure" target="Limb" disabledeltatime="true">
-          <Affliction identifier="bandaged" amount="1" />
-        </StatusEffect>
+
         <!-- Remove the item when fully used -->
         <StatusEffect type="OnBroken" target="This">
           <Remove />
@@ -78,12 +73,7 @@
           <Sound file="Content/Items/Medical/Bandage1.ogg" range="500" />
           <Sound file="Content/Items/Medical/Bandage2.ogg" range="500" />
         </StatusEffect>
-        <StatusEffect tags="medical" type="OnSuccess" target="Limb" disabledeltatime="true">
-          <Affliction identifier="bandaged" amount="4" />
-        </StatusEffect>
-        <StatusEffect tags="medical" type="OnFailure" target="Limb" disabledeltatime="true">
-          <Affliction identifier="bandaged" amount="2" />
-        </StatusEffect>
+
         <!-- Remove the item when fully used -->
         <StatusEffect type="OnBroken" target="This">
           <Remove />
@@ -124,20 +114,16 @@
           <Sound file="Content/Items/Medical/Bandage1.ogg" range="500" />
           <Sound file="Content/Items/Medical/Bandage2.ogg" range="500" />
         </StatusEffect>
-        <StatusEffect tags="medical" type="OnSuccess" target="Limb" disabledeltatime="true">
-          <Affliction identifier="bandaged" amount="8" />
-        </StatusEffect>
+
         <StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="30">
           <ReduceAffliction identifier="bacterial0" amount="0.5" />
         </StatusEffect>
         <StatusEffect tags="medical" type="OnFailure" target="Limb" duration="30">
           <ReduceAffliction identifier="bacterial0" amount="0.25" />
         </StatusEffect>
-        <StatusEffect tags="medical" type="OnFailure" target="Limb" disabledeltatime="true">
-          <Affliction identifier="bandaged" amount="4" />
-        </StatusEffect>
+
         <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="5.0">
-          <Affliction identifier="organdamage" amount="1.25" />
+          <Affliction identifier="organdamage" amount="1" />
         </StatusEffect>
         <!-- Remove the item when fully used -->
         <StatusEffect type="OnBroken" target="This">

@@ -20,14 +20,17 @@ namespace PrimMed.Replace
             {
                 switch (item.Quality)
                 {
-                    case 1:
+                    case 0:
+                    default:
                         DrainBattery.SetAttributeValue("Condition", "-0.2");
+                        break;
+                    case 1:
+                        DrainBattery.SetAttributeValue("Condition", "-0.175");
                         break;
                     case 2:
                         DrainBattery.SetAttributeValue("Condition", "-0.15");
                         break;
                     case 3:
-                    default:
                         DrainBattery.SetAttributeValue("Condition", "-0.1");
                         break;
                 }

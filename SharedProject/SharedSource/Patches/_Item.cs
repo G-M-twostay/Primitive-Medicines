@@ -131,32 +131,6 @@ namespace PrimMed.Patches
                 {
                     ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.ICED_PFB, 1f, Utils.HEATED_PFB.Duration * __instance.Condition / __instance.MaxCondition, user);
                 }
-                else if (id.StartsWith("antibleeding"))
-                {
-                    float currBdgStrg = 0f;
-                    foreach (var (aff, lh) in affs)
-                        if (lh == lhs[targetLimb.HealthIndex] && aff is Affs.Bandaged)
-                        {
-                            currBdgStrg = aff.Strength;
-                            break;
-                        }
-                    float mod = user.HasTalent("medicalexpertise") ? Affs.Bandaged.TALENT_MOD : 1f;//this talent increases the threshold for all bandages.
-                    switch (id[12])
-                    {
-                        case '1':
-                            if (currBdgStrg >= 6f * mod)
-                                return false;
-                            break;
-                        case '2':
-                            if (currBdgStrg >= 12f * mod)
-                                return false;
-                            break;
-                        case '3':
-                            if (currBdgStrg >= 24f * mod)
-                                return false;
-                            break;
-                    }
-                }
                 else if (id == "bloodsampler")
                 {
                     foreach (var (aff, lh) in affs)

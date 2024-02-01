@@ -122,6 +122,13 @@ namespace PrimMed
             "ab0" => recip == "ab0",//AB+
             _ => true
         };
+        internal static void addSE(this Dictionary<ActionType, List<StatusEffect>> all, StatusEffect se)
+        {
+            if (all.TryGetValue(se.type, out List<StatusEffect> l))
+                l.Add(se);
+            else
+                all[se.type] = new List<StatusEffect>() { se };
+        }
 
         internal static bool addSE(this Dictionary<ActionType, List<StatusEffect>> all, StatusEffect se, string tag)
         {
@@ -132,7 +139,7 @@ namespace PrimMed
                  * the first time is when the meleeweapon or holdable component gets created,
                  * the second time is when the projectile component copies everything from meleeweapon by having `inheritstatuseffectsfrom="MeleeWeapon"`.
                  */
-                if (tag is null || l.Find(i => i.HasTag(tag)) is null)
+                if (l.Find(i => i.HasTag(tag)) is null)
                 {
                     l.Add(se);
                     return true;
