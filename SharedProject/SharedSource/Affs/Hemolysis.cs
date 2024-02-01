@@ -5,6 +5,7 @@ namespace PrimMed.Affs
     {
         private const byte INTV = 64;
         private byte elapsed = 1;
+        private static readonly AfflictionPrefab ORGAN_DMG_PFB = AfflictionPrefab.Prefabs["organdamage"];
         public Hemolysis(AfflictionPrefab prefab, float strength) : base(prefab, strength) { }
         public override void Update(CharacterHealth ch, Limb targetLimb, float deltaTime)
         {
@@ -12,15 +13,12 @@ namespace PrimMed.Affs
             if (Utils.IsHost() && --elapsed % INTV == 0)
             {
                 float r = Rand.Value(Rand.RandSync.ServerAndClient), s = Strength / Prefab.MaxStrength;
-                Affliction aff;
-                if (r < 0.75f)
-                    aff = new LungDmg(Utils.LUNG_DMG_PFB, s);
-                else if (r < 0.875f)
-                    aff = new LiverDmg(Utils.LIVER_DMG_PFB, s);
+                if (r < 0.5f)
+                    ch.addLimbAffFast(null, ORGAN_DMG_PFB, s, Source, true, true);
+                else if (r < 0.75f)
+                    ch.addLimbAffFast(null, new LungDmg(Utils.LUNG_DMG_PFB, s) { Source = Source }, true, true);
                 else
-                    aff = new HeartDmg(Utils.HEART_DMG_PFB, s);
-                aff.Source = Source;
-                ch.addLimbAffFast(null, aff, true, true);
+                    ch.addLimbAffFast(null, Utils.IN_DMG_PFB, s, Source, true, true);
             }
         }
 

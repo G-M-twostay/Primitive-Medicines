@@ -160,7 +160,7 @@ namespace PrimMed.Affs
                     {
                         float r = aff.Strength / aff.Prefab.MaxStrength;
                         float wavg = Math.Min(r, 0.5f) * 0.25f + Math.Max(0f, r - 0.5f) * 0.75f;//value strengths above 0.5 more.
-                        dec += wavg * 2f;//cause -2 temperature at max strength.
+                        dec += wavg * 2f * TEMP_REGR;//cause -2 temperature at max strength.
                     }
 
 
