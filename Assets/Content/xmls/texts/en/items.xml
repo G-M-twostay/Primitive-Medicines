@@ -34,7 +34,7 @@
 
 	<entityname.liquidbag>Liquid Pack</entityname.liquidbag>
 	<entitydescription.liquidbag>An empty bag used to contain liquids(or solids). Apply it on any limbs with ice/heat packs to remove them(this will also deplete them).</entitydescription.liquidbag>
-	<packs.not_equipped>No packs to remove.</packs.not_equipped>
+	<packs.cannot>Can't apply blood packs directly.</packs.cannot>
 	
     <entityname.raw_blooda0>Raw Blood</entityname.raw_blooda0>
     <entityname.raw_blooda1>Raw Blood</entityname.raw_blooda1>

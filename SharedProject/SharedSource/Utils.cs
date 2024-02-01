@@ -31,7 +31,12 @@ namespace PrimMed
             return true;
 #endif
         }
-
+        internal static void addLimbAffFast(this CharacterHealth ch, CharacterHealth.LimbHealth limbh, AfflictionPrefab newPfb, in float strength, in float duration, Character src = null, in bool stack = true)
+        {
+            var aff = newPfb.Instantiate(strength, src);
+            aff.Duration = duration;
+            ch.addLimbAffFast(limbh, aff, stack);
+        }
         internal static void addLimbAffFast(this CharacterHealth ch, CharacterHealth.LimbHealth limbh, AfflictionPrefab newPfb, in float strength, Character src = null, in bool stack = true, in bool canKill = false) => ch.addLimbAffFast(limbh, newPfb.Instantiate(strength, src), stack, canKill);
 
         internal static void addLimbAffFast(this CharacterHealth ch, CharacterHealth.LimbHealth limbh, Affliction newAff, in bool stack = true, in bool canKill = false)
@@ -52,12 +57,12 @@ namespace PrimMed
                 float newStrg = newAff.Strength * (100.0f / ch.MaxVitality) * (1f - ch.GetResistance(newAff.Prefab));
                 if (stack)
                     newStrg += existing.Strength;
-
+                float oldDura = existing.Duration;//setting strengths changes the duration.
                 existing.Strength = newStrg;
                 if (existing == ch.stunAffliction)
                     ch.Character.SetStun(existing.Strength, true, true);
 
-                existing.Duration = newAff.Prefab.Duration;
+                existing.Duration = newAff.Duration + oldDura;//this part is different from vanilla. in vanilla we just do `existing.Duration=newAff.Prefab.Duration`.
                 existing.Source = newAff.Source;
             }
             else
@@ -127,7 +132,7 @@ namespace PrimMed
                  * the first time is when the meleeweapon or holdable component gets created,
                  * the second time is when the projectile component copies everything from meleeweapon by having `inheritstatuseffectsfrom="MeleeWeapon"`.
                  */
-                if (l.Find(i => i.HasTag(tag)) is null)
+                if (tag is null || l.Find(i => i.HasTag(tag)) is null)
                 {
                     l.Add(se);
                     return true;

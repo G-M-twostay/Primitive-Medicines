@@ -156,6 +156,13 @@ namespace PrimMed.Affs
                         inc += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR / 0.1f;
                     else if (aff is Rejection)//starts to cause fever at 0.2=20/100.
                         inc += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR / 0.2f;
+                    else if (aff.Identifier == "Phenothiazinepoisoning")
+                    {
+                        float r = aff.Strength / aff.Prefab.MaxStrength;
+                        float wavg = Math.Min(r, 0.5f) * 0.25f + Math.Max(0f, r - 0.5f) * 0.75f;//value strengths above 0.5 more.
+                        dec += wavg * 2f;//cause -2 temperature at max strength.
+                    }
+
 
                 //from clothes. overrides above.
                 //check if wearing outpost deweller cloth.

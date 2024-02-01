@@ -128,16 +128,14 @@
       <Item identifier="liquidbag" />
       <Item identifier="antibloodloss1" />
     </Deconstruct>
-    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" holdangle="30" aimable="false" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true">
+    <Holdable canBeCombined="true" slots="Any,RightHand,LeftHand" holdangle="30" aimable="false" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnUse" target="This" disabledeltatime="true">
         <Sound file="Content/Sounds/Damage/LimbBlunt1.ogg" range="250" />
-      </StatusEffect>
-      <StatusEffect type="OnUse" target="this" Condition="-100" setvalue="true" />
-      <StatusEffect type="OnUse" target="Limb" disabledeltatime="true">
-        <Affliction identifier="iced" amount="1" />
+		  <Remove /><!--we don't want applying packs to also give an empty one.-->
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </IcePack>
@@ -173,15 +171,14 @@
       <Item identifier="aluminium" amount="1" />
     </Deconstruct>
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" holdangle="30" aimable="false" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true">
+      <StatusEffect type="OnUse" target="This" disabledeltatime="true">
         <Sound file="Content/Sounds/Damage/LimbBlunt1.ogg" range="250" />
-      </StatusEffect>
-      <StatusEffect type="OnUse" target="This" Condition="-100" setvalue="true" />
-      <StatusEffect type="OnUse" target="Limb" disabledeltatime="true">
-        <Affliction identifier="heated" amount="1" />
+		  <Remove />
+		  <!--we don't want applying packs to also give an empty one.-->
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
+		  <SpawnItem identifiers="liquidbag" spawnposition="sameinventory" />
       </StatusEffect>
     </Holdable>
   </HeatPack>
@@ -1315,9 +1312,6 @@
 			<Price storeidentifier="merchantresearch" multiplier="0.9" minleveldifficulty="35"/>
 			<Price storeidentifier="merchantmilitary" multiplier="1.1" minleveldifficulty="45"/>
 			<Price storeidentifier="merchantmine" sold="false" multiplier="1.1" />
-			<Price storeidentifier="merchanthusk" minavailable="0" maxavailable="1" minleveldifficulty="40">
-				<Reputation faction="huskcult" min="50"/>
-			</Price>
 		</Price>
 		<Fabricate suitablefabricators="medicalfabricator" requiredtime="60">
 			<RequiredSkill identifier="medical" level="58" />
@@ -1333,20 +1327,14 @@
 		<Sprite texture="Medicines.png" sourcerect="189,308,37,69" depth="0.6" origin="0.5,0.5" />
 		<Body width="35" height="65" density="10.2" waterdragcoefficient="1"/>
 		<MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
-			<RequiredSkill identifier="medical" level="50"/>
+			<RequiredSkill identifier="medical" level="46"/>
 			<StatusEffect type="OnSuccess" target="This" Condition="-100.0" setvalue="true"/>
 			<StatusEffect type="OnFailure" target="This" Condition="-100.0" setvalue="true"/>
-			<StatusEffect type="OnSuccess" target="UseTarget" multiplyafflictionsbymaxvitality="true">
-				<Conditional ishuman="true"/>
-				<Affliction identifier="morbusinepoisoning" amount="11" />
+			<StatusEffect type="OnSuccess" target="UseTarget" duration="5" >
+				<Affliction identifier="Phenothiazinepoisoning" amount="10.2" />
 			</StatusEffect>
-			<StatusEffect type="OnSuccess" target="UseTarget" multiplyafflictionsbymaxvitality="true">
-				<Conditional ishuman="false"/>
-				<Affliction identifier="morbusinepoisoning" amount="20" />
-			</StatusEffect>
-			<StatusEffect type="OnFailure" target="UseTarget" multiplyafflictionsbymaxvitality="true">
-				<!--Single dose always wears off. Two doses combined are lethal, unless the monster has lower poison vulnerability than 1. -->
-				<Affliction identifier="morbusinepoisoning" amount="10" />
+			<StatusEffect type="OnFailure" target="UseTarget" duration="5">
+				<Affliction identifier="Phenothiazinepoisoning" amount="7.7" />
 			</StatusEffect>
 			<StatusEffect type="OnSuccess" target="UseTarget">
 				<Conditional entitytype="eq Character"/>
@@ -1365,7 +1353,7 @@
 			</StatusEffect>
 		</MeleeWeapon>
 		<Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritStatusEffectsFrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon"/>
-		<SkillRequirementHint identifier="medical" level="50"/>
+		<SkillRequirementHint identifier="medical" level="46"/>
 	</Phenothiazine>
 	
 </Items>

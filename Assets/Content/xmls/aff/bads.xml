@@ -127,7 +127,7 @@
 	<Affliction
   identifier="Phenothiazinepoisoning"
   type="poison"
-  targets=""
+  targets="human"
   limbspecific="false"
   indicatorlimb="Torso"
   showiconthreshold="85"
@@ -149,19 +149,27 @@
 		  target="OtherCharacter"
 		  minstrength="85"
 		  maxstrength="100"/>
-		<Effect minstrength="0" maxstrength="20"
-		  strengthchange="-0.25"
+		<Effect minstrength="0" maxstrength="50"
+		  strengthchange="-0.2"
 		  minchromaticaberration="0.0"
 		  maxchromaticaberration="0.2">
+			<statuseffect stack="false" target="Character" interval="1" disabledeltatime="true">
+				<ReduceAffliction identifier="psychosis" strength="0.05" />
+				<ReduceAffliction identifier="huskinfection" strength="-0.1" />
+			</statuseffect>
 		</Effect>
-		<!-- lethal after str 20 -->
-		<Effect minstrength="20" maxstrength="100"
-		  strengthchange="1"
+		<Effect minstrength="50" maxstrength="100"
+		  strengthchange="-0.05"
 		  minscreendistort="0"
-		  maxscreendistort="02"
+		  maxscreendistort="0.2"
 		  minchromaticaberration="0.2"
 		  maxchromaticaberration="0.5"
 		  tag="poisoned">
+			<statuseffect stack="false" target="Character" interval="1" disabledeltatime="true">
+				<ReduceAffliction identifier="psychosis" strength="0.5" />
+				<ReduceAffliction identifier="huskinfection" strength="-0.35" />
+				<ReduceAffliction identifier="bacterial1" strength="-0.125" />
+			</statuseffect>
 		</Effect>
 		<icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="1,7" sheetelementsize="128,128" color="255,0,0,0" origin="0,0" />
 	</Affliction>

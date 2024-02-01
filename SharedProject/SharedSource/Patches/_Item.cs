@@ -18,6 +18,7 @@ namespace PrimMed.Patches
             _ => false,
         };
         private static readonly AfflictionPrefab BLEEDING_PFB = AfflictionPrefab.Prefabs["bleeding"], LAC_PFB = AfflictionPrefab.Prefabs["lacerations"], REJECT_PFB = AfflictionPrefab.Prefabs["immunereject"], LUNG_M_PFB = AfflictionPrefab.Prefabs["lungmissing"], LIVER_M_PFB = AfflictionPrefab.Prefabs["livermissing"], HEART_M_PFB = AfflictionPrefab.Prefabs["heartmissing"];
+        private static readonly ItemPrefab ICEPACK_PFB = ItemPrefab.Prefabs["icepack"], HEATPACK_PFB = ItemPrefab.Prefabs["heatpack"];
         [HarmonyPrefix]
         [HarmonyPatch("ApplyTreatment", new Type[] { typeof(Character), typeof(Character), typeof(Limb) })]
         public static bool PreApplyTreatment(Item __instance, Character user, Character character, Limb targetLimb)
@@ -92,32 +93,43 @@ namespace PrimMed.Patches
                 else if (id.StartsWith("raw_") || id.StartsWith("proc_") || id.StartsWith("antibloodloss"))
                 {
                     if (user.IsPlayer)
+                    {
+#if CLIENT
+                        GUI.AddMessage(TextManager.Get("packs.cannot"), GUIStyle.Red);
+#endif
                         return false;
+                    }
+
                 }
                 else if (ReferenceEquals(__instance.Prefab, Utils.LIQUIDBAG_PFB))//applying empty packs means removing exisitng packs.
                 {
-                    byte packCounts = 0;
-                    foreach (var (aff, lh) in affs)
-                        if (lh == lhs[targetLimb.HealthIndex] && object.ReferenceEquals(aff.Prefab, Utils.HEATED_PFB))
-                        {
-                            packCounts += (byte)Math.Ceiling(aff.Strength);
-                            affs.Remove(aff);
-                            break;
-                        }
-                    foreach (var (aff, lh) in affs)
-                        if (lh == lhs[targetLimb.HealthIndex] && object.ReferenceEquals(aff.Prefab, Utils.ICED_PFB))
-                        {
-                            packCounts += (byte)Math.Ceiling(aff.Strength);
-                            affs.Remove(aff);
-                            break;
-                        }
-#if CLIENT
-                    if (packCounts == 0)
-                        GUI.AddMessage(TextManager.Get("packs.not_equipped"), GUIStyle.Blue);
-#endif
-                    while (packCounts-- > 0)
-                        Entity.Spawner.AddItemToSpawnQueue(Utils.LIQUIDBAG_PFB, user.Inventory);
+                    const float singleDuration = 40f;
 
+                    void rmv(AfflictionPrefab t, ItemPrefab o)
+                    {
+                        byte packCounts = 0;
+                        float remain = 0f;
+                        foreach (var (aff, lh) in affs)
+                            if (lh == lhs[targetLimb.HealthIndex] && ReferenceEquals(aff.Prefab, t))
+                            {
+                                packCounts = (byte)Math.Ceiling(aff.Strength);
+                                remain = aff.Duration;
+                                affs.Remove(aff);
+                                break;
+                            }
+                        for (byte i = 0; i < packCounts; ++i)
+                            Entity.Spawner.AddItemToSpawnQueue(o, user.Inventory, remain / (singleDuration * packCounts) * o.Health);
+                    }
+                    rmv(Utils.HEATED_PFB, HEATPACK_PFB);
+                    rmv(Utils.ICED_PFB, ICEPACK_PFB);
+                }
+                else if (ReferenceEquals(__instance.Prefab, ICEPACK_PFB))//wrote packs here because 1 it won't cause any compatibility issue and 2 writing it in SE is too complicated and have lots of boilerplate code.
+                {
+                    ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.ICED_PFB, 1f, Utils.ICED_PFB.Duration * __instance.Condition / __instance.MaxCondition, user);
+                }
+                else if (ReferenceEquals(__instance.Prefab, HEATPACK_PFB))
+                {
+                    ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.ICED_PFB, 1f, Utils.HEATED_PFB.Duration * __instance.Condition / __instance.MaxCondition, user);
                 }
                 else if (id.StartsWith("antibleeding"))
                 {
@@ -166,13 +178,12 @@ namespace PrimMed.Patches
 #endif
                             break;
                         }
-
                 }
                 else if (id == "scalpel")
                 {
                     var action = __instance.GetComponent<Replace.Choose>().customInterfaceElementList[0].Signal;
                     float docPain;
-                    if (object.ReferenceEquals(character.Inventory.GetItemInLimbSlot(InvSlotType.RightHand), __instance))
+                    if (ReferenceEquals(character.Inventory.GetItemInLimbSlot(InvSlotType.RightHand), __instance))
                         docPain = Utils.getLimbPain(user.AnimController.GetLimb(LimbType.RightArm), user.CharacterHealth);
                     else
                         docPain = Utils.getLimbPain(user.AnimController.GetLimb(LimbType.LeftArm), user.CharacterHealth);
@@ -281,7 +292,7 @@ namespace PrimMed.Patches
                 else if (id == "scissors")
                 {
                     float docPain;
-                    if (object.ReferenceEquals(character.Inventory.GetItemInLimbSlot(InvSlotType.RightHand), __instance))
+                    if (ReferenceEquals(character.Inventory.GetItemInLimbSlot(InvSlotType.RightHand), __instance))
                         docPain = Utils.getLimbPain(user.AnimController.GetLimb(LimbType.RightArm), user.CharacterHealth);
                     else
                         docPain = Utils.getLimbPain(user.AnimController.GetLimb(LimbType.LeftArm), user.CharacterHealth);

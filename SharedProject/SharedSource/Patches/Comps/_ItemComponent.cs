@@ -9,9 +9,8 @@ namespace PrimMed.Patches
     [HarmonyPatch(typeof(ItemComponent))]
     static class _ItemComponent
     {
-        private static readonly ContentXElement PierceStatus = new(PMMod.CntPkg, XElement.Parse($"<StatusEffect tags=\"\" type=\"\" target=\"Limb\"  disabledeltatime=\"true\" stack=\"false\">          <Affliction identifier=\"pierce\" amount=\"1\" />        </StatusEffect>")),
-                    RawHemolysisStatus = new(PMMod.CntPkg, XElement.Parse($"<StatusEffect tags=\"\" type=\"\" target=\"UseTarget\"  duration=\"9\" >          <Affliction identifier=\"hemolysis\" amount=\"4.025\" />        </StatusEffect>")),
-            ProcHemolysisStatus = new(PMMod.CntPkg, XElement.Parse($"<StatusEffect tags=\"\" type=\"\" target=\"UseTarget\"  duration=\"5\" >          <Affliction identifier=\"hemolysis\" amount=\"4.025\" />       </StatusEffect>"));
+        private static readonly ContentXElement PierceStatus = new(PMMod.CntPkg, XElement.Parse($"<StatusEffect tags=\"\" type=\"\" target=\"Limb\"  disabledeltatime=\"true\" stack=\"false\">          <Affliction identifier=\"pierce\" amount=\"1\" />        </StatusEffect>"));
+
 
         [HarmonyPostfix]
         [HarmonyPatch(MethodType.Constructor, new Type[] { typeof(Item), typeof(ContentXElement) })]
@@ -29,7 +28,7 @@ namespace PrimMed.Patches
             }
             if (item.HasTag("syringe"))
             {
-                static bool findStrg(FastSE se, IReadOnlyList<ISerializableEntity> targets)
+                static bool findStrg(FastSE se, Entity _, IReadOnlyList<ISerializableEntity> targets)
                 {
                     float strg;
                     if (se.user is not null)
@@ -45,30 +44,6 @@ namespace PrimMed.Patches
                     return true;
                 }
                 LoadStatusEffect(PierceStatus, "syringe_pierce", findStrg);
-            }
-            else if (item.HasTag("raw_bloodpack"))
-            {
-                bool findStrg(FastSE _, IReadOnlyList<ISerializableEntity> targets)
-                {
-                    Character c = Unsafe.As<Character>(targets[0]);
-                    foreach (var aff in c.CharacterHealth.afflictions.Keys)
-                        if (aff is Affs.BloodType)
-                            return !Utils.bloodTypeCompat(item.Prefab.Identifier.Value.Remove(0, 9), aff.Identifier.Value.Remove(0, 5));
-                    return true;
-                }
-                LoadStatusEffect(RawHemolysisStatus, "raw_bp_type", findStrg);
-            }
-            else if (item.HasTag("proc_bloodpack"))
-            {
-                bool findStrg(FastSE _, IReadOnlyList<ISerializableEntity> targets)
-                {
-                    Character c = Unsafe.As<Character>(targets[0]);
-                    foreach (var aff in c.CharacterHealth.afflictions.Keys)
-                        if (aff is Affs.BloodType)
-                            return !Utils.bloodTypeCompat(item.Prefab.Identifier.Value.Remove(0, 10), aff.Identifier.Value.Remove(0, 5));
-                    return true;
-                }
-                LoadStatusEffect(ProcHemolysisStatus, "proc_bp_type", findStrg);
             }
         }
     }
