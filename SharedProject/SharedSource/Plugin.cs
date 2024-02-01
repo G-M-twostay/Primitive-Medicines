@@ -61,7 +61,7 @@ namespace PrimMed
                     suites.Add(Utils.BLOODLOSS_PFB.Identifier, a);
                     foreach (string recipType in bloodTypes)
                         if (!Utils.bloodTypeCompat(donorType, recipType))
-                            suites.Add("blood" + recipType, -200);
+                            suites.Add("blood" + recipType, -1000);
 
                     ItemPrefab_treatmentSuitability_(pfb) = suites.ToImmutableDictionary();
                 }
