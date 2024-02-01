@@ -17,13 +17,12 @@
     <Fabricate suitablefabricators="medicalfabricator" requiredtime="75">
       <RequiredSkill identifier="medical" level="85" />
       <RequiredItem identifier="huskeggs" />
-      <RequiredItem identifier="thorium" />
+      <RequiredItem identifier="heatpack" mincondition="0.75" usecondition="true"/>
       <RequiredItem identifier="stabilozine" />
       <RequiredItem identifier="LithiumMonoxide" />
       <RequiredItem identifier="silicon" />
     </Fabricate>
     <Deconstruct time="20">
-      <Item identifier="thorium" />
       <Item identifier="silicon" />
       <Item identifier="Lithium" />
     </Deconstruct>
