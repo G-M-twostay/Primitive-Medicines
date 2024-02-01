@@ -41,7 +41,8 @@ namespace PrimMed.Replace
                 if (closestCharacter != null)
                 {
                     float dist = Vector2.Distance(GameMain.GameScreen.Cam.ScreenToWorld(PlayerInput.MousePosition), closestCharacter.WorldPosition);
-                    DrawCharacterInfo(spriteBatch, closestCharacter, 1.0f - MathHelper.Max((dist - (Range - FadeOutRange)) / FadeOutRange, 0.0f));
+                    if (item.GetContainedItemConditionPercentage() > 0f)
+                        DrawCharacterInfo(spriteBatch, closestCharacter, 1.0f - MathHelper.Max((dist - (Range - FadeOutRange)) / FadeOutRange, 0.0f));
                 }
             }
 

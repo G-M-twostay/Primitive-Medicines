@@ -4,7 +4,7 @@ namespace PrimMed.Replace
 {
     public partial class FastSE : StatusEffect
     {
-        public delegate bool FuncCond(FastSE se, IReadOnlyList<ISerializableEntity> targets);
+        public delegate bool FuncCond(FastSE se, Entity applier, IReadOnlyList<ISerializableEntity> targets);
         private readonly FuncCond cond;
         public FastSE(ContentXElement element, string parentDebugName, FuncCond userCond) : base(element, parentDebugName)
         {
@@ -16,7 +16,7 @@ namespace PrimMed.Replace
             {
                 return;
             }
-            if (this.type != type /*|| !HasRequiredItems(entity)*/)
+            if (this.type != type || !HasRequiredItems(entity))
             {
                 return;
             }
@@ -44,7 +44,7 @@ namespace PrimMed.Replace
                         {
                             return;
                         }*/
-            if (!cond(this, currentTargets))
+            if (!cond(this, entity, currentTargets))
                 return;
 
             Apply(deltaTime, entity, currentTargets, worldPosition);
@@ -79,17 +79,17 @@ namespace PrimMed.Replace
                 return;
             }
 
-            /*            bool hasRequiredItems = HasRequiredItems(entity);
-                        if (!hasRequiredItems || !HasRequiredConditions(currentTargets))
-                        {
-            #if CLIENT
-                            if (!hasRequiredItems && playSoundOnRequiredItemFailure)
-                            {
-                                PlaySound(entity, GetHull(entity), GetPosition(entity, targets, worldPosition));
-                            }
-            #endif
-                            return;
-                        }*/
+            bool hasRequiredItems = HasRequiredItems(entity);
+            if (!hasRequiredItems /*||!HasRequiredConditions(currentTargets)*/)
+            {
+                /*#if CLIENT
+                                            if (!hasRequiredItems && playSoundOnRequiredItemFailure)
+                                            {
+                                                PlaySound(entity, GetHull(entity), GetPosition(entity, targets, worldPosition));
+                                            }
+                #endif*/
+                return;
+            }
 
             if (Duration > 0.0f && !Stackable)
             {
@@ -101,7 +101,7 @@ namespace PrimMed.Replace
                     return;
                 }
             }
-            if (!cond(this, currentTargets))
+            if (!cond(this, entity, currentTargets))
                 return;
             Apply(deltaTime, entity, currentTargets, worldPosition);
         }
