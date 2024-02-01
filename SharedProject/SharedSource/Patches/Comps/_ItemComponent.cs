@@ -30,7 +30,7 @@ namespace PrimMed.Patches
             {
                 static bool findStrg(FastSE se, Entity _, IReadOnlyList<ISerializableEntity> targets)
                 {
-                    float strg;
+                    float strg = 1.25f;
                     if (se.user is not null)
                     {
                         if (ReferenceEquals(se.user, Unsafe.As<Limb>(targets[0]).character))
@@ -39,7 +39,6 @@ namespace PrimMed.Patches
                         if (se.user.HasTalent("deliverysystem"))
                             strg = 0.5f;
                     }
-                    strg = 1.25f;
                     se.Afflictions[0].SetStrength(strg);
                     return true;
                 }
