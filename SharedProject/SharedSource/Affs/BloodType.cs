@@ -26,6 +26,7 @@ namespace PrimMed.Affs
             (string name, _) = RankedTypes[index];
             return new BloodType(AfflictionPrefab.Prefabs[name], 1f);
         }
+        public string Code => Identifier.Value.Remove(0, 5);
         public BloodType(AfflictionPrefab prefab, float strength) : base(prefab, strength) { }
         public override void Update(CharacterHealth ch, Limb targetLimb, float deltaTime)
         {

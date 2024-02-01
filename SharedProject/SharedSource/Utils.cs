@@ -152,6 +152,21 @@ namespace PrimMed
             }
             return false;
         }
-
+        internal static Affs.BloodType FindBloodType(Dictionary<Affliction, CharacterHealth.LimbHealth> affs)
+        {//find and fix blood types. using this before applying treatments can remove many hooks.
+            Affs.BloodType res = null;
+            foreach (var aff in affs.Keys)
+                if (aff is Affs.BloodType t)
+                    if (res is null)
+                        res = t;
+                    else
+                        affs.Remove(aff);
+            if (res is null)
+            {
+                res = Affs.BloodType.chooseType();
+                affs.Add(res, null);
+            }
+            return res;
+        }
     }
 }

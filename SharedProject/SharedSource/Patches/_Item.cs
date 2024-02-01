@@ -74,13 +74,12 @@ namespace PrimMed.Patches
                         if (ReferenceEquals(contained.Prefab, Utils.LIQUIDBAG_PFB))
                         {
                             Entity.Spawner.AddItemToRemoveQueue(contained);
-                            foreach (Affliction aff in affs.Keys)
-                                if (aff is Affs.BloodType)
-                                {
-                                    Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["raw_" + aff.Identifier], user.Inventory);
-                                    ch.addLimbAffFast(null, Utils.BLOODLOSS_PFB, user.HasTalent("bloodybusiness") ? 25f : 40f, user, true, true);
-                                    break;
-                                }
+
+                            Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["raw_" + Utils.FindBloodType(affs).Identifier], user.Inventory);
+                            ch.addLimbAffFast(null, Utils.BLOODLOSS_PFB, user.HasTalent("bloodybusiness") ? 25f : 40f, user, true, true);
+                            if (!character.IsOnFriendlyTeam(user))
+                                character.AddAttacker(user, 30f);
+
                         }
                         else
                         {
@@ -143,15 +142,10 @@ namespace PrimMed.Patches
                 isBleeding:
                     var ic = __instance.GetComponent<CustomInterface>();
                     var textBox = ic.customInterfaceElementList[0];
-                    foreach (Affliction aff in affs.Keys)
-                        if (aff is Affs.BloodType)
-                        {
-                            ic.TextChanged(textBox, aff.Name);
+                    ic.TextChanged(textBox, Utils.FindBloodType(affs).Name);
 #if CLIENT
-                            ic.UpdateSignalsProjSpecific();
+                    ic.UpdateSignalsProjSpecific();
 #endif
-                            break;
-                        }
                 }
                 else if (id == "scalpel")
                 {

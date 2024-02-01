@@ -1,6 +1,5 @@
 using Barotrauma;
 using HarmonyLib;
-using System.Xml.Linq;
 namespace PrimMed.Patches
 {
     [HarmonyPatch(typeof(CharacterHealth))]
@@ -60,24 +59,6 @@ namespace PrimMed.Patches
                     break;
             }
             __result *= 1f - mod / Utils.PAIN_PFB.MaxStrength;
-        }
-        [HarmonyPostfix]
-        [HarmonyPatch("Load", new Type[] { typeof(XElement), typeof(Func<AfflictionPrefab, bool>) })]
-        public static void _Load(CharacterHealth __instance)
-        {//ensure blood type on character load(backward compatibility) and respawn.
-            if (__instance.Character.IsHuman)
-            {
-                var affs = __instance.afflictions;
-                bool hasBloodType = false;
-                foreach (Affliction aff in affs.Keys)
-                    if (aff is Affs.BloodType)
-                        if (hasBloodType)
-                            affs.Remove(aff);
-                        else
-                            hasBloodType = true;
-                if (!hasBloodType)
-                    affs.Add(Affs.BloodType.chooseType(), null);
-            }
         }
     }
 }
