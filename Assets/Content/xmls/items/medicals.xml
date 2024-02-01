@@ -116,14 +116,20 @@
     <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="6,1" sheetelementsize="64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="0,3" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
     <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
-    <Fabricate suitablefabricators="medicalfabricator" requiredtime="120" amount="2">
-      <RequiredSkill identifier="medical" level="5" />
-      <RequiredSkill identifier="electrical" level="25" />
+    <Fabricate suitablefabricators="fabricator" requiredtime="60" amount="1">
+      <RequiredSkill identifier="medical" level="10" />
       <RequiredItem identifier="antibloodloss1" />
       <RequiredItem identifier="chlorine" />
       <RequiredItem identifier="potassium" />
-      <RequiredItem identifier="liquidbag" amount="2"/>
+      <RequiredItem identifier="icepack" maxcondition="0.1"/>
     </Fabricate>
+	  <Fabricate suitablefabricators="fabricator" requiredtime="60" amount="1">
+		  <RequiredSkill identifier="medical" level="10" />
+		  <RequiredItem identifier="antibloodloss1" />
+		  <RequiredItem identifier="chlorine" />
+		  <RequiredItem identifier="potassium" />
+		  <RequiredItem identifier="liquidbag" amount="1"/>
+	  </Fabricate>
     <Deconstruct time="20">
       <Item identifier="liquidbag" />
       <Item identifier="antibloodloss1" />
@@ -159,13 +165,22 @@
     <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="6,1" sheetelementsize="64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="0,3" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
     <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
-    <Fabricate suitablefabricators="fabricator" requiredtime="120" amount="2">
+    <Fabricate suitablefabricators="fabricator" requiredtime="90" amount="1">
       <RequiredSkill identifier="medical" level="10" />
       <RequiredSkill identifier="mechanical" level="25" />
       <RequiredItem identifier="iron" />
       <RequiredItem identifier="aluminium" amount="2" />
-      <RequiredItem identifier="liquidbag" amount="2"/>
+      <RequiredItem identifier="liquidbag" amount="1"/>
+		<RequiredItem identifier="oxygentank" mincondition="1.0" usecondition="true"/>
     </Fabricate>
+	  <Fabricate suitablefabricators="fabricator" requiredtime="90" amount="1">
+		  <RequiredSkill identifier="medical" level="10" />
+		  <RequiredSkill identifier="mechanical" level="25" />
+		  <RequiredItem identifier="iron" />
+		  <RequiredItem identifier="aluminium" amount="2" />
+		  <RequiredItem identifier="heatpack" amount="1" maxcondition="0.1"/>
+		  <RequiredItem identifier="oxygentank" mincondition="1.0" usecondition="true"/>
+	  </Fabricate>
     <Deconstruct time="5">
       <Item identifier="liquidbag" />
       <Item identifier="aluminium" amount="1" />
@@ -1275,10 +1290,12 @@
       <RequiredItem identifier="enzyme" amount="1" />
       <RequiredItem identifier="phosphorus" amount="1" />
       <RequiredItem identifier="nitroglycerin" amount="1" />
+		<RequiredItem identifier="zinc" amount="1" />
     </Fabricate>
     <Fabricate suitablefabricators="vendingmachine" requiredtime="1" requiredmoney="450" fabricationlimitmin="0" fabricationlimitmax="4" quality="0"/>
     <Deconstruct time="15">
       <Item identifier="carbon" amount="1" />
+		<Item identifier="zinc" amount="1" />
     </Deconstruct>
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
       <StatusEffect type="OnSecondaryUse" target="This" Condition="-25.0" />
@@ -1323,8 +1340,8 @@
 			<Item identifier="carbon" />
 			<Item identifier="sulphuricacid" />
 		</Deconstruct>
-		<InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="64,640,64,64" origin="0.5,0.5" />
-		<Sprite texture="Medicines.png" sourcerect="189,308,37,69" depth="0.6" origin="0.5,0.5" />
+		<InventoryIcon texture="Content/Items/Medical/Medicines.png" sheetindex="2,1" sheetelementsize="37,69" origin="0.5,0.5" />
+		<Sprite texture="Content/Items/Medical/Medicines.png" sheetindex="2,1" sheetelementsize="37,69" depth="0.6" origin="0.5,0.5" />
 		<Body width="35" height="65" density="10.2" waterdragcoefficient="1"/>
 		<MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
 			<RequiredSkill identifier="medical" level="46"/>

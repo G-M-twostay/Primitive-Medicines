@@ -2,7 +2,6 @@ using Barotrauma;
 using Barotrauma.Items.Components;
 using HarmonyLib;
 using PrimMed.Replace;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 namespace PrimMed.Patches
@@ -10,7 +9,6 @@ namespace PrimMed.Patches
     [HarmonyPatch(typeof(Holdable))]
     static class _Holdable
     {
-        private static readonly AccessTools.FieldRef<AfflictionPrefab, float> AfflictionPrefab_MaxDuration_ = AccessTools.FieldRefAccess<AfflictionPrefab, float>(typeof(AfflictionPrefab).GetField("Duration", BindingFlags.Public | BindingFlags.SetField | BindingFlags.Instance | BindingFlags.ExactBinding));
         private static readonly ContentXElement RawHemolysisStatus = new(PMMod.CntPkg, XElement.Parse($"<StatusEffect tags=\"raw_bp_type\" type=\"OnUse\" target=\"UseTarget\"  duration=\"9\" >          <Affliction identifier=\"hemolysis\" amount=\"4.025\" />        </StatusEffect>")),
                 ProcHemolysisStatus = new(PMMod.CntPkg, XElement.Parse($"<StatusEffect tags=\"proc_bp_type\" type=\"OnUse\" target=\"UseTarget\"  duration=\"5\" >          <Affliction identifier=\"hemolysis\" amount=\"4.025\" />       </StatusEffect>"));
         [HarmonyPostfix]

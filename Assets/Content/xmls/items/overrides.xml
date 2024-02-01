@@ -342,16 +342,22 @@
       <Price baseprice="500">
         <Price storeidentifier="merchantmedical" multiplier="0.9" minleveldifficulty="50" />
       </Price>
-      <Fabricate suitablefabricators="medicalfabricator" requiredtime="60">
+      <Fabricate suitablefabricators="medicalfabricator" requiredtime="70">
         <RequiredSkill identifier="medical" level="60" />
         <RequiredItem identifier="ethanol" />
         <RequiredItem identifier="antidama2" />
-        <RequiredItem identifier="liquidoxygenite" />
+		  <RequiredItem identifier="oxygentank" mincondition="0.9" usecondition="true"/>
         <RequiredItem identifier="dementonite" />
       </Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="60">
+			<RequiredSkill identifier="medical" level="66" />
+			<RequiredItem identifier="ethanol" />
+			<RequiredItem identifier="antidama2" />
+			<RequiredItem identifier="oxygenitetank" mincondition="0.4" usecondition="true"/>
+			<RequiredItem identifier="dementonite" />
+		</Fabricate>
       <Deconstruct time="20">
         <Item identifier="opium" />
-        <Item identifier="liquidoxygenite" />
       </Deconstruct>
       <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="384,704,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Medical/Medicines.png" sourcerect="226,306,38,72" depth="0.6" origin="0.5,0.5" />

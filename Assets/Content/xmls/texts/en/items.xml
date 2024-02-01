@@ -33,7 +33,7 @@
     <entitydescription.disinfectant>Classic chemical that's very effective against ranges of microbes. Can be traced back to earth. Do not drink.</entitydescription.disinfectant>
 
 	<entityname.liquidbag>Liquid Pack</entityname.liquidbag>
-	<entitydescription.liquidbag>An empty bag used to contain liquids(or solids). Apply it on any limbs with ice/heat packs to remove them(this will also deplete them).</entitydescription.liquidbag>
+	<entitydescription.liquidbag>An empty bag used to contain liquids(or solids). Apply it on any limbs with ice/heat packs to remove them.</entitydescription.liquidbag>
 	<packs.cannot>Can't apply blood packs directly.</packs.cannot>
 	
     <entityname.raw_blooda0>Raw Blood</entityname.raw_blooda0>
@@ -132,4 +132,7 @@
 
     <entityname.analgesicgas0>Methoxyflurane</entityname.analgesicgas0>
     <entitydescription.analgesicgas0>A tank of extremely powerful but short-lasting analgesic gas that doesn't cause too much addiction. </entitydescription.analgesicgas0>
+
+	<entityname.Phenothiazine>Phenothiazine</entityname.Phenothiazine>
+	<entitydescription.Phenothiazine>An antipsychotic drug mildly toxic to humans, considerably toxic to microbes, and extremely toxic to parasites.</entitydescription.Phenothiazine>
 </infotexts>

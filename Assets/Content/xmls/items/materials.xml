@@ -14,16 +14,21 @@
         <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sheetindex="2,4" sheetelementsize="64,64" origin="0.5,0.5" />
         <Sprite texture="Content/Items/Materials/CraftingElements1.png" sourcerect="150,176,23,42" depth="0.55" origin="0.5,0.5" />
         <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
-        <Fabricate suitablefabricators="fabricator" requiredtime="30" >
+        <Fabricate suitablefabricators="fabricator" requiredtime="35" >
           <RequiredSkill identifier="medical" level="70" />
           <RequiredItem identifier="lithium" amount="2"/>
-          <RequiredItem identifier="liquidoxygenite" amount="1"/>
+			<RequiredItem identifier="oxygentank" mincondition="1.0" usecondition="true"/>
           <RequiredItem identifier="rubber" />
         </Fabricate>
+		<Fabricate suitablefabricators="fabricator" requiredtime="25" >
+			<RequiredSkill identifier="medical" level="60" />
+			<RequiredItem identifier="lithium" amount="2"/>
+			<RequiredItem identifier="oxygenitetank" mincondition="0.65" usecondition="true"/>
+			<RequiredItem identifier="rubber" />
+		</Fabricate>
         <Deconstruct time="10">
             <Item identifier="rubber" />
             <Item identifier="Lithium" />
-            <!-- might want to add a probablity of getting liquid oxygenite-->
         </Deconstruct>
         <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" holdangle="30" aimable="false" msg="ItemMsgPickUpSelect">
           <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true">
@@ -53,10 +58,10 @@
         <RequiredSkill identifier="medical" level="20" />
         <RequiredItem identifier="carbon" amount="2" />
         <RequiredItem identifier="ethanol" amount="1" />
-        <RequiredItem identifier="zinc" amount="1" />
+		  <RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
       </Fabricate>
       <Deconstruct time="15">
-        <Item identifier="zinc" amount="1" />
+        <Item identifier="carbon" amount="1" />
       </Deconstruct>
       <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
         <!-- Remove the item when fully used -->

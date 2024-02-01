@@ -331,21 +331,20 @@
         </Deconstruct>
         <Fabricate suitablefabricators="fabricator" requiredtime="15">
           <RequiredSkill identifier="mechanical" level="40" />
-          <RequiredItem identifier="aluminium" amount="2" />
           <RequiredItem identifier="nitroglycerin" />
-          <RequiredItem identifier="liquidoxygenite"/>
+			<RequiredItem identifier="oxygentank" mincondition="1.0"/>
         </Fabricate>
         <Fabricate suitablefabricators="fabricator" displayname="recycleitem" requiredtime="10">
           <RequiredSkill identifier="mechanical" level="30" />
           <RequiredItem identifier="anestheticgas0" mincondition="0.0" maxcondition="0.1" usecondition="false"/>
           <RequiredItem identifier="nitroglycerin" />
-          <RequiredItem identifier="liquidoxygenite"/>
+			<RequiredItem identifier="oxygentank" mincondition="1.0" usecondition="true"/>
         </Fabricate>
         <Fabricate suitablefabricators="fabricator" displayname="recycleitem" requiredtime="10">
           <RequiredSkill identifier="mechanical" level="30" />
           <RequiredItem identifier="anestheticgas1" mincondition="0.0" maxcondition="0.0" usecondition="false"/>
           <RequiredItem identifier="nitroglycerin" />
-          <RequiredItem identifier="liquidoxygenite"/>
+			<RequiredItem identifier="oxygentank" mincondition="1.0" usecondition="true"/>
         </Fabricate>
         <Fabricate suitablefabricators="vendingmachine" requiredtime="1" requiredmoney="200" fabricationlimitmin="0" fabricationlimitmax="4" quality="0"/>
         <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="960,0,64,64" origin="0.5,0.5" />
@@ -386,24 +385,23 @@
         </Deconstruct>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="15">
           <RequiredSkill identifier="mechanical" level="40" />
-          <RequiredItem identifier="aluminium" amount="2" />
           <RequiredItem identifier="paralyxis" amount="1"/>
           <RequiredItem identifier="carbon" amount="1"/>
-          <RequiredItem identifier="liquidoxygenite"/>
+			<RequiredItem identifier="oxygentank" mincondition="1.0"/>
         </Fabricate>
         <Fabricate suitablefabricators="medicalfabricator" displayname="recycleitem" requiredtime="10">
           <RequiredSkill identifier="mechanical" level="30" />
           <RequiredItem identifier="anestheticgas0" mincondition="0.0" maxcondition="0" usecondition="false"/>
           <RequiredItem identifier="paralyxis" amount="1"/>
           <RequiredItem identifier="carbon" amount="1"/>
-          <RequiredItem identifier="liquidoxygenite"/>
+			<RequiredItem identifier="oxygentank" mincondition="1.0" usecondition="true"/>
         </Fabricate>
         <Fabricate suitablefabricators="medicalfabricator" displayname="recycleitem" requiredtime="10">
           <RequiredSkill identifier="mechanical" level="30" />
           <RequiredItem identifier="anestheticgas1" mincondition="0.0" maxcondition="0.1" usecondition="false"/>
           <RequiredItem identifier="paralyxis" amount="1"/>
           <RequiredItem identifier="carbon" amount="1"/>
-          <RequiredItem identifier="liquidoxygenite"/>
+			<RequiredItem identifier="oxygentank" mincondition="1.0" usecondition="true"/>
         </Fabricate>
         <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="960,0,64,64" origin="0.5,0.5" />
         <Sprite texture="Content/Items/Tools/tools.png" sourcerect="436,71,22,66" depth="0.55" />
@@ -436,8 +434,8 @@
           <RequiredSkill identifier="medical" level="58" />
           <RequiredItem identifier="antidama1" amount="1" />
           <RequiredItem identifier="chlorine" amount="2"/>
-          <RequiredItem identifier="incendium" amount="1"/>
-          <RequiredItem identifier="aluminium" amount="2" />
+			<RequiredItem identifier="heatpack" mincondition="1.0" usecondition="true"/>
+			<RequiredItem identifier="oxygentank" mincondition="1.0"/>
         </Fabricate>
         <Fabricate suitablefabricators="fabricator" displayname="recycleitem" requiredtime="10">
           <RequiredSkill identifier="mechanical" level="30" />
@@ -445,7 +443,8 @@
           <RequiredItem identifier="analgesicgas0" mincondition="0.0" maxcondition="0.1" usecondition="false"/>
           <RequiredItem identifier="antidama1" amount="1" />
           <RequiredItem identifier="chlorine" amount="2"/>
-          <RequiredItem identifier="incendium" amount="1"/>
+			<RequiredItem identifier="heatpack" mincondition="1.0" usecondition="true"/>
+			<RequiredItem identifier="oxygentank" mincondition="1.0" usecondition="true"/>
         </Fabricate>
         <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="960,0,64,64" origin="0.5,0.5" />
         <Sprite texture="Content/Items/Tools/tools.png" sourcerect="436,71,22,66" depth="0.55" />

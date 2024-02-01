@@ -113,4 +113,8 @@
 
     <afflictionname.anesthetized>Anesthetized</afflictionname.anesthetized>
     <affdesc.anesthetized>Patient is completely anesthetized.</affdesc.anesthetized>
+
+	<afflictionname.Phenothiazinepoisoning>Phenothiazine Poisoning</afflictionname.Phenothiazinepoisoning>
+	<afflictiondescription.Phenothiazinepoisoning.self>You're feeling absurdly cold.</afflictiondescription.Phenothiazinepoisoning.self>
+	<afflictiondescription.Phenothiazinepoisoning.low>The patient's temperature regulation system seems to be failing.</afflictiondescription.Phenothiazinepoisoning.low>
 </infotexts>
