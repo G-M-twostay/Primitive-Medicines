@@ -7,13 +7,13 @@ namespace PrimMed.Affs
     {
         private const byte INTV = 90;
         private const float MIN_INFECTION_PROB = 0.05f, DRY_INC = 1f, WET_INC = 1.5f, TEMP_REGR = 1.375f, HYPERTHERMIA_TH = 28f, HYPOTHERMIA_TH = -28f, HUSK_HYPERTHERMIA_TH = 20f, HUSK_HYPOTHERMIA_TH = -2000f;
-        private static readonly (LimbType, float)[] LIMB_MODS = new (LimbType, float)[]{
-            (LimbType.Head,1.125f),
-            (LimbType.Torso,1f),
-            (LimbType.LeftArm,0.875f),
-            (LimbType.RightArm,0.875f),
-            (LimbType.LeftLeg,0.875f),
-            (LimbType.RightLeg,0.875f)
+        private static readonly (LimbType, float, float)[] LimbMods = new (LimbType, float, float)[]{/*limb, pain mods, heat mods*/
+            (LimbType.Head,1.125f,1f),
+            (LimbType.Torso,1f,1.125f),
+            (LimbType.LeftArm,0.875f,0.85f),
+            (LimbType.RightArm,0.875f,0.85f),
+            (LimbType.LeftLeg,0.875f,0.9f),
+            (LimbType.RightLeg,0.875f,0.9f)
             };
         private static readonly AfflictionPrefab HYPERTHERMIA_PFB = AfflictionPrefab.Prefabs["hyperthermia"], HYPOTHERMIA_PFB = AfflictionPrefab.Prefabs["hypothermia"];
         private static (float, sbyte) AffPainMod(in Identifier id) => id.Value switch
@@ -27,7 +27,7 @@ namespace PrimMed.Affs
             "bleeding" => (0.125f, -1),
             "burn" => (1f, -1),
             "acidburn" => (1.5f, -1),
-            "psychosis" => (Rand.Value(Rand.RandSync.ServerAndClient) * 2f, (sbyte)Rand.Int(LIMB_MODS.Length, Rand.RandSync.ServerAndClient)),
+            "psychosis" => (Rand.Value(Rand.RandSync.ServerAndClient) * 2f, (sbyte)Rand.Int(LimbMods.Length, Rand.RandSync.ServerAndClient)),
             "hallucinating" => (Rand.Value(Rand.RandSync.ServerAndClient) + 0.25f, 0),
             "hyperthermia" => (1f, 0),
             "pressure" => (1f, 1),
@@ -68,11 +68,11 @@ namespace PrimMed.Affs
                 var affs = ch.afflictions;
                 var lhs = ch.limbHealths;
 
-                Limb[] limbs = new Limb[LIMB_MODS.Length];
-                for (byte i = 0; i < LIMB_MODS.Length; ++i)
-                    limbs[i] = ch.Character.AnimController.GetLimb(LIMB_MODS[i].Item1);
+                Limb[] limbs = new Limb[LimbMods.Length];
+                for (byte i = 0; i < LimbMods.Length; ++i)
+                    limbs[i] = ch.Character.AnimController.GetLimb(LimbMods[i].Item1);
 
-                Span<float> limbStrengths = stackalloc float[LIMB_MODS.Length];
+                Span<float> limbStrengths = stackalloc float[LimbMods.Length];
                 limbStrengths.Clear();
                 //pains
                 if (!(ch.IsUnconscious || ch.Stun > 0f))//unconscious or stunned characters don't feel pain
@@ -83,26 +83,26 @@ namespace PrimMed.Affs
                             if (lh is null)
                                 limbStrengths[limbId] += aff_mod * aff.Strength / aff.Prefab.MaxStrength;
                             else
-                                for (byte i = 0; i < LIMB_MODS.Length; ++i)
+                                for (byte i = 0; i < LimbMods.Length; ++i)
                                     if (lh == lhs[limbs[i].HealthIndex])
                                     {
-                                        limbStrengths[i] += aff_mod * LIMB_MODS[i].Item2 * aff.Strength / aff.Prefab.MaxStrength;
+                                        limbStrengths[i] += aff_mod * LimbMods[i].Item2 * aff.Strength / aff.Prefab.MaxStrength;
                                         break;
                                     }
 
                     }
-                for (byte i = 0; i < LIMB_MODS.Length; ++i)
+                for (byte i = 0; i < LimbMods.Length; ++i)
                     ch.addLimbAffFast(lhs[limbs[i].HealthIndex], new Pain(Utils.PAIN_PFB, limbStrengths[i] * Utils.PAIN_PFB.MaxStrength), false, false);
                 limbStrengths.Clear();
 
                 var item = ch.Character.Inventory.GetItemInLimbSlot(InvSlotType.OuterClothes);
                 bool hasSuit = item is not null && Unsafe.As<HashSet<Identifier>>(item.GetTags()).IsSupersetOf(new Identifier[] { "deepdiving".ToIdentifier(), "provocative".ToIdentifier() });
                 {//infections
-                    Span<float> bdgOffset = stackalloc float[LIMB_MODS.Length];
+                    Span<float> bdgOffset = stackalloc float[LimbMods.Length];
                     bdgOffset.Clear();
                     foreach ((Affliction aff, CharacterHealth.LimbHealth lh) in affs)
                         if (aff is Bandaged)
-                            for (byte i = 0; i < LIMB_MODS.Length; ++i)
+                            for (byte i = 0; i < LimbMods.Length; ++i)
                                 if (lh == lhs[limbs[i].HealthIndex])
                                 {
                                     bdgOffset[i] = aff.Strength / (100f * 2);
@@ -112,7 +112,7 @@ namespace PrimMed.Affs
                     {
                         float infMod = AffInfectMod(aff.Identifier);
                         if (infMod > 0f)
-                            for (byte i = 0; i < LIMB_MODS.Length; ++i)
+                            for (byte i = 0; i < LimbMods.Length; ++i)
                                 if (lh == lhs[limbs[i].HealthIndex])
                                 {
                                     float waterMod = limbs[i].InWater && !hasSuit ? WET_INC : DRY_INC;
@@ -121,7 +121,7 @@ namespace PrimMed.Affs
                                 }
                     }
 
-                    for (byte i = 0; i < LIMB_MODS.Length; ++i)
+                    for (byte i = 0; i < LimbMods.Length; ++i)
                         ch.addLimbAffFast(lhs[limbs[i].HealthIndex], new Bacterial(Utils.BACTERIAL0_PFB, limbStrengths[i]), true, false);
                 }
                 //temperatures
@@ -132,9 +132,9 @@ namespace PrimMed.Affs
                     bool hasLargeSuit = hasSuit && item.HasTag("deepdivinglarge");
                     if (!hasLargeSuit)
                     {//check if player is wearing exosuit
-                        for (byte i = 0; i < LIMB_MODS.Length; ++i)
+                        for (byte i = 0; i < LimbMods.Length; ++i)
                             if (limbs[i].InWater)
-                                dec += LIMB_MODS[i].Item2;
+                                dec += LimbMods[i].Item3;
                         if (hasSuit)//prevents cooling only to the degree that temperatures don't drop.
                             dec/*dec=0 before this*/*= TEMP_REGR / 5.625f/*sum of all limb weights.*/;
                     }
@@ -185,20 +185,23 @@ namespace PrimMed.Affs
 
                 //from treatments. overrides above.
                 foreach ((Affliction aff, CharacterHealth.LimbHealth lh) in affs)
-                    if (object.ReferenceEquals(Utils.ICED_PFB, aff.Prefab))
+                    if (ReferenceEquals(Utils.ICED_PFB, aff.Prefab))
                     {
-                        if (lh == lhs[limbs[0].HealthIndex])/*only ice pack on head reduce temperature*/
-                        {
-                            dec += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR;
-                            break;
-                        }
+                        for (byte i = 0; i < LimbMods.Length; ++i)
+                            if (lh == lhs[limbs[i].HealthIndex])
+                            {
+                                dec += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR * LimbMods[i].Item3 / 1.125f/*max heat mod LimbMods[1]*/;
+                                break;
+                            }
                     }
-                    else if (object.ReferenceEquals(Utils.HEATED_PFB, aff.Prefab))
-                        if (lh == lhs[limbs[1].HealthIndex])/*only heat pack on torso raise temperature*/
-                        {
-                            inc += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR;
-                            break;
-                        }
+                    else if (ReferenceEquals(Utils.HEATED_PFB, aff.Prefab))
+                        for (byte i = 0; i < LimbMods.Length; ++i)
+                            if (lh == lhs[limbs[i].HealthIndex])
+                            {
+                                inc += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR * LimbMods[i].Item3 / 1.125f;
+                                break;
+                            }
+
 
                 ref float deltaTemp = ref limbStrengths[4];
                 deltaTemp = inc - Math.Max(0f, dec);
@@ -225,11 +228,11 @@ namespace PrimMed.Affs
 
                 //when performing surgery, the lack of bleeding indicates vessels are sealed.
                 limbStrengths.Clear();
-                Character[] inciSrcs = new Character[LIMB_MODS.Length];
+                Character[] inciSrcs = new Character[LimbMods.Length];
                 foreach (var (aff, lh) in affs)
                     if (aff is AfflictionBleeding || object.ReferenceEquals(aff.Prefab, Utils.CNCT_PFB))
                     {
-                        for (byte i = 0; i < LIMB_MODS.Length; ++i)
+                        for (byte i = 0; i < LimbMods.Length; ++i)
                             if (lh == lhs[limbs[i].HealthIndex])
                             {
                                 limbStrengths[i] += 1f;
@@ -237,14 +240,14 @@ namespace PrimMed.Affs
                             }
                     }
                     else if (object.ReferenceEquals(aff.Prefab, Utils.INCISION_PFB))
-                        for (byte i = 0; i < LIMB_MODS.Length; ++i)
+                        for (byte i = 0; i < LimbMods.Length; ++i)
                             if (lh == lhs[limbs[i].HealthIndex])
                             {
                                 limbStrengths[i] -= 1f;
                                 inciSrcs[i] = aff.Source;
                                 break;
                             }
-                for (byte i = 0; i < LIMB_MODS.Length; ++i)
+                for (byte i = 0; i < LimbMods.Length; ++i)
                     if (limbStrengths[i] < 0f)
                     {
                         ch.addLimbAffFast(lhs[limbs[i].HealthIndex], new Sealed(Utils.SEALED_PFB, 1f)
