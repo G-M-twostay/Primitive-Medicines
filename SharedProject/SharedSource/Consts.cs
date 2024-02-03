@@ -22,7 +22,8 @@ namespace PrimMed
             HEART_DMG_PFB = AfflictionPrefab.Prefabs["heartdmg"],
             IN_DMG_PFB = AfflictionPrefab.Prefabs["internaldamage"],
             HEATED_PFB = AfflictionPrefab.Prefabs["heated"],
-            ICED_PFB = AfflictionPrefab.Prefabs["iced"];
+            ICED_PFB = AfflictionPrefab.Prefabs["iced"],
+            INCENDIUM_PFB = AfflictionPrefab.Prefabs["heated1"];
         internal static readonly ItemPrefab LIQUIDBAG_PFB = ItemPrefab.Prefabs["liquidbag"];
     }
 }

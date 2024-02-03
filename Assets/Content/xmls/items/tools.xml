@@ -437,6 +437,14 @@
 			<RequiredItem identifier="heatpack" mincondition="1.0" usecondition="true"/>
 			<RequiredItem identifier="oxygentank" mincondition="1.0"/>
         </Fabricate>
+		  <Fabricate suitablefabricators="fabricator" requiredtime="15">
+			  <RequiredSkill identifier="mechanical" level="40" />
+			  <RequiredSkill identifier="medical" level="58" />
+			  <RequiredItem identifier="antidama1" amount="1" />
+			  <RequiredItem identifier="chlorine" amount="2"/>
+			  <RequiredItem identifier="incendiumpack" mincondition="0.5" usecondition="true"/>
+			  <RequiredItem identifier="oxygentank" mincondition="1.0"/>
+		  </Fabricate>
         <Fabricate suitablefabricators="fabricator" displayname="recycleitem" requiredtime="10">
           <RequiredSkill identifier="mechanical" level="30" />
           <RequiredSkill identifier="medical" level="58" />
@@ -446,6 +454,15 @@
 			<RequiredItem identifier="heatpack" mincondition="1.0" usecondition="true"/>
 			<RequiredItem identifier="oxygentank" mincondition="1.0" usecondition="true"/>
         </Fabricate>
+		  <Fabricate suitablefabricators="fabricator" displayname="recycleitem" requiredtime="10">
+			  <RequiredSkill identifier="mechanical" level="30" />
+			  <RequiredSkill identifier="medical" level="58" />
+			  <RequiredItem identifier="analgesicgas0" mincondition="0.0" maxcondition="0.1" usecondition="false"/>
+			  <RequiredItem identifier="antidama1" amount="1" />
+			  <RequiredItem identifier="chlorine" amount="2"/>
+			  <RequiredItem identifier="incendiumpack" mincondition="0.5" usecondition="true"/>
+			  <RequiredItem identifier="oxygentank" mincondition="1.0" usecondition="true"/>
+		  </Fabricate>
         <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="960,0,64,64" origin="0.5,0.5" />
         <Sprite texture="Content/Items/Tools/tools.png" sourcerect="436,71,22,66" depth="0.55" />
         <Body width="20" height="65" density="9.7" />

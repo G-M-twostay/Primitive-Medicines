@@ -18,7 +18,7 @@ namespace PrimMed.Patches
             _ => false,
         };
         private static readonly AfflictionPrefab BLEEDING_PFB = AfflictionPrefab.Prefabs["bleeding"], LAC_PFB = AfflictionPrefab.Prefabs["lacerations"], REJECT_PFB = AfflictionPrefab.Prefabs["immunereject"], LUNG_M_PFB = AfflictionPrefab.Prefabs["lungmissing"], LIVER_M_PFB = AfflictionPrefab.Prefabs["livermissing"], HEART_M_PFB = AfflictionPrefab.Prefabs["heartmissing"];
-        private static readonly ItemPrefab ICEPACK_PFB = ItemPrefab.Prefabs["icepack"], HEATPACK_PFB = ItemPrefab.Prefabs["heatpack"];
+        private static readonly ItemPrefab ICEPACK_PFB = ItemPrefab.Prefabs["icepack"], HEATPACK_PFB = ItemPrefab.Prefabs["heatpack"], INCENDIUMPACK_PFB = ItemPrefab.Prefabs["incendiumpack"];
         [HarmonyPrefix]
         [HarmonyPatch("ApplyTreatment", new Type[] { typeof(Character), typeof(Character), typeof(Limb) })]
         public static bool PreApplyTreatment(Item __instance, Character user, Character character, Limb targetLimb)
@@ -31,7 +31,7 @@ namespace PrimMed.Patches
                     targetLimb = character.AnimController.MainLimb;
                     DebugConsole.AddWarning($"Limb is null when applying {id} by {user.Name} to {character.Name}. Setting limb to main limb: {targetLimb.Name}.");
                 }
-                const float SURGERY_TH_NORM = 100f, SURGERY_TH_TALENT = 75f, SCALPEL_SKILL = 135f, LAC_MOD_NORM = 1f, LAC_MOD_TALENT = 0.875f, BLEED_MOD_NORM = 1f, BLEED_MOD_TALENT = 0.75f, ASSISTANCE_MOD = 0.9375f;
+                const float SURGERY_TH_NORM = 100f, SURGERY_TH_TALENT = 75f, SCALPEL_SKILL = 135f, LAC_MOD_NORM = 1f, LAC_MOD_TALENT = 0.875f, BLEED_MOD_NORM = 1f, BLEED_MOD_TALENT = 0.75f, ASSISTANCE_MOD = 0.9375f, normalPackDuration = 40f, incendPackDuration = 60f;
 
                 var ch = character.CharacterHealth;
                 var lhs = ch.limbHealths;
@@ -61,6 +61,22 @@ namespace PrimMed.Patches
                     return -th;
                 }
 
+                void rmv(AfflictionPrefab t, ItemPrefab o, in float singleDuration)
+                {
+                    byte packCounts = 0;
+                    float remain = 0f;
+                    foreach (var (aff, lh) in affs)
+                        if (lh == lhs[targetLimb.HealthIndex] && ReferenceEquals(aff.Prefab, t))
+                        {
+                            packCounts = (byte)Math.Ceiling(aff.Strength);
+                            remain = aff.Duration;
+                            affs.Remove(aff);
+                            break;
+                        }
+                    for (byte i = 0; i < packCounts; ++i)
+                        Entity.Spawner.AddItemToSpawnQueue(o, user.Inventory, remain / (singleDuration * packCounts) * o.Health);
+                }
+
                 if (id == "transfusionset")
                 {
                     var contained = __instance.GetComponent<ItemContainer>().Inventory.FirstOrDefault();
@@ -77,9 +93,6 @@ namespace PrimMed.Patches
 
                             Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["raw_" + Utils.FindBloodType(affs).Identifier], user.Inventory);
                             ch.addLimbAffFast(null, Utils.BLOODLOSS_PFB, user.HasTalent("bloodybusiness") ? 25f : 40f, user, true, true);
-                            if (!character.IsOnFriendlyTeam(user))
-                                character.AddAttacker(user, 30f);
-
                         }
                         else
                         {
@@ -102,25 +115,9 @@ namespace PrimMed.Patches
                 }
                 else if (ReferenceEquals(__instance.Prefab, Utils.LIQUIDBAG_PFB))//applying empty packs means removing exisitng packs.
                 {
-                    const float singleDuration = 40f;
-
-                    void rmv(AfflictionPrefab t, ItemPrefab o)
-                    {
-                        byte packCounts = 0;
-                        float remain = 0f;
-                        foreach (var (aff, lh) in affs)
-                            if (lh == lhs[targetLimb.HealthIndex] && ReferenceEquals(aff.Prefab, t))
-                            {
-                                packCounts = (byte)Math.Ceiling(aff.Strength);
-                                remain = aff.Duration;
-                                affs.Remove(aff);
-                                break;
-                            }
-                        for (byte i = 0; i < packCounts; ++i)
-                            Entity.Spawner.AddItemToSpawnQueue(o, user.Inventory, remain / (singleDuration * packCounts) * o.Health);
-                    }
-                    rmv(Utils.HEATED_PFB, HEATPACK_PFB);
-                    rmv(Utils.ICED_PFB, ICEPACK_PFB);
+                    rmv(Utils.HEATED_PFB, HEATPACK_PFB, normalPackDuration);
+                    rmv(Utils.ICED_PFB, ICEPACK_PFB, normalPackDuration);
+                    rmv(Utils.INCENDIUM_PFB, INCENDIUMPACK_PFB, incendPackDuration);
                 }
                 else if (ReferenceEquals(__instance.Prefab, ICEPACK_PFB))//wrote packs here because 1 it won't cause any compatibility issue and 2 writing it in SE is too complicated and have lots of boilerplate code.
                 {
@@ -128,7 +125,13 @@ namespace PrimMed.Patches
                 }
                 else if (ReferenceEquals(__instance.Prefab, HEATPACK_PFB))
                 {
-                    ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.ICED_PFB, 1f, Utils.HEATED_PFB.Duration * __instance.Condition / __instance.MaxCondition, user);
+                    rmv(Utils.INCENDIUM_PFB, INCENDIUMPACK_PFB, incendPackDuration);//only one type of heat pack can exists
+                    ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.HEATED_PFB, 1f, Utils.HEATED_PFB.Duration * __instance.Condition / __instance.MaxCondition, user);
+                }
+                else if (ReferenceEquals(__instance.Prefab, INCENDIUMPACK_PFB))
+                {
+                    rmv(Utils.HEATED_PFB, HEATPACK_PFB, normalPackDuration);
+                    ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.INCENDIUM_PFB, 1f, Utils.INCENDIUM_PFB.Duration * __instance.Condition / __instance.MaxCondition, user);
                 }
                 else if (id == "bloodsampler")
                 {

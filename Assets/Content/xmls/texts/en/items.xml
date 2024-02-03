@@ -135,4 +135,13 @@
 
 	<entityname.Phenothiazine>Phenothiazine</entityname.Phenothiazine>
 	<entitydescription.Phenothiazine>An antipsychotic drug mildly toxic to humans, considerably toxic to microbes, and extremely toxic to parasites.</entitydescription.Phenothiazine>
+
+	<entityname.antiPhenothiazine>Phenothiazine Antidote</entityname.antiPhenothiazine>
+	<entitydescription.antiPhenothiazine>Antidote for Phenothiazine poisoning.</entitydescription.antiPhenothiazine>
+	
+	<entityname.incendiumpack>Incendium Heat Pack</entityname.incendiumpack>
+	<entitydescription.incendiumpack>Heat pack utilizing the alien material incendium crystal. Lasts way longer and is more powerful compared to plain its counterpart based on thermite reaction.</entitydescription.incendiumpack>
+
+	<entityname.stabOxygenite>Diluted Oxygenite</entityname.stabOxygenite>
+	<entitydescription.stabOxygenite>Processed Liquid Oxygenite that are ready to be injected without causing any harms.</entitydescription.stabOxygenite>
 </infotexts>

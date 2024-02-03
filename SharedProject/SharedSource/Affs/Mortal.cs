@@ -176,7 +176,7 @@ namespace PrimMed.Affs
                             if (dec > 0f)
                             {
                                 dec = 0f;
-                                contained.Condition -= 0.1f * INTV / 60;
+                                contained.Condition -= 0.15f * INTV / 60;
                             }
                     }
                     else if (item.Prefab.Identifier == "minerclothes" || item.Prefab.Identifier.StartsWith("commonerclothes"))
@@ -195,13 +195,21 @@ namespace PrimMed.Affs
                             }
                     }
                     else if (ReferenceEquals(Utils.HEATED_PFB, aff.Prefab))
+                    {
                         for (byte i = 0; i < LimbMods.Length; ++i)
                             if (lh == lhs[limbs[i].HealthIndex])
                             {
                                 inc += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR * LimbMods[i].Item3 / 1.125f;
                                 break;
                             }
-
+                    }
+                    else if (ReferenceEquals(Utils.INCENDIUM_PFB, aff.Prefab))
+                        for (byte i = 0; i < LimbMods.Length; ++i)
+                            if (lh == lhs[limbs[i].HealthIndex])
+                            {
+                                inc += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR * LimbMods[i].Item3;//incendium packs are more powerful.
+                                break;
+                            }
 
                 ref float deltaTemp = ref limbStrengths[4];
                 deltaTemp = inc - Math.Max(0f, dec);

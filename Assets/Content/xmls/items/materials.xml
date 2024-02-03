@@ -44,22 +44,125 @@
         </Holdable>
     </LithiumMonoxide>
 
-    <enzyme identifier="enzyme" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" useinhealthinterface="false" scale="0.5" impactsoundtag="impact_metal_light">
+    <enzyme identifier="enzyme" category="Material" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" useinhealthinterface="false" scale="0.5" impactsoundtag="impact_metal_light">
       <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer primary="medfabcab" secondary="medcontainer"/>
       <Price baseprice="80" minavailable="4">
         <Price storeidentifier="merchantoutpost" sold="false" />
         <Price storeidentifier="merchantcity" multiplier="1.2" />
         <Price storeidentifier="merchantresearch" multiplier="0.9" />
-        <Price storeidentifier="merchantmilitary" multiplier="1.5" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.8" sold="false" />
         <Price storeidentifier="merchantmine" sold="false" />
       </Price>
-      <Fabricate suitablefabricators="medicalfabricator" requiredtime="15" >
-        <RequiredSkill identifier="medical" level="20" />
-        <RequiredItem identifier="carbon" amount="2" />
-        <RequiredItem identifier="ethanol" amount="1" />
-		  <RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
-      </Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="carbon" amount="1" />
+			<RequiredItem identifier="alienblood" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="crawlermask" amount="1" />
+			<RequiredItem identifier="zinc" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="hammerheadribs" amount="1" />
+			<RequiredItem identifier="carbon" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="1" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="huskstinger" amount="1" />
+			<RequiredItem identifier="heatpack" mincondition="0.7" usecondition="true"/>
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="1" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="huskstinger" amount="1" />
+			<RequiredItem identifier="incendiumpack" mincondition="0.35" usecondition="true"/>
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="3" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="molochbone" amount="1" />
+			<RequiredItem identifier="sulphuricacid"/>
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="smallmudraptoregg" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="3" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="smallcrawleregg" amount="1" />
+			<RequiredItem identifier="LithiumMonoxide" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="1" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="spinelingspikeloot" amount="1" />
+			<RequiredItem identifier="heatpack" mincondition="0.8" usecondition="true"/>
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="1" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="spinelingspikeloot" amount="1" />
+			<RequiredItem identifier="incendiumpack" mincondition="0.4" usecondition="true"/>
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="swimbladder" amount="1" />
+			<RequiredItem identifier="carbon"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="1" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="geneticmaterial_unresearched" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="huskeggsbasic" amount="1" />
+			<RequiredItem identifier="heatpack" mincondition="1.0" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="huskeggsbasic" amount="1" />
+			<RequiredItem identifier="incendiumpack" mincondition="0.5" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="1" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="poop" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="1.0" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="adrenalinegland" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="peanutegg" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="psilotoadegg" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="orangeboyegg" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
+		<Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2" >
+			<RequiredSkill identifier="medical" level="20" />
+			<RequiredItem identifier="balloonegg" amount="1" />
+			<RequiredItem identifier="oxygentank" mincondition="0.65" usecondition="true"/>
+		</Fabricate>
       <Deconstruct time="15">
         <Item identifier="carbon" amount="1" />
       </Deconstruct>
@@ -74,7 +177,7 @@
       <Body width="35" height="65" density="10.2" waterdragcoefficient="1"/>
     </enzyme>
 
-    <RawBlood identifier="liquidbag" aliases="raw_empty" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" >
+    <RawBlood identifier="liquidbag" aliases="raw_empty" category="Material" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_soft" >
       <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="2" spawnprobability="0.2" />
       <PreferredContainer primary="medfabcab" secondary="medcontainer" />
       <PreferredContainer secondary="outpostmedcab" minamount="0" maxamount="2" spawnprobability="0.15" />
