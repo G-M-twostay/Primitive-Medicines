@@ -78,7 +78,7 @@
       <RequiredItem identifier="sodium" />
     </Fabricate>
     <Deconstruct time="20">
-
+		<RequiredItem identifier="ethanol" />
     </Deconstruct>
     <SuitableTreatment identifier="bacterial0" suitability="10" />
     <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="3,1" sheetelementsize="64,64" origin="0.5,0.5" />
@@ -90,10 +90,13 @@
         <Affliction identifier="organdamage" amount="5" />
       </StatusEffect>
       <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true" />
-      <StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="5">
-        <ReduceAffliction identifier="bacterial0" amount="2" />
+      <StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="10">
+        <ReduceAffliction identifier="bacterial0" amount="1" />
       </StatusEffect>
-      <StatusEffect tags="medical" type="OnFailure" target="Limb" duration="5">
+		<StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="5">
+			<ReduceAffliction identifier="bacterial0" amount="0.5" />
+		</StatusEffect>
+      <StatusEffect tags="medical" type="OnFailure" target="Limb" duration="7">
         <ReduceAffliction identifier="bacterial0" amount="1" />
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
@@ -270,9 +273,11 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="60" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="15">
         <ReduceAffliction identifier="bloodloss" amount="7" />
@@ -314,9 +319,11 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="40" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
         <ReduceAffliction identifier="bloodloss" amount="8" />
@@ -346,9 +353,11 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="60" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="15">
         <ReduceAffliction identifier="bloodloss" amount="7" />
@@ -388,9 +397,11 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="40" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
         <ReduceAffliction identifier="bloodloss" amount="8" />
@@ -420,9 +431,11 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="60" />
+      		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="15">
         <ReduceAffliction identifier="bloodloss" amount="7" />
@@ -463,8 +476,10 @@
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
       <RequiredSkill identifier="medical" level="40" />
-      <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
         <ReduceAffliction identifier="bloodloss" amount="8" />
@@ -494,9 +509,11 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="60" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="15">
         <ReduceAffliction identifier="bloodloss" amount="7" />
@@ -536,9 +553,11 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="40" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>      
+		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
         <ReduceAffliction identifier="bloodloss" amount="8" />
@@ -568,9 +587,11 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="60" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="15">
         <ReduceAffliction identifier="bloodloss" amount="7" />
@@ -610,9 +631,11 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="40" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
         <ReduceAffliction identifier="bloodloss" amount="8" />
@@ -642,9 +665,11 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="60" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="15">
         <ReduceAffliction identifier="bloodloss" amount="7" />
@@ -684,9 +709,11 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="40" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
         <ReduceAffliction identifier="bloodloss" amount="8" />
@@ -716,9 +743,11 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="60" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="15">
         <ReduceAffliction identifier="bloodloss" amount="7" />
@@ -760,9 +789,11 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="40" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
         <ReduceAffliction identifier="bloodloss" amount="8" />
@@ -792,9 +823,11 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="60" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="15">
         <ReduceAffliction identifier="bloodloss" amount="7" />
@@ -836,9 +869,11 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      <RequiredSkill identifier="medical" level="40" />
+		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
         <ReduceAffliction identifier="bloodloss" amount="8" />
@@ -1070,7 +1105,7 @@
     <SkillRequirementHint identifier="medical" level="30" />
   </Item>
 
-  <Item name="" identifier="aspirin" category="Medical" maxstacksize="8" Tags="smallitem,medical,syringe" allowasextracargo="true" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
+  <Item identifier="aspirin" category="Medical" maxstacksize="8" Tags="smallitem,medical,syringe" allowasextracargo="true" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
     <PreferredContainer primary="medcab"/>
     <Price baseprice="500">
       <Price storeidentifier="merchantcity" multiplier="1.1" minamount="1" maxamount="3"/>
@@ -1366,7 +1401,7 @@
       </StatusEffect>
       <StatusEffect type="OnUse" target="UseTarget">
         <Conditional entitytype="eq Character"/>
-        <Sound file="Content/Sounds/Damage/Gore6.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/ointment.ogg" range="500" />
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
@@ -1494,13 +1529,15 @@
 			<RequiredSkill identifier="medical" level="43" />
 			<RequiredItem identifier="liquidOxygenite" count="1" />
 			<RequiredItem identifier="oxygentank" mincondition="0.5" usecondition="true"/>
-			<RequiredItem identifier="icepack" mincondition="0.5" usecondition="true"/>
+			<RequiredItem identifier="icepack" mincondition="0.3" usecondition="true"/>
+			<RequiredItem identifier="antibloodloss1"/>
 		</Fabricate>
 		<Fabricate suitablefabricators="medicalfabricator" requiredtime="40">
 			<RequiredSkill identifier="medical" level="43" />
 			<RequiredItem identifier="oxygenitetank" mincondition="0.5" usecondition="true" />
 			<RequiredItem identifier="oxygentank" mincondition="0.5" usecondition="true"/>
-			<RequiredItem identifier="icepack" mincondition="0.5" usecondition="true"/>
+			<RequiredItem identifier="icepack" mincondition="0.3" usecondition="true"/>
+			<RequiredItem identifier="antibloodloss1"/>
 		</Fabricate>
 		<Deconstruct time="10">
 			<Item identifier="liquidOxygenite" count="1" />
@@ -1525,7 +1562,7 @@
 				<ReduceAffliction identifier="oxygenlow" amount="2.5"/>
 			</StatusEffect>>
 			<!--Slightly heals-->
-			<StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="5" delay="2">
+			<StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10" delay="2">
 				<ReduceAffliction identifier="oxygenlow" amount="2.5"/>
 			</StatusEffect>
 			<!--Failure effects:-->
@@ -1537,7 +1574,7 @@
 				<ReduceAffliction identifier="oxygenlow" amount="2.5"/>
 			</StatusEffect>
 			<!--Slightly heals. Intentionally the same effect as OnSuccess, so that you can't immediately tell whether the treatment was successful.-->
-			<StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="5" delay="2">
+			<StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="10" delay="2">
 				<ReduceAffliction identifier="oxygenlow" amount="2.5"/>
 			</StatusEffect>
 			<StatusEffect type="OnSuccess" target="UseTarget">
