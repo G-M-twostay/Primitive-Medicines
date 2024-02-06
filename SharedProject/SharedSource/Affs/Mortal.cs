@@ -8,12 +8,12 @@ namespace PrimMed.Affs
         private const byte INTV = 90;
         private const float MIN_INFECTION_PROB = 0.05f, DRY_INC = 1f, WET_INC = 1.5f, TEMP_REGR = 1.375f, HYPERTHERMIA_TH = 28f, HYPOTHERMIA_TH = -28f, HUSK_HYPERTHERMIA_TH = 20f, HUSK_HYPOTHERMIA_TH = -2000f;
         private static readonly (LimbType, float, float)[] LimbMods = new (LimbType, float, float)[]{/*limb, pain mods, heat mods*/
-            (LimbType.Head,1.125f,1f),
-            (LimbType.Torso,1f,1.125f),
-            (LimbType.LeftArm,0.875f,0.85f),
-            (LimbType.RightArm,0.875f,0.85f),
-            (LimbType.LeftLeg,0.875f,0.9f),
-            (LimbType.RightLeg,0.875f,0.9f)
+            (LimbType.Head,1.125f,0.965f),
+            (LimbType.Torso,1f,1f),
+            (LimbType.LeftArm,0.875f,0.9f),
+            (LimbType.RightArm,0.875f,0.9f),
+            (LimbType.LeftLeg,0.875f,0.925f),
+            (LimbType.RightLeg,0.875f,0.925f)
             };
         private static readonly AfflictionPrefab HYPERTHERMIA_PFB = AfflictionPrefab.Prefabs["hyperthermia"], HYPOTHERMIA_PFB = AfflictionPrefab.Prefabs["hypothermia"];
         private static (float, sbyte) AffPainMod(in Identifier id) => id.Value switch
@@ -190,7 +190,7 @@ namespace PrimMed.Affs
                         for (byte i = 0; i < LimbMods.Length; ++i)
                             if (lh == lhs[limbs[i].HealthIndex])
                             {
-                                dec += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR * LimbMods[i].Item3 / 1.125f/*max heat mod LimbMods[1]*/;
+                                dec += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR * LimbMods[i].Item3;
                                 break;
                             }
                     }
@@ -199,7 +199,7 @@ namespace PrimMed.Affs
                         for (byte i = 0; i < LimbMods.Length; ++i)
                             if (lh == lhs[limbs[i].HealthIndex])
                             {
-                                inc += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR * LimbMods[i].Item3 / 1.125f;
+                                inc += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR * LimbMods[i].Item3;
                                 break;
                             }
                     }
@@ -207,7 +207,7 @@ namespace PrimMed.Affs
                         for (byte i = 0; i < LimbMods.Length; ++i)
                             if (lh == lhs[limbs[i].HealthIndex])
                             {
-                                inc += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR * LimbMods[i].Item3;//incendium packs are more powerful.
+                                inc += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR * LimbMods[i].Item3 * 1.25f;//incendium packs are more powerful.
                                 break;
                             }
 

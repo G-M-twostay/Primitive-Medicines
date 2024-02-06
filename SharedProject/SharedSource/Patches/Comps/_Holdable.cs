@@ -21,8 +21,6 @@ namespace PrimMed.Patches
                 {
                     var ch = Unsafe.As<Character>(targets[0]).CharacterHealth;
                     return !Utils.bloodTypeCompat(item.Prefab.Identifier.Value.Remove(0, 9), Utils.FindBloodType(ch.afflictions).Code);
-                    ;
-
                 }
                 __instance.statusEffectLists.addSE(new FastSE(RawHemolysisStatus, item.Name, findStrg), "raw_bp_type");
             }
@@ -31,7 +29,6 @@ namespace PrimMed.Patches
                 bool findStrg(FastSE _0, Entity _1, IReadOnlyList<ISerializableEntity> targets)
                 {
                     var ch = Unsafe.As<Character>(targets[0]).CharacterHealth;
-
                     return !Utils.bloodTypeCompat(item.Prefab.Identifier.Value.Remove(0, 10), Utils.FindBloodType(ch.afflictions).Code);
                 }
                 __instance.statusEffectLists.addSE(new FastSE(ProcHemolysisStatus, item.Name, findStrg), "proc_bp_type");
