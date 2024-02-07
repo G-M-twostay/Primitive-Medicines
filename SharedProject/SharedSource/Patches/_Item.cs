@@ -93,6 +93,9 @@ namespace PrimMed.Patches
 
                             Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["raw_" + Utils.FindBloodType(affs).Identifier], user.Inventory);
                             ch.addLimbAffFast(null, Utils.BLOODLOSS_PFB, user.HasTalent("bloodybusiness") ? 25f : 40f, user, true, true);
+#if CLIENT
+                            SoundPlayer.PlaySound("squelch");
+#endif                        
                         }
                         else
                         {
@@ -168,12 +171,12 @@ namespace PrimMed.Patches
                     float lacMod = (user.HasTalent("drsubmarine") ? LAC_MOD_TALENT : LAC_MOD_NORM) * (rv < r ? 1f : 1.125f);
                     float bleedMod = (user.HasTalent("bloodybusiness") ? BLEED_MOD_TALENT : BLEED_MOD_NORM) * (rv < r ? 1f : 1.125f);
                     float qualMod = 1f - (__instance.Quality / Quality.MaxQuality) * 0.12f;
+                    float assMod = user.CharacterHealth.GetAffliction("medicalassistance", false) is null ? 1f : ASSISTANCE_MOD;
                     float minInci = user.HasTalent("deliverysystem") ? SURGERY_TH_TALENT : SURGERY_TH_NORM;
                     switch (action)
                     {
                         case "scalpel.incise":
                             {
-                                float assMod = user.CharacterHealth.GetAffliction("medicalassistance", false) is null ? 1f : ASSISTANCE_MOD;
                                 float inciMod = 1 + MathF.Pow(Math.Max(1 - r, 0f) / 2, 2) * assMod;
                                 foreach (var (aff, lh) in affs)
                                     if (lh == lhs[targetLimb.HealthIndex] && aff is Affs.Bandaged)
@@ -204,6 +207,9 @@ namespace PrimMed.Patches
                                 {
                                     Source = user
                                 }, false, true);
+#if CLIENT
+                                SoundPlayer.PlaySound("severed");
+#endif
                             }
 #if CLIENT
                             else
@@ -225,6 +231,9 @@ namespace PrimMed.Patches
                                 {
                                     Source = user
                                 }, false, true);
+#if CLIENT
+                                SoundPlayer.PlaySound("severed");
+#endif
                             }
 #if CLIENT
                             else
@@ -246,12 +255,41 @@ namespace PrimMed.Patches
                                 {
                                     Source = user
                                 }, false, true);
+#if CLIENT
+                                SoundPlayer.PlaySound("severed");
+#endif
                             }
 #if CLIENT
                             else
                                 GUI.AddMessage(TextManager.Get("surgery.cannot"), GUIStyle.Red);
 #endif
                             break;
+                        case "scalpel.appendage":
+                            {
+                                const float HuskAppendageTH = 75f, CutStrg = 21f;
+                                foreach (var aff in affs.Keys)
+                                    if (aff is AfflictionHusk && aff.Identifier.StartsWith("husk")/*spineline, mudraptor gene also is afflictionhusk*/&& targetLimb.type == LimbType.Head)
+                                        if (aff.Strength >= HuskAppendageTH)
+                                        {
+                                            Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["huskstinger"], user.Inventory);
+                                            aff.SetStrength(CutStrg);
+                                            ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 15f * bleedMod * qualMod * patientPainMod * assMod)
+                                            {
+                                                Source = user
+                                            });
+                                            ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod, user);
+#if CLIENT
+                                            SoundPlayer.PlaySound("severed");
+#endif
+                                            goto DONE;
+                                        }
+#if CLIENT
+                                GUI.AddMessage(TextManager.Get("surgery.cannot"), GUIStyle.Red);
+#endif
+                                    DONE:
+                                ;
+                                break;
+                            }
                         default:
 #if CLIENT
                             GUI.AddMessage(TextManager.Get("scalpel.unknown"), GUIStyle.Red);
@@ -303,6 +341,9 @@ namespace PrimMed.Patches
                                     Entity.Spawner.AddItemToRemoveQueue(contained);
                                     Entity.Spawner.AddItemToRemoveQueue(holding);
                                     affs.Remove(toRmv);
+#if CLIENT
+                                    SoundPlayer.PlaySound("suture");
+#endif
                                 }
                             }
 #if CLIENT
@@ -342,10 +383,13 @@ namespace PrimMed.Patches
                                         ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, aff.Strength / 12.5f * qualMod * pierceMod * assMod, user);
                                         ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.SULTURAL_PFB, aff.Strength * assMod, user, true, true);
                                         affs.Remove(aff);
+
                                         break;
                                     }
                             }
-
+#if CLIENT
+                            SoundPlayer.PlaySound("suture");
+#endif
                         }
                         else
                         {
@@ -396,6 +440,9 @@ namespace PrimMed.Patches
                             Source = user
                         });
                         ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, 2f, user, true, true);
+#if CLIENT
+                        SoundPlayer.PlaySound("blood");
+#endif
                     }
                 }
             }

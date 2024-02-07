@@ -4,13 +4,13 @@ namespace PrimMed.Affs
     class Bacterial : Affliction
     {
         private const byte INTV = 240, STRG_INTV = 60;
-        private const float SPREAD_TH = 40f, SPREAD_RESULT = 10f;
+        private const float SPREAD_TH = 40f, SPREAD_RESULT = 10f, LungDmgStrg = 1f;
         private byte elapsed = 0;
         public Bacterial(AfflictionPrefab prefab, float strength) : base(prefab, strength) { }
         private void updateStrg(in CharacterHealth ch)
         {
             float r = Rand.Value(Rand.RandSync.ServerAndClient);
-            if (object.ReferenceEquals(Prefab, Utils.BACTERIAL0_PFB))
+            if (ReferenceEquals(Prefab, Utils.BACTERIAL0_PFB))
             {
                 if (Strength < 20f)
                 {
@@ -56,7 +56,12 @@ namespace PrimMed.Affs
             if (Utils.IsHost())
             {
                 if (elapsed % STRG_INTV == 0)
+                {
                     updateStrg(ch);
+                    if (targetLimb.type == LimbType.Waist && Rand.Value(Rand.RandSync.ServerAndClient) < Strength / Prefab.MaxStrength)
+                        ch.addLimbAffFast(ch.limbHealths[targetLimb.HealthIndex], new LungDmg(Utils.LUNG_DMG_PFB, LungDmgStrg), true, true);
+                }
+
 
                 if (elapsed-- < 1)
                 {
@@ -69,8 +74,9 @@ namespace PrimMed.Affs
                         LimbType.Head => new LimbType[] { LimbType.Torso },
                         _ => Array.Empty<LimbType>(),
                     };
+                    var r = Rand.Value(Rand.RandSync.ServerAndClient);
                     foreach (LimbType d in spreads)
-                        if (Rand.Value(Rand.RandSync.ServerAndClient) < (Strength - SPREAD_TH) / Prefab.MaxStrength)
+                        if (r < (Strength - SPREAD_TH) / Prefab.MaxStrength)
                             ch.addLimbAffFast(ch.limbHealths[ch.Character.AnimController.GetLimb(d).HealthIndex], new Bacterial(Utils.BACTERIAL1_PFB, SPREAD_RESULT), true, true);
 
                 }
