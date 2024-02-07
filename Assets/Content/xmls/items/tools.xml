@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Items>
 	<transfusionset identifier="transfusionset" category="Medical" aliases="bloodextractor" maxstacksize="1" cargocontaineridentifier="mediccrate" Tags="smallitem,medicaltool" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
-		<Upgrade modversion="0.3.7" scale="0.5" />
+		<Upgrade modversion="0.3.7" identifier="bloodextractor" />
 		<PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="0" maxamount="1" spawnprobability="0.25" />
         <PreferredContainer primary="medcab" secondary="medcontainer" />
         <Price baseprice="250" minavailable="1">
@@ -164,7 +164,7 @@
         <Holdable slots="RightHand+LeftHand" holdpos="0,-80" handle1="-20,14" handle2="20,14" aimable="false" msg="ItemMsgPickUpSelect" />
       </Item>
       
-      <Item identifier="scalpel" category="Weapon" Tags="smallitem,weapon,surgery" cargocontaineridentifier="metalcrate" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+      <Item identifier="scalpel" category="Weapon" Tags="smallitem,weapon,medicaltool" cargocontaineridentifier="metalcrate" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
         <PreferredContainer secondary="wreckarmcab,abandonedarmcab" amount="1" spawnprobability="0.25" />
         <PreferredContainer secondary="abandonedstoragecab" amount="1" spawnprobability="0.05" />
         <PreferredContainer secondary="beaconsupplycab" amount="1" spawnprobability="0.05" />
@@ -218,18 +218,24 @@
             <StatusEffect type="OnUse" targettype="This" />
           </Button>
           <Button text="scalpel.lung" connection="lung">
-            <StatusEffect type="OnUse" targettype="This" />
+            <StatusEffect type="OnUse" targettype="This" disabledeltatime="true"/>
           </Button>
           <Button text="scalpel.liver" connection="liver">
-            <StatusEffect type="OnUse" targettype="This" />
+            <StatusEffect type="OnUse" targettype="This" disabledeltatime="true"/>
           </Button>
           <Button text="scalpel.heart" connection="heart">
-            <StatusEffect type="OnUse" targettype="This" />
+            <StatusEffect type="OnUse" targettype="This" disabledeltatime="true"/>
           </Button>
+			<Button text="scalpel.appendage" connection="appendage">
+				<StatusEffect type="OnUse" targettype="This" disabledeltatime="true"/>
+			</Button>
+			<Button text="scalpel.spike" connection="appendage">
+				<StatusEffect type="OnUse" targettype="This" disabledeltatime="true"/>
+			</Button>
         </Choose>
       </Item>
 
-      <Item identifier="scissors" category="Weapon" Tags="smallitem,weapon,surgery" useinhealthinterface="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+      <Item identifier="scissors" category="Weapon" Tags="smallitem,weapon,medicaltool" useinhealthinterface="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
         <PreferredContainer secondary="wreckarmcab,abandonedarmcab" amount="1" spawnprobability="0.25" />
         <PreferredContainer secondary="abandonedstoragecab" amount="1" spawnprobability="0.05" />
         <PreferredContainer secondary="beaconsupplycab" amount="1" spawnprobability="0.05" />
@@ -474,5 +480,37 @@
         </Quality>
         <Upgrade gameversion="0.10.0.0" scale="0.5" />
       </Item>
+
+	<Item identifier="bloodbox" category="Equipment" tags="mediumitem,mobilecontainer,medical" showcontentsintooltip="true" waterproof="true" scale="0.12" fireproof="true" impactsoundtag="impact_metal_heavy">
+		<PreferredContainer primary="medcabinet" minamount="1" maxamount="1" spawnprobability="0.2" />
+		<PreferredContainer primary="medcontainer" minamount="1" maxamount="1" spawnprobability="0.2" />
+		<PreferredContainer primary="wreckstoragecab" minamount="0" maxamount="2" spawnprobability="0.1" />
+		<Deconstruct time="20">
+			<Item identifier="plastic" />
+			<Item identifier="rubber" />
+		</Deconstruct>
+		<Fabricate suitablefabricators="fabricator" requiredtime="20">
+			<RequiredSkill identifier="mechanical" level="17" />
+			<RequiredItem identifier="plastic" amount="1"/>
+			<RequiredItem identifier="organicfiber" amount="1" />
+			<RequiredItem identifier="ballisticfiber" amount="1" />
+			<RequiredItem identifier="rubber" />
+		</Fabricate>
+		<Price baseprice="75">
+			<Price locationtype="outpost" multiplier="1.75" minavailable="0" />
+			<Price locationtype="city" multiplier="1.5" minavailable="1" />
+			<Price locationtype="research" multiplier="0.5" minavailable="0" />
+			<Price locationtype="military" multiplier="1.0" minavailable="2" />
+			<Price locationtype="mine" multiplier="2.0" minavailable="0" />
+		</Price>
+		<InventoryIcon texture="%ModDir%/Images/Medipack.png" sourcerect="33,38,461,423" origin="0.5,0.6" />
+		<Sprite texture="%ModDir%/Images/Medipack.png" sourcerect="33,38,461,423" depth="0.55" origin="0.5,1" />
+		<Body width="45" height="31" density="20" />
+		<Holdable slots="RightHand,LeftHand" holdpos="10,-90" handle1="-5,360" aimable="false" msg="ItemMsgPickUpSelect" />
+		<ItemContainer capacity="16" keepopenwhenequipped="true" movableframe="true" QuickUseMovesItemsInside="false">
+			<Containable items="raw_bloodpack,proc_bloodpack,alienblood,antibloodloss1,antibloodloss2" />
+		</ItemContainer>
+		<aitarget sightrange="1500" fadeouttime="10" />
+	</Item>
 
 </Items>

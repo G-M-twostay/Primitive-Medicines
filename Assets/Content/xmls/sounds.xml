@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sounds>
+	<bonebreak file="%ModDir%/Sounds/bonebreak1.ogg" />
+	<bonebreak file="%ModDir%/Sounds/bonebreak2.ogg" />
+	<bonebreak file="%ModDir%/Sounds/bonebreak3.ogg" />
+	<bonebreak file="%ModDir%/Sounds/bonebreak4.ogg" />
+	<pills file="%ModDir%/Sounds/ointment.ogg" />
+	<squelch file="%ModDir%/Sounds/squelch1.ogg" />
+	<pump file="%ModDir%/Sounds/pump.ogg" />
+	<severed file="%ModDir%/Sounds/severed.ogg" />
+	<blood file="%ModDir%/Sounds/blood.ogg" />
+	<suture file="ModDir%/Sounds/suture.ogg"/>
+</sounds>

@@ -14,8 +14,22 @@
 	<Text file="%ModDir%/xmls/texts/en/tips.xml" />
 	<Text file="%ModDir%/xmls/texts/en/talents.xml" />
 	<NPCConversations file="%ModDir%/xmls/texts/en/dialogs.xml" />
+
+	<Sounds file="%ModDir%/xmls/sounds.xml" />
+	
 	<Other file="%ModDir%/Images/BloodPackAtlas.png" />
 	<Other file="%ModDir%/Images/AfflictionIcons.png" />
 	<Other file="%ModDir%/Images/InGameItemIconAtlas.png" />
 	<Other file="%ModDir%/Images/InventoryItemIconAtlas.png" />
+	<Other file="%ModDir%/Images/Medipack.png" />
+	
+	<Other file="%ModDir%/Sounds/bonebreak1.ogg" />
+	<Other file="%ModDir%/Sounds/bonebreak2.ogg" />
+	<Other file="%ModDir%/Sounds/bonebreak3.ogg" />
+	<Other file="%ModDir%/Sounds/bonebreak4.ogg" />
+	<Other file="%ModDir%/Sounds/ointment.ogg" />
+	<Other file="%ModDir%/Sounds/squelch1.ogg" />
+	<Other file="%ModDir%/Sounds/pump.ogg" />
+	<Other file="%ModDir%/Sounds/severed.ogg" />
+	<Other file="%ModDir%/Sounds/blood.ogg" />
 </contentpackage>

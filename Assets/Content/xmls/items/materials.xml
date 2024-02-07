@@ -204,7 +204,7 @@
     </RawBlood>
 
     <Organ identifier="lung" category="Medical" maxstacksize="1" cargocontaineridentifier="mediccrate" Tags="smallitem,organ" useinhealthinterface="false" scale="0.5" impactsoundtag="impact_soft" >
-      <PreferredContainer primary="medcab" secondary="medcontainer" />
+      <PreferredContainer primary="coldcrate" secondary="medcontainer" />
       <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="4,3" sheetelementsize="64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="2,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
       <Body width="65" height="40" density="50" />
@@ -226,7 +226,7 @@
     </Organ>
 
     <Organ identifier="liver" category="Medical" maxstacksize="1" cargocontaineridentifier="mediccrate" Tags="smallitem,organ" useinhealthinterface="false" scale="0.5" impactsoundtag="impact_soft" >
-      <PreferredContainer primary="medcab" secondary="medcontainer" />
+      <PreferredContainer primary="coldcrate" secondary="medcontainer" />
       <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="3,3" sheetelementsize="64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="1,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
       <Body width="65" height="40" density="50" />
@@ -248,7 +248,7 @@
     </Organ>
 
     <Organ identifier="heart" category="Medical" maxstacksize="1" cargocontaineridentifier="mediccrate" Tags="smallitem,organ" useinhealthinterface="false" scale="0.5" impactsoundtag="impact_soft" >
-      <PreferredContainer primary="medcab" secondary="medcontainer" />
+      <PreferredContainer primary="coldcrate" secondary="medcontainer" />
       <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="5,3" sheetelementsize="64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="3,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
       <Body width="65" height="40" density="50" />
