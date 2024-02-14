@@ -9,5 +9,11 @@
 	<pump file="%ModDir%/Sounds/pump.ogg" />
 	<severed file="%ModDir%/Sounds/severed.ogg" />
 	<blood file="%ModDir%/Sounds/blood.ogg" />
-	<suture file="ModDir%/Sounds/suture.ogg"/>
+	<suture file="%ModDir%/Sounds/suture.ogg"/>
+	<male_scream file="%ModDir%/Sounds/Voice/scream_male_1.ogg"/>
+	<male_scream file="%ModDir%/Sounds/Voice/scream_male_2.ogg"/>
+	<male_scream file="%ModDir%/Sounds/Voice/scream_male_3.ogg"/>
+	<female_scream file="%ModDir%/Sounds/Voice/scream_woman_1.ogg"/>
+	<female_scream file="%ModDir%/Sounds/Voice/screams_woman_2.ogg"/>
+	
 </sounds>

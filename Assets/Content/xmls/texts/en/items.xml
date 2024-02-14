@@ -106,6 +106,7 @@
     <scalpel.lung>Lung</scalpel.lung>
     <scalpel.liver>Liver</scalpel.liver>
     <scalpel.heart>Heart</scalpel.heart>
+	<scalpel.appendage>Appendage</scalpel.appendage>
     
     <surgery.cannot>Can't perform this action.</surgery.cannot>
 
@@ -144,4 +145,7 @@
 
 	<entityname.stabOxygenite>Diluted Oxygenite</entityname.stabOxygenite>
 	<entitydescription.stabOxygenite>Processed Liquid Oxygenite that are ready to be injected without causing any harms.</entitydescription.stabOxygenite>
+
+	<entityname.bloodbox>Blood Bank</entityname.bloodbox>
+	<entitydescription.bloodbox>A durable contaier designed to isolate stored bloods from environmental hazards.</entitydescription.bloodbox>
 </infotexts>

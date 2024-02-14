@@ -190,6 +190,10 @@ namespace PrimMed.Patches
                                 });
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod, user);
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.INCISION_PFB, Math.Abs(surgeryReady(minInci)) * inciMod * patientPainMod, user, true, true);
+#if CLIENT
+                                if (patientPainMod != 1f)
+                                    SoundPlayer.PlaySound(character.IsMale ? "male_scream" : "female_scream");
+#endif
                                 break;
                             }
                         case "scalpel.lung":
@@ -209,6 +213,8 @@ namespace PrimMed.Patches
                                 }, false, true);
 #if CLIENT
                                 SoundPlayer.PlaySound("severed");
+                                if (patientPainMod != 1f)
+                                    SoundPlayer.PlaySound(character.IsMale ? "male_scream" : "female_scream");
 #endif
                             }
 #if CLIENT
@@ -233,6 +239,8 @@ namespace PrimMed.Patches
                                 }, false, true);
 #if CLIENT
                                 SoundPlayer.PlaySound("severed");
+                                if (patientPainMod != 1f)
+                                    SoundPlayer.PlaySound(character.IsMale ? "male_scream" : "female_scream");
 #endif
                             }
 #if CLIENT
@@ -257,6 +265,8 @@ namespace PrimMed.Patches
                                 }, false, true);
 #if CLIENT
                                 SoundPlayer.PlaySound("severed");
+                                if (patientPainMod != 1f)
+                                    SoundPlayer.PlaySound(character.IsMale ? "male_scream" : "female_scream");
 #endif
                             }
 #if CLIENT
@@ -343,6 +353,8 @@ namespace PrimMed.Patches
                                     affs.Remove(toRmv);
 #if CLIENT
                                     SoundPlayer.PlaySound("suture");
+                                if (patientPainMod != 1f)
+                                    SoundPlayer.PlaySound(character.IsMale ? "male_scream" : "female_scream");
 #endif
                                 }
                             }
@@ -389,6 +401,8 @@ namespace PrimMed.Patches
                             }
 #if CLIENT
                             SoundPlayer.PlaySound("suture");
+                            if (patientPainMod != 1f)
+                                SoundPlayer.PlaySound(character.IsMale ? "male_scream" : "female_scream");
 #endif
                         }
                         else

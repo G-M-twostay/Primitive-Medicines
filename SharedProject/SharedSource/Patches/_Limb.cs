@@ -32,7 +32,14 @@ namespace PrimMed.Patches
                 byte dec = 0;
                 foreach (var aff in __result.Afflictions)
                     if (r < rmvBdgProb(aff.Identifier))
+                    {
                         ++dec;
+#if CLIENT
+                        if(aff.Identifier== "blunttrauma")
+                            SoundPlayer.PlaySound("bonebreak");
+#endif
+                    }
+
                 if (dec > 0)
                     foreach (var (aff, lh) in ch.afflictions)
                         if (lh == ch.limbHealths[__instance.HealthIndex] && aff is Affs.Bandaged)

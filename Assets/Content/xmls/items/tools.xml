@@ -229,9 +229,6 @@
 			<Button text="scalpel.appendage" connection="appendage">
 				<StatusEffect type="OnUse" targettype="This" disabledeltatime="true"/>
 			</Button>
-			<Button text="scalpel.spike" connection="appendage">
-				<StatusEffect type="OnUse" targettype="This" disabledeltatime="true"/>
-			</Button>
         </Choose>
       </Item>
 
