@@ -44,7 +44,7 @@
       <StatusEffect type="OnSuccess" target="This" Condition="-100.0" setvalue="true" />
       <StatusEffect type="OnFailure" target="This" Condition="-100.0" setvalue="true" />
       <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="5">
-        <ReduceAffliction type="bacterial" amount="6" />
+        <ReduceAffliction type="bacterial" amount="7" />
         <ReduceAffliction identifier="huskinfectionresistance" amount="2" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="5">
@@ -90,14 +90,14 @@
         <Affliction identifier="organdamage" amount="5" />
       </StatusEffect>
       <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true" />
-      <StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="10">
-        <ReduceAffliction identifier="bacterial0" amount="1" />
+      <StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="40">
+        <ReduceAffliction identifier="bacterial0" amount="0.25" />
       </StatusEffect>
-		<StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="5">
-			<ReduceAffliction identifier="bacterial0" amount="0.5" />
+		<StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="10">
+			<ReduceAffliction identifier="bacterial0" amount="1" />
 		</StatusEffect>
-      <StatusEffect tags="medical" type="OnFailure" target="Limb" duration="7">
-        <ReduceAffliction identifier="bacterial0" amount="1" />
+      <StatusEffect tags="medical" type="OnFailure" target="Limb" duration="20">
+        <ReduceAffliction identifier="bacterial0" amount="0.5" />
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
