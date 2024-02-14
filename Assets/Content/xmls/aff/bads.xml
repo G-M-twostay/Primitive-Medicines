@@ -65,16 +65,16 @@
     <Description textidentifier="affdesc.bacterial1" minstrength="60" maxstrength="200" />
   </Affliction>
 
-  <Affliction identifier="hyperthermia" type="temperature" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="40" ShowIconThreshold="16" ShowIconToOthersThreshold="16" showinhealthscannerthreshold="8" BaseHealCost="0" HealCostMultiplier="1.25">
+  <Affliction identifier="hyperthermia" type="temperature" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="40" ShowIconThreshold="16" ShowIconToOthersThreshold="16" showinhealthscannerthreshold="8" BaseHealCost="0" HealCostMultiplier="1">
     <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,7" sheetelementsize="128,128" color="255,0,0,255" origin="0,0" />
     <Effect minstrength="32" maxstrength="40" minvitalitydecrease="0" maxvitalitydecrease="1" MultiplyByMaxVitality="true"/>
     <Description textidentifier="affdesc.hyperthermia" minstrength="16" maxstrength="40" />
   </Affliction>
 
-  <Affliction identifier="hypothermia" type="temperature" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="40" ShowIconThreshold="16" ShowIconToOthersThreshold="16" showinhealthscannerthreshold="8" BaseHealCost="0" HealCostMultiplier="1.25">
+  <Affliction identifier="hypothermia" type="temperature" limbspecific="false" AffectMachines="false" targets="human" MaxStrength="64" ShowIconThreshold="16" ShowIconToOthersThreshold="16" showinhealthscannerthreshold="8" BaseHealCost="0" HealCostMultiplier="1">
     <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="5,6" sheetelementsize="128,128" color="0,0,255,255" origin="0,0" />
-    <Effect minstrength="32" maxstrength="40" minvitalitydecrease="0" maxvitalitydecrease="0.75" MultiplyByMaxVitality="true"/>
-    <Description textidentifier="affdesc.hypothermia" minstrength="16" maxstrength="40" />
+    <Effect minstrength="32" maxstrength="64" minvitalitydecrease="0" maxvitalitydecrease="1" MultiplyByMaxVitality="true"/>
+    <Description textidentifier="affdesc.hypothermia" minstrength="16" maxstrength="64" />
   </Affliction>
 
   <Pierce identifier="pierce" type="damage" limbspecific="true" AffectMachines="false" MaxStrength="200" ShowIconThreshold="0" ShowIconToOthersThreshold="0" showinhealthscannerthreshold="2" BaseHealCost="0" HealCostMultiplier="1">

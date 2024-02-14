@@ -140,7 +140,8 @@ namespace PrimMed.Affs
                     }
                 }
 
-                bool hasHusk = false;
+                ref float tolerance = ref limbStrengths[2];
+                tolerance = 0f;
                 ref float vul = ref limbStrengths[3];
                 //from afflictions. overrides changes from environment.
                 foreach (var aff in affs.Keys)
@@ -149,7 +150,7 @@ namespace PrimMed.Affs
                     else if (aff is AfflictionBleeding)
                         dec += aff.Strength / aff.Prefab.MaxStrength;
                     else if (aff is AfflictionHusk)
-                        hasHusk = true;
+                        tolerance += aff.Strength / aff.Prefab.MaxStrength;
                     else if (ReferenceEquals(aff.Prefab, Utils.BLOODLOSS_PFB))
                         vul = aff.Strength / aff.Prefab.MaxStrength;
                     else if (aff is Hemolysis)//starts to cause fever at 0.1=10/100.
@@ -220,9 +221,9 @@ namespace PrimMed.Affs
 
 
                 ref float hyperthermiaStrg = ref limbStrengths[0], hypothermiaStrg = ref limbStrengths[1];
-                if (hasHusk)
+                if (tolerance > 0)
                 {
-                    hyperthermiaStrg = temp - HUSK_HYPERTHERMIA_TH;
+                    hyperthermiaStrg = temp - HUSK_HYPERTHERMIA_TH * tolerance;
                     hypothermiaStrg = HUSK_HYPOTHERMIA_TH - temp;
                 }
                 else
@@ -238,7 +239,7 @@ namespace PrimMed.Affs
                 limbStrengths.Clear();
                 Character[] inciSrcs = new Character[LimbMods.Length];
                 foreach (var (aff, lh) in affs)
-                    if (aff is AfflictionBleeding || object.ReferenceEquals(aff.Prefab, Utils.CNCT_PFB))
+                    if (aff is AfflictionBleeding || ReferenceEquals(aff.Prefab, Utils.CNCT_PFB))
                     {
                         for (byte i = 0; i < LimbMods.Length; ++i)
                             if (lh == lhs[limbs[i].HealthIndex])
@@ -247,7 +248,7 @@ namespace PrimMed.Affs
                                 break;
                             }
                     }
-                    else if (object.ReferenceEquals(aff.Prefab, Utils.INCISION_PFB))
+                    else if (ReferenceEquals(aff.Prefab, Utils.INCISION_PFB))
                         for (byte i = 0; i < LimbMods.Length; ++i)
                             if (lh == lhs[limbs[i].HealthIndex])
                             {
@@ -257,12 +258,10 @@ namespace PrimMed.Affs
                             }
                 for (byte i = 0; i < LimbMods.Length; ++i)
                     if (limbStrengths[i] < 0f)
-                    {
                         ch.addLimbAffFast(lhs[limbs[i].HealthIndex], new Sealed(Utils.SEALED_PFB, 1f)
                         {
                             Source = inciSrcs[i]
                         }, false);
-                    }
             }
 
         }
