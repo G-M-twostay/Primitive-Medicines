@@ -191,6 +191,7 @@ namespace PrimMed.Patches
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod, user);
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.INCISION_PFB, Math.Abs(surgeryReady(minInci)) * inciMod * patientPainMod, user, true, true);
 #if CLIENT
+                                SoundPlayer.PlaySound("incise");
                                 if (patientPainMod != 1f)
                                     SoundPlayer.PlaySound(character.IsMale ? "male_scream" : "female_scream");
 #endif
@@ -353,8 +354,8 @@ namespace PrimMed.Patches
                                     affs.Remove(toRmv);
 #if CLIENT
                                     SoundPlayer.PlaySound("suture");
-                                if (patientPainMod != 1f)
-                                    SoundPlayer.PlaySound(character.IsMale ? "male_scream" : "female_scream");
+                                    if (patientPainMod != 1f)
+                                        SoundPlayer.PlaySound(character.IsMale ? "male_scream" : "female_scream");
 #endif
                                 }
                             }
@@ -419,6 +420,9 @@ namespace PrimMed.Patches
                                     });
                                     ch.addLimbAffFast(lh, Utils.INCISION_PFB, aff.Strength, user, true, true);
                                     affs.Remove(aff);
+#if CLIENT
+                                    SoundPlayer.PlaySound("severed");
+#endif
                                     break;
                                 }
                         }
@@ -455,7 +459,7 @@ namespace PrimMed.Patches
                         });
                         ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, 2f, user, true, true);
 #if CLIENT
-                        SoundPlayer.PlaySound("blood");
+                        SoundPlayer.PlaySound("poke");
 #endif
                     }
                 }

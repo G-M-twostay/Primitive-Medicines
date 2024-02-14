@@ -15,5 +15,14 @@
 	<male_scream file="%ModDir%/Sounds/Voice/scream_male_3.ogg"/>
 	<female_scream file="%ModDir%/Sounds/Voice/scream_woman_1.ogg"/>
 	<female_scream file="%ModDir%/Sounds/Voice/screams_woman_2.ogg"/>
-	
+
+	<incise file="Content/Sounds/Damage/LimbSlash1.ogg" range="500" />
+	<incise file="Content/Sounds/Damage/LimbSlash2.ogg" range="500" />
+	<incise file="Content/Sounds/Damage/LimbSlash3.ogg" range="500" />
+	<incise file="Content/Sounds/Damage/LimbSlash4.ogg" range="500" />
+	<incise file="Content/Sounds/Damage/LimbSlash5.ogg" range="500" />
+	<incise file="Content/Sounds/Damage/LimbSlash6.ogg" range="500" />
+
+	<poke file="Content/Items/Weapons/SyringeGun1.ogg" range="1000" volume="0.75"/>
+	<poke file="Content/Items/Weapons/SyringeGun2.ogg" range="1000" volume="0.75"/>
 </sounds>
