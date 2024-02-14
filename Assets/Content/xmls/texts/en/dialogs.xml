@@ -16,6 +16,13 @@
         <Conversation line="I'm not an Archaeologists nor have I learned history." speaker="0"/>
     </Conversation>
 
+	<Conversation line="They say that all meds are poisonious in some way." speaker="0" flags="Casual">
+		<Conversation line="The more I thought about it the more scary it sounds." speaker="0">
+		    <Conversation line="Think of it from a good side! This means that some poisons also have a good effects." speaker="1">
+				<Conversation line="Someone give me some cyanides. These people can only be cured using cyanides." speaker="2" />
+			</Conversation>
+		</Conversation>
+	</Conversation>
 
     <Conservation line="Ouch." speaker="0" flags="surfacepain.one">
         <Conversation line="You soft as hell." speaker="1" flags="surfacepain.one" />
