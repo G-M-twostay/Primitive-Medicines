@@ -29,7 +29,7 @@ namespace PrimMed.Patches
                 if (targetLimb is null)//this can happen when bots are applying treatments, for some unknown reasons.
                 {
                     targetLimb = character.AnimController.MainLimb;
-                    DebugConsole.AddWarning($"Limb is null when applying {id} by {user.Name} to {character.Name}. Setting limb to main limb: {targetLimb.Name}.");
+                    DebugConsole.AddWarning($"Limb is null when applying {id} by {user.Name} to {character.Name}.");
                 }
                 const float SURGERY_TH_NORM = 100f, SURGERY_TH_TALENT = 75f, SCALPEL_SKILL = 135f, LAC_MOD_NORM = 1f, LAC_MOD_TALENT = 0.875f, BLEED_MOD_NORM = 1f, BLEED_MOD_TALENT = 0.75f, ASSISTANCE_MOD = 0.9375f, normalPackDuration = 40f, incendPackDuration = 60f;
 

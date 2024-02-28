@@ -22,7 +22,7 @@ namespace PrimMed.Patches
                 static float fixItemSpeedMod(in float pain, in float _) => 1f - pain / Utils.PAIN_PFB.MaxStrength;
 
                 float pain;
-                if (object.ReferenceEquals(character.Inventory.GetItemInLimbSlot(InvSlotType.RightHand), __instance.currentRepairItem))//if item is null and nothing is on hand, then we assume character use right hand to do stuff.
+                if (ReferenceEquals(character.Inventory.GetItemInLimbSlot(InvSlotType.RightHand), __instance.currentRepairItem))//if item is null and nothing is on hand, then we assume character use right hand to do stuff.
                     pain = Utils.getLimbPain(character.AnimController.GetLimb(LimbType.RightArm), character.CharacterHealth);
                 else
                     pain = Utils.getLimbPain(character.AnimController.GetLimb(LimbType.LeftArm), character.CharacterHealth);

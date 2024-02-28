@@ -28,12 +28,12 @@ namespace PrimMed.Patches
             }
             if (item.HasTag("syringe"))
             {
-                static bool findStrg(FastSE se, Entity _, IReadOnlyList<ISerializableEntity> targets)
+                static bool findPierceStrg(FastSE se, Entity _, IReadOnlyList<ISerializableEntity> targets)
                 {
                     float strg = 1.25f;
                     if (se.user is not null)
                     {
-                        if (ReferenceEquals(se.user, Unsafe.As<Limb>(targets[0]).character))
+                        if (ReferenceEquals(se.user, Unsafe.As<Limb>(targets.FirstOrDefault())?.character))
                             if (se.user.HasTalent("selfcare"))
                                 return false;
                         if (se.user.HasTalent("deliverysystem"))
@@ -42,7 +42,7 @@ namespace PrimMed.Patches
                     se.Afflictions[0].SetStrength(strg);
                     return true;
                 }
-                LoadStatusEffect(PierceStatus, "syringe_pierce", findStrg);
+                LoadStatusEffect(PierceStatus, "syringe_pierce", findPierceStrg);
             }
         }
     }
