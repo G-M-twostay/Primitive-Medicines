@@ -3,6 +3,7 @@ using HarmonyLib;
 using System.Collections.Immutable;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+[assembly: IgnoresAccessChecksTo("BarotraumaCore")]
 [assembly: IgnoresAccessChecksTo("Barotrauma")]
 [assembly: IgnoresAccessChecksTo("DedicatedServer")]
 namespace PrimMed

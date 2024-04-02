@@ -10,6 +10,9 @@
       <Reference Include="0Harmony">
         <HintPath>..\Refs\0Harmony.dll</HintPath>
       </Reference>
+		<Reference Include="BarotraumaCore">
+			<HintPath>..\Refs\Linux\BarotraumaCore.dll</HintPath>
+		</Reference>
       <Reference Include="Barotrauma">
         <HintPath>..\Refs\Linux\Barotrauma.dll</HintPath>
       </Reference>

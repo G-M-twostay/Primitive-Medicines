@@ -25,6 +25,9 @@
     <Reference Include="0Harmony">
       <HintPath>..\Refs\0Harmony.dll</HintPath>
     </Reference>
+	<Reference Include="BarotraumaCore">
+	    <HintPath>..\Refs\Windows\BarotraumaCore.dll</HintPath>
+	</Reference>
     <Reference Include="DedicatedServer">
       <HintPath>..\Refs\Windows\DedicatedServer.dll</HintPath>
     </Reference>

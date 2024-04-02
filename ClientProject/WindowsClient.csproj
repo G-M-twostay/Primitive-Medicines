@@ -28,6 +28,9 @@
     <Reference Include="0Harmony">
       <HintPath>..\Refs\0Harmony.dll</HintPath>
     </Reference>
+	  <Reference Include="BarotraumaCore">
+		  <HintPath>..\Refs\Windows\BarotraumaCore.dll</HintPath>
+	  </Reference>
     <Reference Include="Barotrauma">
       <HintPath>..\Refs\Windows\Barotrauma.dll</HintPath>
     </Reference>
