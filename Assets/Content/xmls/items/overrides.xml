@@ -953,7 +953,8 @@
 			  <StatusEffect type="OnSuccess" target="UseTarget">
 				  <Conditional entitytype="eq Character"/>
 				  <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-				  <Affliction identifier="acidreaction,bacterialstim" amount="50" />
+				  <Affliction identifier="acidreaction" amount="50" />
+				  <Affliction identifier="bacterialstim" amount="50" />
 			  </StatusEffect>
 			  <!-- Remove the item when fully used -->
 			  <StatusEffect type="OnBroken" target="This">

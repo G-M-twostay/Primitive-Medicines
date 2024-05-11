@@ -16,9 +16,9 @@
 	<male_scream file="%ModDir%/Sounds/Voice/scream_male_2.ogg"/>
 	<male_scream file="%ModDir%/Sounds/Voice/scream_male_3.ogg"/>
 	
-	<male_pain file="%ModDir%/Sounds/Voice/male_pain1.ogg"/>
-	<male_pain file="%ModDir%/Sounds/Voice/male_pain2.ogg"/>
-	<male_pain file="%ModDir%/Sounds/Voice/male_pain3.ogg"/>
+	<male_pain file="%ModDir%/Sounds/Voice/man_pain1.ogg"/>
+	<male_pain file="%ModDir%/Sounds/Voice/man_pain2.ogg"/>
+	<male_pain file="%ModDir%/Sounds/Voice/man_pain3.ogg"/>
 	
 	<female_scream file="%ModDir%/Sounds/Voice/scream_woman_1.ogg"/>
 	<female_scream file="%ModDir%/Sounds/Voice/screams_woman_2.ogg"/>

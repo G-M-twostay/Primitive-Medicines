@@ -430,6 +430,7 @@
   burnoverlayalpha="0"
   causeofdeathdescription="causeofdeathdescription.damage"
   selfcauseofdeathdescription="self_causeofdeathdescription.damage"
+  ShowIconThreshold="15" ShowIconToOthersThreshold="15" showinhealthscannerthreshold="5"
   healcostmultiplier="2.5">
 		  <Description
 		   textidentifier="afflictiondescription.infection.low"

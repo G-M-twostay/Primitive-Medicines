@@ -38,4 +38,11 @@
 	<Other file="%ModDir%/Sounds/Voice/scream_male_3.ogg"/>
 	<Other file="%ModDir%/Sounds/Voice/scream_woman_1.ogg"/>
 	<Other file="%ModDir%/Sounds/Voice/screams_woman_2.ogg"/>
+	<Other file="%ModDir%/Sounds/Voice/man_pain1.ogg"/>
+	<Other file="%ModDir%/Sounds/Voice/man_pain2.ogg"/>
+	<Other file="%ModDir%/Sounds/Voice/man_pain3.ogg"/>
+	<Other file="%ModDir%/Sounds/Voice/woman_pain1.ogg"/>
+	<Other file="%ModDir%/Sounds/Voice/woman_pain2.ogg"/>
+	<Other file="%ModDir%/Sounds/Voice/woman_pain3.ogg"/>
+	<Other file="%ModDir%/Sounds/Voice/woman_pain4.ogg"/>
 </contentpackage>
