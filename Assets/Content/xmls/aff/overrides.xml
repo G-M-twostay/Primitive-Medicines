@@ -424,7 +424,7 @@
 
 	  <Infection
   identifier="infection"
-  type="infection"
+  type="bacterial"
   limbspecific="true"
   maxstrength="200"
   burnoverlayalpha="0"
@@ -447,6 +447,22 @@
 		  <Effect minstrength="30" maxstrength="200" minvitalitydecrease="0.3" maxvitalitydecrease="2.0" multiplybymaxvitality="true" DialogFlag="infection.two"/>
 		  <icon texture="Content/UI/TalentsIcons4.png" sourcerect="0,384,128,128" color="84,171,90,255" origin="0,0"/>
 	  </Infection>
-	  
+
+	  <Affliction
+  name=""
+  identifier="acidreaction"
+  type="debuff"
+  limbspecific="false"
+  maxstrength="100"
+  affectmachines="false">
+		  <Effect minstrength="0" maxstrength="100"
+			strengthchange="-0.8"
+			resistancefor="acidburn"
+			minresistance="0"
+			maxresistance="-3"/>
+		  <icon texture="Content/UI/CommandUIBackground.png" sourcerect="640,768,128,128" color="84,171,90,255" origin="0,0"/>
+		  <Description textidentifier="affdesc.acidreaction.mod" minstrength="0" maxstrength="100" />
+	  </Affliction>
+
   </override>
 </Afflictions>

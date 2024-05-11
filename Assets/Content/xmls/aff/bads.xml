@@ -166,5 +166,22 @@
 		</Effect>
 		<icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="1,7" sheetelementsize="128,128" color="255,0,0,0" origin="0,0" />
 	</Affliction>
+
+	<Affliction
+  name=""
+  identifier="bacterialstim"
+  type="debuff"
+  limbspecific="false"
+  maxstrength="100"
+  affectmachines="false">
+		<Effect minstrength="0" maxstrength="100"
+		  strengthchange="-0.8"
+		  resistancefor="bacterial"
+		  minresistance="0"
+		  maxresistance="-1"/>
+		<icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="6,4" sheetelementsize="128,128" color="84,171,90,255" origin="0,0"/>
+		<Description textidentifier="affdesc.acidreaction.mod" minstrength="0" maxstrength="100" />
+
+	</Affliction>
 	
 </Afflictions>

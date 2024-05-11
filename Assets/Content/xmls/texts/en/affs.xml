@@ -108,4 +108,10 @@
 	<afflictionname.Phenothiazinepoisoning>Phenothiazine Poisoning</afflictionname.Phenothiazinepoisoning>
 	<afflictiondescription.Phenothiazinepoisoning.self>You're feeling absurdly cold.</afflictiondescription.Phenothiazinepoisoning.self>
 	<afflictiondescription.Phenothiazinepoisoning.low>The patient's temperature regulation system seems to be failing.</afflictiondescription.Phenothiazinepoisoning.low>
+
+	<afflictionname.bacterialstim>Bacteria Friendly</afflictionname.bacterialstim>
+	<affdesc.bacterialstim>Affected by a reagent that creates friendly environment for bacteria.</affdesc.bacterialstim>
+	
+	<affdesc.acidreaction.mod>Affected by a reagent that drastically increases progression of acid burns.</affdesc.acidreaction.mod>
+
 </infotexts>

@@ -10,8 +10,11 @@
     <entitydescription.antibloodloss1.mod>A sodium chloride infusion mimicking the fluids in human body.</entitydescription.antibloodloss1.mod>
 
     <entitydescription.antibloodloss2.mod>Pack of substances that act like Blood Plasma. Mildly useful in the treatment of blood loss.</entitydescription.antibloodloss2.mod>
-    
-    <entityname.lithiummonoxide>Lithium Monoxide</entityname.lithiummonoxide>
+
+	<entitydescription.europabrew.mod>A reagent that increases the progression of acid burns and stimulates the growth of bacteria.</entitydescription.europabrew.mod>
+
+
+	<entityname.lithiummonoxide>Lithium Monoxide</entityname.lithiummonoxide>
     <entitydescription.lithiummonoxide>An extremely basic substance discovered on earth but was only able to be mass produced on Europa.</entitydescription.lithiummonoxide>
 
     <entityname.pacifiedhusk>Innocuous Velonaceps Calyx</entityname.pacifiedhusk>

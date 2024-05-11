@@ -926,5 +926,42 @@
     <PMStatusHUD drawhudwhenequipped="true" overlaycolor="176,0,0,120" range="3000" thermalgoggles="true" showdeadcharacters="false" showtexts="false" />
   </Item>
 
+	  <Item name="" identifier="europabrew" category="Medical" maxstacksize="32" maxstacksizecharacterinventory="8" cargocontaineridentifier="chemicalcrate" Tags="smallitem,chem,medical,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True"  descriptionidentifier="europabrew.mod">
+		  <PreferredContainer primary="toxcab" secondary="toxcontainer"/>
+		  <PreferredContainer primary="wrecktoxcab,abandonedtoxcab,piratetoxcab" spawnprobability="0.05" />
+		  <Price baseprice="200" minavailable="1">
+			  <Price storeidentifier="merchantoutpost" sold="false" />
+			  <Price storeidentifier="merchantcity" multiplier="0.9" />
+			  <Price storeidentifier="merchantresearch" multiplier="0.9" />
+			  <Price storeidentifier="merchantmilitary" multiplier="1.1" />
+			  <Price storeidentifier="merchantmine" sold="false" multiplier="1.1" />
+		  </Price>
+		  <Fabricate suitablefabricators="medicalfabricator" requiredtime="10" requiresrecipe="true">
+			  <RequiredSkill identifier="medical" level="30" />
+			  <RequiredItem identifier="alienblood" count="1" />
+			  <RequiredItem identifier="calcium" count="2" />
+		  </Fabricate>
+		  <Deconstruct time="20">
+			  <Item identifier="alienblood" />
+			  <Item identifier="calcium" />
+		  </Deconstruct>
+		  <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="0,960,64,64" origin="0.5,0.5" />
+		  <Sprite texture="Content/Items/Medical/Medicines.png" sourcerect="113,209,37,72" depth="0.6" origin="0.5,0.5" />
+		  <Body width="35" height="65" density="10.2" waterdragcoefficient="1"/>
+		  <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
+			  <StatusEffect type="OnSuccess" target="This" Condition="-100.0" setvalue="true"/>
+			  <StatusEffect type="OnSuccess" target="UseTarget">
+				  <Conditional entitytype="eq Character"/>
+				  <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+				  <Affliction identifier="acidreaction,bacterialstim" amount="50" />
+			  </StatusEffect>
+			  <!-- Remove the item when fully used -->
+			  <StatusEffect type="OnBroken" target="This">
+				  <Remove />
+			  </StatusEffect>
+		  </MeleeWeapon>
+		  <Projectile characterusable="false" launchimpulse="20.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon"/>
+	  </Item>
+	  
   </Override>
 </Items>
