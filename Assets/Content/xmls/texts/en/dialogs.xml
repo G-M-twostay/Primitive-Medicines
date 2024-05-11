@@ -58,13 +58,13 @@
         <Conversation line="What's that thing called? Fentanyl?" speaker="2" flags="surfacepain.three" />
     </Conservation>
 
-    <Conversation line="This wound isn't looking right." speaker="0" flags="bacterial0.one" />
-    <Conversation line="Wound ain't looking good." speaker="0" flags="bacterial0.one" />
+    <Conversation line="This wound isn't looking right." speaker="0" flags="infection.one" />
+    <Conversation line="Wound ain't looking good." speaker="0" flags="infection.one" />
 
-    <Conversation line="I have infected wounds." speaker="0" flags="bacterial0.two" />
-    <Conversation line="I need to get my infection treated." speaker="0" flags="bacterial0.two" />
-    <Conversation line="First time seeing such a colorful scar." speaker="0" flags="bacterial0.two" />
-    <Conversation line="Never knew these things grow on me." speaker="0" flags="bacterial0.two" />
+    <Conversation line="I have infected wounds." speaker="0" flags="infection.two" />
+    <Conversation line="I need to get my infection treated." speaker="0" flags="infection.two" />
+    <Conversation line="First time seeing such a colorful scar." speaker="0" flags="infection.two" />
+    <Conversation line="Never knew these things grow on me." speaker="0" flags="infection.two" />
 
     <Conversation line="I'm feeling sick." speaker="0" flags="bacterial1.one" />
     <Conversation line="I'm not feeling well." speaker="0" flags="bacterial1.one" />

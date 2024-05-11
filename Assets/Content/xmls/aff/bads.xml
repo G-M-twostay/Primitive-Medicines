@@ -51,13 +51,6 @@
     <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,5" sheetelementsize="128,128" color="127,0,0,127" origin="0,0" />
   </Affliction>
 
-  <Affliction identifier="bacterial0" type="bacterial" limbspecific="true" AffectMachines="false" targets="human" MaxStrength="200" ShowIconThreshold="15" ShowIconToOthersThreshold="15" showinhealthscannerthreshold="5" BaseHealCost="10">
-    <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="1,5" sheetelementsize="128,128" color="127,10,127,127" origin="0,0" />
-    <Effect minstrength="5" maxstrength="30" minvitalitydecrease="0" maxvitalitydecrease="25" DialogFlag="bacterial0.one"/>
-    <Effect minstrength="30" maxstrength="200" minvitalitydecrease="25" maxvitalitydecrease="195" DialogFlag="bacterial0.two"/>
-    <Description textidentifier="affdesc.bacterial0.one" minstrength="15" maxstrength="40" />
-    <Description textidentifier="affdesc.bacterial0.two" minstrength="40" maxstrength="200" />
-  </Affliction>
   <Affliction identifier="bacterial1" type="bacterial" limbspecific="true" AffectMachines="false" targets="human" MaxStrength="200" ShowIconThreshold="201" ShowIconToOthersThreshold="201" showinhealthscannerthreshold="40" BaseHealCost="10" HealCostMultiplier="2">
     <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="1,5" sheetelementsize="128,128" color="255,10,255,255" origin="0,0" />
     <Effect minstrength="10" maxstrength="70" minvitalitydecrease="0" maxvitalitydecrease="60" DialogFlag="bacterial1.one"/>

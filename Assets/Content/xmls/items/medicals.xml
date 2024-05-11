@@ -80,7 +80,7 @@
     <Deconstruct time="20">
 		<RequiredItem identifier="ethanol" />
     </Deconstruct>
-    <SuitableTreatment identifier="bacterial0" suitability="10" />
+    <SuitableTreatment identifier="infection" suitability="10" />
     <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="3,1" sheetelementsize="64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="2,2" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
     <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
@@ -91,13 +91,13 @@
       </StatusEffect>
       <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true" />
       <StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="40">
-        <ReduceAffliction identifier="bacterial0" amount="0.25" />
+        <ReduceAffliction identifier="infection" amount="0.25" />
       </StatusEffect>
 		<StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="10">
-			<ReduceAffliction identifier="bacterial0" amount="1" />
+			<ReduceAffliction identifier="infection" amount="1" />
 		</StatusEffect>
       <StatusEffect tags="medical" type="OnFailure" target="Limb" duration="20">
-        <ReduceAffliction identifier="bacterial0" amount="0.5" />
+        <ReduceAffliction identifier="infection" amount="0.5" />
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
