@@ -334,6 +334,11 @@
       strengthchange="0.5"
       minscreenblur="0.1"
       maxscreenblur="0.2">
+		<StatusEffect target="Character" interval="1" disabledeltatime="true" conditionalComparison="and">
+			<Conditional huskinfection="lt 75.0" />
+			<Conditional huskinfection="gt 50.0" />
+			<ReduceAffliction identifier="huskinfection" amount="0.25" />
+		</StatusEffect>
     </Effect>
     <Effect minstrength="50" maxstrength="75"
       strengthchange="1"
@@ -349,6 +354,11 @@
       <StatusEffect target="Character" multiplyafflictionsbymaxvitality="true">
         <Affliction identifier="heartdmg" amount="0.5" />
       </StatusEffect>
+		<StatusEffect target="Character" interval="1" disabledeltatime="true" conditionalComparison="and">
+			<Conditional huskinfection="lt 75.0" />
+			<Conditional huskinfection="gt 50.0" />
+			<ReduceAffliction identifier="huskinfection" amount="0.5" />
+		</StatusEffect>
     </Effect>
     <Effect minstrength="75" maxstrength="99"
       strengthchange="1"
@@ -363,6 +373,10 @@
       minspeedmultiplier="0.8"
       maxspeedmultiplier="0.8"
       tag="poisoned">
+		<StatusEffect target="Character" interval="1" disabledeltatime="true">
+			<Conditional huskinfection="lt 75.0" />
+			<ReduceAffliction identifier="huskinfection" amount="0.5" />
+		</StatusEffect>
       <StatusEffect target="Character">
         <Affliction identifier="heartdmg" amount="1" />
       </StatusEffect>
@@ -396,6 +410,9 @@
         <Conditional healthpercentage="gt 50"/>
         <Affliction identifier="sufforinpoisoning" amount="-9999" probability="0.1" />
       </StatusEffect>
+		<StatusEffect target="Character" interval="1" disabledeltatime="true">
+			<ReduceAffliction identifier="huskinfection" amount="100" />
+		</StatusEffect>
     </Effect>
     <PeriodicEffect mininterval="1" maxinterval="3" minstrength="60" maxstrength="100">
       <StatusEffect target="Character" multiplybymaxvitality="true">
