@@ -26,14 +26,13 @@ namespace PrimMed.Affs
                     {
                         case LimbType.LeftFoot:
                         case LimbType.RightFoot:
-                            ch.Character.Stun = 0.5f;
-                            /*                            ((HumanoidAnimController)ch.Character.AnimController).Crouching = false;
-                                                        ch.Character.AnimController.IgnorePlatforms = true;
-                                                        ch.Character.AnimController.ResetPullJoints();
-                                                        ch.Character.IsForceRagdolled = true;*/
+                            ch.Character.SetInput(InputType.Ragdoll, false, true);
                             break;
                         case LimbType.Waist:
-                            ch.Character.Stun = 0.25f;
+                            ch.Character.SetInput(InputType.Ragdoll, false, true);
+#if CLIENT
+                            SoundPlayer.PlaySound(ch.Character.IsMale ? "male_pain" : "female_pain");
+#endif
                             break;
                         case LimbType.LeftForearm:
                             {
