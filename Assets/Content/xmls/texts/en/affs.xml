@@ -102,9 +102,6 @@
     <afflictionname.incision>Surgical Incision</afflictionname.incision>
     <affdesc.incision>This area of skin has been carefully cut open to expose the tissues underneath</affdesc.incision>
 
-    <afflictionname.vitalityboosted>Adrenaline Applied</afflictionname.vitalityboosted>
-    <affdesc.vitalityboosted>You feel more alive.</affdesc.vitalityboosted>
-
     <afflictionname.anesthetized>Anesthetized</afflictionname.anesthetized>
     <affdesc.anesthetized>Patient is completely anesthetized.</affdesc.anesthetized>
 

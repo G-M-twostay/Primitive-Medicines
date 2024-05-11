@@ -74,13 +74,12 @@
     <Fabricate suitablefabricators="medicalfabricator" requiredtime="15" amount="2">
       <RequiredSkill identifier="medical" level="15" />
       <RequiredItem identifier="ethanol" />
-      <RequiredItem identifier="chlorine" />
-      <RequiredItem identifier="sodium" />
+      <RequiredItem identifier="antibloodloss1" />
     </Fabricate>
     <Deconstruct time="20">
 		<RequiredItem identifier="ethanol" />
     </Deconstruct>
-    <SuitableTreatment identifier="infection" suitability="10" />
+    <SuitableTreatment identifier="infection" suitability="15" />
     <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sheetindex="3,1" sheetelementsize="64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="2,2" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
     <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
@@ -90,7 +89,7 @@
         <Affliction identifier="organdamage" amount="5" />
       </StatusEffect>
       <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true" />
-      <StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="40">
+      <StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="30">
         <ReduceAffliction identifier="infection" amount="0.25" />
       </StatusEffect>
 		<StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="10">
@@ -98,7 +97,8 @@
 		</StatusEffect>
       <StatusEffect tags="medical" type="OnFailure" target="Limb" duration="20">
         <ReduceAffliction identifier="infection" amount="0.5" />
-      </StatusEffect>
+		  <Affliction identifier="burn" amount="0.575" />
+	  </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
       </StatusEffect>

@@ -107,7 +107,7 @@
       <SuitableTreatment type="bleeding" suitability="33" />
       <SuitableTreatment type="burn" suitability="33" />
       <SuitableTreatment type="damage" suitability="33" />
-      <SuitableTreatment type="infection" suitability="15" />
+      <SuitableTreatment type="infection" suitability="20" />
       <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="10" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
         <RequiredSkill identifier="medical" level="55" />
         <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true">
@@ -720,6 +720,12 @@
       <StatusEffect type="OnBroken" target="This">
         <Remove />
       </StatusEffect>
+		<StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="10">
+			<ReduceAffliction identifier="infection" amount="0.5" />
+		</StatusEffect>
+		<StatusEffect tags="medical" type="OnFailure" target="Limb" duration="10">
+			<ReduceAffliction identifier="infection" amount="0.3" />
+		</StatusEffect>
     </Holdable>
     <AiTarget sightrange="1000" static="true" />
   </Saline>
