@@ -50,22 +50,26 @@ namespace PrimMed.Replace
             IsActive = true;
             float baseReloadTime = reload;
             float weaponSkill = character.GetSkillLevel("weapons");
-            if (ReloadSkillRequirement > 0 && ReloadNoSkill > reload && weaponSkill < ReloadSkillRequirement)
+            bool applyReloadFailure = ReloadSkillRequirement > 0 && ReloadNoSkill > reload && weaponSkill < ReloadSkillRequirement;
+            if (applyReloadFailure)
             {
                 //Examples, assuming 40 weapon skill required: 1 - 40/40 = 0 ... 1 - 0/40 = 1 ... 1 - 20 / 40 = 0.5
                 float reloadFailure = MathHelper.Clamp(1 - (weaponSkill / ReloadSkillRequirement), 0, 1);
                 baseReloadTime = MathHelper.Lerp(reload, ReloadNoSkill, reloadFailure);
             }
+
+            if (character.IsDualWieldingRangedWeapons())
+            {
+                baseReloadTime *= Math.Max(1f, ApplyDualWieldPenaltyReduction(character, DualWieldReloadTimePenaltyMultiplier, neutralValue: 1f));
+            }
+
             ReloadTimer = baseReloadTime / (1 + character?.GetStatValue(StatTypes.RangedAttackSpeed) ?? 0f);
             ReloadTimer /= 1f + item.GetQualityModifier(Quality.StatType.FiringRateMultiplier);
 
             currentChargeTime = 0f;
 
-            if (character != null)
-            {
-                var abilityRangedWeapon = new AbilityRangedWeapon(item);
-                character.CheckTalents(AbilityEffectType.OnUseRangedWeapon, abilityRangedWeapon);
-            }
+            var abilityRangedWeapon = new AbilityRangedWeapon(item);
+            character.CheckTalents(AbilityEffectType.OnUseRangedWeapon, abilityRangedWeapon);
 
             if (item.AiTarget != null)
             {
