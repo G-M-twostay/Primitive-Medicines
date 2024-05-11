@@ -405,5 +405,31 @@
     <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,640,128,128" color="106,106,106,255" origin="0,0"/>
   </Affliction>
 
+	  <Infection
+  identifier="infection"
+  type="infection"
+  limbspecific="true"
+  maxstrength="200"
+  burnoverlayalpha="0"
+  causeofdeathdescription="causeofdeathdescription.damage"
+  selfcauseofdeathdescription="self_causeofdeathdescription.damage"
+  healcostmultiplier="2.5">
+		  <Description
+		   textidentifier="afflictiondescription.infection.low"
+		   minstrength="0"
+		   maxstrength="30"/>
+		  <Description
+			textidentifier="afflictiondescription.infection"
+			minstrength="30"
+			maxstrength="60"/>
+		  <Description
+			textidentifier="afflictiondescription.infection.high"
+			minstrength="60"
+			maxstrength="200"/>
+		  <Effect minstrength="5" maxstrength="30" minvitalitydecrease="0" maxvitalitydecrease="0.25" multiplybymaxvitality="true" DialogFlag="bacterial0.one"/>
+		  <Effect minstrength="30" maxstrength="200" minvitalitydecrease="0.25" maxvitalitydecrease="1.95" multiplybymaxvitality="true" DialogFlag="bacterial0.two"/>
+		  <icon texture="Content/UI/TalentsIcons4.png" sourcerect="0,384,128,128" color="84,171,90,255" origin="0,0"/>
+	  </Infection>
+	  
   </override>
 </Afflictions>

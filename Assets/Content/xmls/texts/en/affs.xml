@@ -12,12 +12,6 @@
     <afflictioncauseofdeath.scar>You have succumbed to repeated injuries.</afflictioncauseofdeath.scar>
     <afflictioncauseofdeathself.scar>Died of secondary injuries.</afflictioncauseofdeathself.scar>
 
-    <afflictionname.bacterial0>Infection</afflictionname.bacterial0>
-    <affdesc.bacterial0.one>There are clear signs of infections. Better to treat it now before it's too late.</affdesc.bacterial0.one>
-    <affdesc.bacterial0.two>The infection is going out of control.</affdesc.bacterial0.two>
-    <afflictioncauseofdeath.bacterial0>Died of bacterial infection.</afflictioncauseofdeath.bacterial0>
-    <afflictioncauseofdeathself.bacterial0>You've succumbed to infections.</afflictioncauseofdeathself.bacterial0>
-
     <afflictionname.bacterial1>Inernal Infection</afflictionname.bacterial1>
     <affdesc.bacterial1>The infection is so severe that anyone can see the patient is sick on first look.</affdesc.bacterial1>
     <afflictioncauseofdeath.bacterial1>Died of bacterial infection.</afflictioncauseofdeath.bacterial1>

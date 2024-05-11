@@ -40,12 +40,12 @@ namespace PrimMed.Affs
         private static float AffInfectMod(in Identifier id) => id.Value switch
         {
             "lacerations" => 1f,
-            "blunttrauma" => 0.7f,
+            "blunttrauma" => 0.65f,
             "bitewounds" => 1.2f,
             "gunshotwound" => 1.1f,
             "explosiondamage" => 1f,
             "bleeding" => 1f,
-            "burn" => 1f,
+            "burn" => 1.05f,
             "acidburn" => 1.15f,
             "pierce" => 0.9f,
             "scar" => 0.85f,
@@ -122,7 +122,7 @@ namespace PrimMed.Affs
                     }
 
                     for (byte i = 0; i < LimbMods.Length; ++i)
-                        ch.addLimbAffFast(lhs[limbs[i].HealthIndex], new Bacterial(Utils.BACTERIAL0_PFB, limbStrengths[i]), true, false);
+                        ch.addLimbAffFast(lhs[limbs[i].HealthIndex], new Infection(Utils.INFECTION_PFB, limbStrengths[i] * Utils.hostilityMod()), true, false);
                 }
                 //temperatures
                 ref float dec = ref limbStrengths[0], inc = ref limbStrengths[1];
@@ -145,7 +145,7 @@ namespace PrimMed.Affs
                 ref float vul = ref limbStrengths[3];
                 //from afflictions. overrides changes from environment.
                 foreach (var aff in affs.Keys)
-                    if (aff is Bacterial)//starts to cause fever at 0.45=90/200.
+                    if (aff is Bacterial1 || aff is Infection)//starts to cause fever at 0.45=90/200.
                         inc += aff.Strength / aff.Prefab.MaxStrength * TEMP_REGR / 0.45f;
                     else if (aff is AfflictionBleeding)
                         dec += aff.Strength / aff.Prefab.MaxStrength;

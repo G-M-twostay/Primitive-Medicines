@@ -7,7 +7,7 @@ namespace PrimMed
         internal static readonly string[] SCALPEL_ACTIONS = new string[] { "scalpel.incise", "scalpel.lung", "scalpel.liver", "scalpel.heart" };
         internal static readonly AfflictionPrefab
             PAIN_PFB = AfflictionPrefab.Prefabs["SurfacePain"],
-            BACTERIAL0_PFB = AfflictionPrefab.Prefabs["bacterial0"],
+            INFECTION_PFB = AfflictionPrefab.Prefabs["infection"],
             BACTERIAL1_PFB = AfflictionPrefab.Prefabs["bacterial1"],
             HEMOLYSIS_PFB = AfflictionPrefab.Prefabs["hemolysis"],
             BLOODLOSS_PFB = AfflictionPrefab.Prefabs["bloodloss"],

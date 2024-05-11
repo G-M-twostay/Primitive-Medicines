@@ -168,5 +168,12 @@ namespace PrimMed
             }
             return res;
         }
+        internal static float hostilityMod(in WorldHostilityOption std = WorldHostilityOption.Medium, in float step = 0.0625f)
+        {
+            float b = 1f;
+            if (GameMain.GameSession?.Campaign is CampaignMode c)
+                b += step * (((int)c.Settings.WorldHostility) - (int)std);
+            return b;
+        }
     }
 }

@@ -1,5 +1,4 @@
 using Barotrauma;
-using Barotrauma.Items.Components;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 namespace PrimMed.Patches
@@ -7,72 +6,95 @@ namespace PrimMed.Patches
     [HarmonyPatch(typeof(Character))]
     static class _Character
     {
-        [HarmonyPrefix]
+        /*        [HarmonyPrefix]
+                [HarmonyPatch("GetSkillLevel", new Type[] { typeof(Identifier) })]
+                public static bool _GetSkillLevel(Character __instance, ref*//*only ref has default value*//* float __result, Identifier skillIdentifier)
+                {
+                    //be careful of when skillIdentifier is null. This should be invalid and return 0f in the original implementation, but I'm not sure.   
+                    if (__instance.Info?.Job is not null && skillIdentifier != null)
+                    {
+                        float skillLevel = __instance.Info.Job.GetSkillLevel(skillIdentifier);
+
+                        if (Character.overrideStatTypes.TryGetValue(skillIdentifier, out StatTypes statType))
+                        {
+                            float skillOverride = __instance.GetStatValue(statType);
+                            if (skillOverride > skillLevel)
+                                skillLevel = skillOverride;
+                        }
+
+                        *//*
+                        These come from effects(like talents); pains affect skills gained through talents.
+                        Vanilla uses chain of multiplication to calculate the final value. However, with pain, 
+                        this value might get extreme. 
+                        *//*
+                        foreach (Affliction affliction in __instance.CharacterHealth.GetAllAfflictions())
+                            skillLevel *= affliction.GetSkillMultiplier();
+
+                        skillLevel += __instance.GetStatValue(Character.GetSkillStatType(skillIdentifier));
+
+                        static float helmMod(in float leftLegPain, in float rightLegPain, in float _)
+                        {
+                            float total = leftLegPain + rightLegPain;
+                            //linear interpolate between (0, 1) and (200,0.7)
+                            return MathHelper.Lerp(1f, 0.7f, total / (2f * Utils.PAIN_PFB.MaxStrength));
+                        }
+                        static float weaponsMod(in float leftArmPain, in float rightArmPain, in float _)
+                        {
+                            const float leftArmWei = 0.9f;
+                            //right arm weighs more.
+                            float total = leftArmPain * leftArmWei + rightArmPain * (2f - leftArmWei);
+                            //linear interpolate between (0, 1) and (200,0.7)
+                            return MathHelper.Lerp(1f, 0.7f, total / (2f * Utils.PAIN_PFB.MaxStrength));
+                        }
+
+                        if (skillIdentifier == "helm")
+                        {//pains on legs hinders helming(footpad).
+                            skillLevel *= helmMod(Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.LeftLeg), __instance.CharacterHealth), Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.RightLeg), __instance.CharacterHealth), skillLevel);
+                        }
+                        else if (skillIdentifier == "weapons")
+                        {//pains on arms hinders combat.
+                            skillLevel *= weaponsMod(Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.LeftArm), __instance.CharacterHealth), Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.RightArm), __instance.CharacterHealth), skillLevel);
+                        }
+                        //pains don't affect skills gained through items.
+
+                        //there was a `if(skillIdentifier!=null)` statement here in the original implementation.
+                        foreach (Item item in __instance.Inventory.AllItems)
+                            if (item?.GetComponent<Wearable>() is Wearable wearable && !__instance.Inventory.IsInLimbSlot(item, InvSlotType.Any))
+                                foreach (var allowedSlot in wearable.AllowedSlots)
+                                    if (allowedSlot != InvSlotType.Any && __instance.Inventory.IsInLimbSlot(item, allowedSlot))
+                                        if (wearable.SkillModifiers.TryGetValue(skillIdentifier, out float skillValue))
+                                        {
+                                            skillLevel += skillValue;
+                                            break;
+                                        }
+
+                        __result = Math.Max(skillLevel, 0);
+                    }
+                    //__result defaults to 0
+                    return false;
+                }*/
+
+        [HarmonyPostfix]
         [HarmonyPatch("GetSkillLevel", new Type[] { typeof(Identifier) })]
-        public static bool _GetSkillLevel(Character __instance, ref/*only ref has default value*/ float __result, Identifier skillIdentifier)
+        public static void _GetSkillLevel(Character __instance, ref/*only ref has default value*/ float __result, Identifier skillIdentifier)
         {
-            //be careful of when skillIdentifier is null. This should be invalid and return 0f in the original implementation, but I'm not sure.   
-            if (__instance.Info?.Job is not null && skillIdentifier != null)
+            static float helmMod(in float leftLegPain, in float rightLegPain)
             {
-                float skillLevel = __instance.Info.Job.GetSkillLevel(skillIdentifier);
-
-                if (Character.overrideStatTypes.TryGetValue(skillIdentifier, out StatTypes statType))
-                {
-                    float skillOverride = __instance.GetStatValue(statType);
-                    if (skillOverride > skillLevel)
-                        skillLevel = skillOverride;
-                }
-
-                /*
-                These come from effects(like talents); pains affect skills gained through talents.
-                Vanilla uses chain of multiplication to calculate the final value. However, with pain, 
-                this value might get extreme. 
-                */
-                foreach (Affliction affliction in __instance.CharacterHealth.GetAllAfflictions())
-                    skillLevel *= affliction.GetSkillMultiplier();
-
-                skillLevel += __instance.GetStatValue(Character.GetSkillStatType(skillIdentifier));
-
-                static float helmMod(in float leftLegPain, in float rightLegPain, in float _)
-                {
-                    float total = leftLegPain + rightLegPain;
-                    //linear interpolate between (0, 1) and (200,0.7)
-                    return MathHelper.Lerp(1f, 0.7f, total / (2f * Utils.PAIN_PFB.MaxStrength));
-                }
-                static float weaponsMod(in float leftArmPain, in float rightArmPain, in float _)
-                {
-                    const float leftArmWei = 0.9f;
-                    //right arm weighs more.
-                    float total = leftArmPain * leftArmWei + rightArmPain * (2f - leftArmWei);
-                    //linear interpolate between (0, 1) and (200,0.7)
-                    return MathHelper.Lerp(1f, 0.7f, total / (2f * Utils.PAIN_PFB.MaxStrength));
-                }
-
-                if (skillIdentifier == "helm")
-                {//pains on legs hinders helming(footpad).
-                    skillLevel *= helmMod(Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.LeftLeg), __instance.CharacterHealth), Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.RightLeg), __instance.CharacterHealth), skillLevel);
-                }
-                else if (skillIdentifier == "weapons")
-                {//pains on arms hinders combat.
-                    skillLevel *= weaponsMod(Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.LeftArm), __instance.CharacterHealth), Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.RightArm), __instance.CharacterHealth), skillLevel);
-                }
-                //pains don't affect skills gained through items.
-
-                //there was a `if(skillIdentifier!=null)` statement here in the original implementation.
-                foreach (Item item in __instance.Inventory.AllItems)
-                    if (item?.GetComponent<Wearable>() is Wearable wearable && !__instance.Inventory.IsInLimbSlot(item, InvSlotType.Any))
-                        foreach (var allowedSlot in wearable.AllowedSlots)
-                            if (allowedSlot != InvSlotType.Any && __instance.Inventory.IsInLimbSlot(item, allowedSlot))
-                                if (wearable.SkillModifiers.TryGetValue(skillIdentifier, out float skillValue))
-                                {
-                                    skillLevel += skillValue;
-                                    break;
-                                }
-
-                __result = Math.Max(skillLevel, 0);
+                float total = leftLegPain + rightLegPain;
+                return MathHelper.Lerp(1f, 0.7f, total / (2f * Utils.PAIN_PFB.MaxStrength));
             }
-            //__result defaults to 0
-            return false;
+            static float weaponsMod(in float leftArmPain, in float rightArmPain)
+            {
+                const float leftArmWei = 0.9f;
+                float total = leftArmPain * leftArmWei + rightArmPain * (2f - leftArmWei);
+                return MathHelper.Lerp(1f, 0.7f, total / (2f * Utils.PAIN_PFB.MaxStrength));
+            }
+
+            if (skillIdentifier == "helm")
+                __result *= helmMod(Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.LeftLeg), __instance.CharacterHealth), Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.RightLeg), __instance.CharacterHealth));
+            else if (skillIdentifier == "weapons")
+                __result *= weaponsMod(Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.LeftArm), __instance.CharacterHealth), Utils.getLimbPain(__instance.AnimController.GetLimb(LimbType.RightArm), __instance.CharacterHealth));
+
         }
         [HarmonyPrefix]
         [HarmonyPatch("CalculateMovementPenalty", new Type[] { typeof(Limb), typeof(float), typeof(float) })]
