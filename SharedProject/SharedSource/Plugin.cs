@@ -18,8 +18,8 @@ namespace PrimMed
             //typeof(AfflictionsFile).TypeInitializer.Invoke(null,null);//this doesn't seem to work.
             var reg = new AffRegister();
             reg.register(typeof(Affs.Bandaged), "bandaged");
-            reg.register(typeof(Affs.Bacterial), "bacterial0");
-            reg.register(typeof(Affs.Bacterial), "bacterial1");
+            reg.register(typeof(Affs.Infection), "infection");
+            reg.register(typeof(Affs.Bacterial1), "bacterial1");
             reg.register(typeof(Affs.Pain), "SurfacePain");
             reg.register(typeof(Affs.Mortal), "mortal");//register it in case someone wants to add it using command.
             reg.register(typeof(Affs.Hemolysis), "hemolysis");
