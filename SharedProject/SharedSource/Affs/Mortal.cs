@@ -23,7 +23,7 @@ namespace PrimMed.Affs
             "bitewounds" => (1.25f, -1),
             "gunshotwound" => (1.125f, -1),
             "explosiondamage" => (1.125f, -1),
-            "organdamage" => (0.875f, 1),
+            "organdamage" => (0.75f, 1),
             "bleeding" => (0.125f, -1),
             "burn" => (1f, -1),
             "acidburn" => (1.5f, -1),
@@ -35,6 +35,7 @@ namespace PrimMed.Affs
             "trauma" => (1f, -1),
             "incision" => (1f, -1),
             "sutural" => (0.625f, -1),
+            "heartdmg" => (0.875f, 1),
             _ => (0, -1),
         };
         private static float AffInfectMod(in Identifier id) => id.Value switch
