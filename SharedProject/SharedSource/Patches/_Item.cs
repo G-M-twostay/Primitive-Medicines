@@ -36,6 +36,20 @@ namespace PrimMed.Patches
                 var ch = character.CharacterHealth;
                 var lhs = ch.limbHealths;
                 var affs = ch.afflictions;
+                sbyte posture()
+                {
+                    var t = character.SelectedSecondaryItem?.Prefab;
+                    if (t is not null)
+                    {
+                        if (t.Identifier.Contains("chair"))
+                            return 1;
+                        if (t.Identifier.Contains("hospitalbed"))
+                            return -1;
+                        if (t.Identifier.Contains("bed") || t.Identifier.Contains("bunk"))
+                            return 0;
+                    }
+                    return 2;
+                }
                 Affliction organMiss(AfflictionPrefab t)
                 {
                     foreach (var aff in affs.Keys)
@@ -82,7 +96,8 @@ namespace PrimMed.Patches
                     var contained = __instance.GetComponent<ItemContainer>().Inventory.FirstOrDefault();
                     if (contained is not null)
                     {
-                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, user.HasTalent("deliverysystem") ? 1f : 2f, user);
+                        float posMod = 1 + 0.05f * (posture() - 1);
+                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, (user.HasTalent("deliverysystem") ? 1f : 2f) * posMod, user);
                         ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, user.HasTalent("bloodybusiness") ? 1.5f : 2f)
                         {
                             Source = user
@@ -172,6 +187,7 @@ namespace PrimMed.Patches
                     float bleedMod = (user.HasTalent("bloodybusiness") ? BLEED_MOD_TALENT : BLEED_MOD_NORM) * (rv < r ? 1f : 1.125f);
                     float qualMod = 1f - (__instance.Quality / Quality.MaxQuality) * 0.12f;
                     float assMod = user.CharacterHealth.GetAffliction("medicalassistance", false) is null ? 1f : ASSISTANCE_MOD;
+                    float posMod = 1 + rv / 8f * posture();
                     float minInci = user.HasTalent("deliverysystem") ? SURGERY_TH_TALENT : SURGERY_TH_NORM;
                     switch (action)
                     {
@@ -188,7 +204,7 @@ namespace PrimMed.Patches
                                 {
                                     Source = user
                                 });
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod, user);
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod * posMod, user);
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.INCISION_PFB, Math.Abs(surgeryReady(minInci)) * inciMod * patientPainMod, user, true, true);
 #if CLIENT
                                 SoundPlayer.PlaySound("incise");
@@ -203,11 +219,11 @@ namespace PrimMed.Patches
                                 var o = organCond(Utils.LUNG_DMG_PFB);
                                 Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["lung"], user.Inventory, o is null ? 100f : Utils.LUNG_DMG_PFB.MaxStrength - o.Strength);
 
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 6f * bleedMod * qualMod * patientPainMod)
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 6f * bleedMod * qualMod * patientPainMod * posMod)
                                 {
                                     Source = user
                                 });
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 4f * lacMod * qualMod * patientPainMod, user);
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 4f * lacMod * qualMod * patientPainMod * posMod, user);
                                 ch.addLimbAffFast(null, new Affs.LungDmg(LUNG_M_PFB, 1f)
                                 {
                                     Source = user
@@ -229,11 +245,11 @@ namespace PrimMed.Patches
                                 var o = organCond(Utils.LIVER_DMG_PFB);
                                 Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["liver"], user.Inventory, o is null ? 100f : Utils.LIVER_DMG_PFB.MaxStrength - o.Strength);
 
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 5f * bleedMod * qualMod * patientPainMod)
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 5f * bleedMod * qualMod * patientPainMod * posMod)
                                 {
                                     Source = user
                                 });
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 3f * lacMod * qualMod * patientPainMod, user);
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 3f * lacMod * qualMod * patientPainMod * posMod, user);
                                 ch.addLimbAffFast(null, new Affs.LiverDmg(LIVER_M_PFB, 1f)
                                 {
                                     Source = user
@@ -255,11 +271,11 @@ namespace PrimMed.Patches
                                 var o = organCond(Utils.HEART_DMG_PFB);
                                 Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["heart"], user.Inventory, o is null ? 100f : Utils.HEART_DMG_PFB.MaxStrength - o.Strength);
 
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 7f * bleedMod * qualMod * patientPainMod)
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 7f * bleedMod * qualMod * patientPainMod * posMod)
                                 {
                                     Source = user
                                 });
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 4f * lacMod * qualMod * patientPainMod, user);
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 4f * lacMod * qualMod * patientPainMod * posMod, user);
                                 ch.addLimbAffFast(null, new Affs.HeartDmg(HEART_M_PFB, 1f)
                                 {
                                     Source = user
@@ -284,11 +300,11 @@ namespace PrimMed.Patches
                                         {
                                             Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["huskstinger"], user.Inventory);
                                             aff.SetStrength(CutStrg);
-                                            ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 15f * bleedMod * qualMod * patientPainMod * assMod)
+                                            ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 15f * bleedMod * qualMod * patientPainMod * assMod * posMod)
                                             {
                                                 Source = user
                                             });
-                                            ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod, user);
+                                            ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod * posMod, user);
 #if CLIENT
                                             SoundPlayer.PlaySound("severed");
 #endif
@@ -297,7 +313,7 @@ namespace PrimMed.Patches
 #if CLIENT
                                 GUI.AddMessage(TextManager.Get("surgery.cannot"), GUIStyle.Red);
 #endif
-                            DONE:
+                                    DONE:
                                 ;
                                 break;
                             }
@@ -321,15 +337,16 @@ namespace PrimMed.Patches
                     float qualMod = 1f - (__instance.Quality / Quality.MaxQuality) * 0.12f;
                     float patientPainMod = 1f;
                     float rv = Rand.Value(Rand.RandSync.ServerAndClient);
+                    float posMod = 1 + rv / 8f * posture();
                     if (!character.IsIncapacitated)
                         patientPainMod += rv;
                     var holding = user.Inventory.GetItemInLimbSlot(InvSlotType.RightHand);
                     if (holding is null || !holding.HasTag("organ"))
                         holding = user.Inventory.GetItemInLimbSlot(InvSlotType.LeftHand);
-                    if (holding is not null && holding.HasTag("organ"))
+                    if (holding is not null && holding.HasTag("organ"))//holding an organ on the other hand
                     {
                         var contained = __instance.GetComponent<ItemContainer>().Inventory.FirstOrDefault();
-                        if (contained is not null)
+                        if (contained is not null)//check if sulture is loaded, if so stitch the organ in.
                         {
                             if (targetLimb.type == LimbType.Torso && surgeryReady(user.HasTalent("deliverysystem") ? SURGERY_TH_TALENT : SURGERY_TH_NORM) >= 0f)
                             {
@@ -343,7 +360,7 @@ namespace PrimMed.Patches
                                         rejectMod /= r;
 
                                     ch.addLimbAffFast(null, AfflictionPrefab.Prefabs[holding.Prefab.Identifier + "dmg"], holding.Condition, user, false);
-                                    ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, 10f * qualMod * pierceMod, user);
+                                    ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, 10f * qualMod * pierceMod * posMod, user);
                                     ch.addLimbAffFast(null, new Affs.Rejection(REJECT_PFB, rv * rejectMod * REJECT_PFB.MaxStrength)
                                     {
                                         Source = user
@@ -360,18 +377,18 @@ namespace PrimMed.Patches
                                 }
                             }
 #if CLIENT
-                            else
+                            else//if not, give a warning.
                                 GUI.AddMessage(TextManager.Get("surgery.cannot"), GUIStyle.Red);
 #endif
                         }
                     }
-                    else
+                    else//not holding any organ
                     {
                         var contained = __instance.GetComponent<ItemContainer>().Inventory.FirstOrDefault();
                         float assMod = user.CharacterHealth.GetAffliction("medicalassistance", false) is null ? 1f : ASSISTANCE_MOD;
-                        if (contained is not null)
+                        if (contained is not null)//loaded with sulture
                         {
-                            if (holding is not null && holding.Prefab.Identifier == "antibleeding2")
+                            if (holding is not null && holding.Prefab.Identifier == "antibleeding2")//use platiseal to seal wounds
                             {
                                 float strg = 0f;
                                 foreach (var (aff, lh) in affs)
@@ -383,17 +400,17 @@ namespace PrimMed.Patches
                                 Entity.Spawner.AddItemToRemoveQueue(contained);
                                 Entity.Spawner.AddItemToRemoveQueue(holding);
                                 float pierceMod = rv < r ? 1f : patientPainMod;
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, strg / 12.5f * Utils.PIERCE_PFB.MaxStrength * qualMod * pierceMod * assMod, user);
+                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, strg / 12.5f * Utils.PIERCE_PFB.MaxStrength * qualMod * pierceMod * assMod * posMod, user);
                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.SULTURAL_PFB, strg * Utils.SULTURAL_PFB.MaxStrength * assMod, user, true, true);
                             }
-                            else
+                            else//not holding platiseal, only seal incision
                             {
                                 foreach (var (aff, lh) in affs)
                                     if (lh == lhs[targetLimb.HealthIndex] && ReferenceEquals(aff.Prefab, Utils.INCISION_PFB))
                                     {
                                         float pierceMod = rv < r ? 1f : patientPainMod;
                                         Entity.Spawner.AddItemToRemoveQueue(contained);
-                                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, aff.Strength / 12.5f * qualMod * pierceMod * assMod, user);
+                                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, aff.Strength / 12.5f * qualMod * pierceMod * assMod * posMod, user);
                                         ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.SULTURAL_PFB, aff.Strength * assMod, user, true, true);
                                         affs.Remove(aff);
 
@@ -406,7 +423,7 @@ namespace PrimMed.Patches
                                 SoundPlayer.PlaySound(character.IsMale ? "male_scream" : "female_scream");
 #endif
                         }
-                        else
+                        else//not loaded with sulture, reopen incision.
                         {
                             foreach (var (aff, lh) in affs)
                                 if (lh == lhs[targetLimb.HealthIndex] && ReferenceEquals(aff.Prefab, Utils.SULTURAL_PFB))
@@ -418,7 +435,7 @@ namespace PrimMed.Patches
                                     {
                                         Source = user
                                     });
-                                    ch.addLimbAffFast(lh, Utils.INCISION_PFB, aff.Strength, user, true, true);
+                                    ch.addLimbAffFast(lh, Utils.INCISION_PFB, aff.Strength * posMod, user, true, true);
                                     affs.Remove(aff);
 #if CLIENT
                                     SoundPlayer.PlaySound("severed");
