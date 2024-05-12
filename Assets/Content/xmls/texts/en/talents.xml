@@ -4,7 +4,6 @@
     <talentdescription.chemicalsboughtcheaper.mod>‖color:gui.orange‖Chemicals‖end‖ can be bought [amount0]% cheaper. You can buy ‖color:gui.orange‖experimental medicines‖end‖ [amount1]% cheaper.</talentdescription.chemicalsboughtcheaper.mod>
     <talentdescription.medicskillboost>Boosts your ‖color:gui.orange‖Medical‖end‖ skill by [amount].</talentdescription.medicskillboost>
     <talentdescription.deliverysystem>Applying syringes causes 60% less ‖color:gui.red‖[affname]‖end‖.</talentdescription.deliverysystem>
-    <talentdescription.dontdieonme.mod>The CPR you apply is much more powerful. You apply adrenalines more effectively.</talentdescription.dontdieonme.mod>
     <talentdescription.emergencyresponse.mod>You move [movementspeed]% faster, gain [painres]% pain resistance if any crewmember is unconscious.</talentdescription.emergencyresponse.mod>
     <talentdescription.medicaleffectiveness.mod>Medical items are [amount]% more potent when applied to you. You cause no ‖color:gui.red‖[affname]‖end‖ when self-applying syringes.</talentdescription.medicaleffectiveness.mod>
     <talentdescription.seepoison>You're [inc]% better at spotting poisons.</talentdescription.seepoison>

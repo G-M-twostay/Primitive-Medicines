@@ -151,4 +151,7 @@
 
 	<entityname.bloodbox>Blood Bank</entityname.bloodbox>
 	<entitydescription.bloodbox>A durable contaier designed to isolate stored bloods from environmental hazards.</entitydescription.bloodbox>
+
+	<entityname.gluespear>Sticky Harpoon</entityname.gluespear>
+	<entitydescription.gluespear>A plastic spear with advanced adhesive installed on it. Originally designed to transport wounded in underwater environment.</entitydescription.gluespear>
 </infotexts>

@@ -54,27 +54,17 @@
 
         <Talent identifier="dontdieonme">
           <Icon texture="Content/UI/TalentsIcons1.png" sheetindex="5,5" sheetelementsize="128,128"/>
-          <Description tag="talentdescription.dontdieonme.mod"/>
+          <Description tag="talentdescription.dontdieonme"/>
 
           <AbilityGroupEffect abilityeffecttype="None" >
             <Abilities>
               <CharacterAbilityGiveStat stattype="CPRBoost" value="1"/>
             </Abilities>
           </AbilityGroupEffect>
-          <AbilityGroupEffect abilityeffecttype="OnApplyTreatment">
-            <Conditions>
-              <AbilityConditionItem identifiers="adrenaline" />
-            </Conditions>
-            <Abilities>
-              <CharacterAbilityApplyStatusEffects>
-                <StatusEffects>
-                  <StatusEffect tags="medical" type="OnAbility" target="UseTarget" duration="6.0">
-                    <Affliction identifier="vitalityboosted" amount="2" />
-                  </StatusEffect>
-                </StatusEffects>
-              </CharacterAbilityApplyStatusEffects>
-            </Abilities>
-          </AbilityGroupEffect>
+			<Description tag="talentdescription.unlockrecipe">
+				<Replace tag="[itemname]" value="entityname.gluespear" color="gui.orange"/>
+			</Description>
+			<AddedRecipe itemidentifier="gluespear"/>
         </Talent>
 
         <Talent identifier="stayinalive">
