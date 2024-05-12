@@ -122,9 +122,12 @@
           <ReduceAffliction identifier="infection" amount="0.25" />
         </StatusEffect>
 
-        <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="5.0">
-          <Affliction identifier="organdamage" amount="1" />
+        <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
+          <Affliction identifier="drunkweakness" amount="1" />
         </StatusEffect>
+		  <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="20">
+			  <Affliction identifier="drunkweakness" amount="1" />
+		  </StatusEffect>
         <!-- Remove the item when fully used -->
         <StatusEffect type="OnBroken" target="This">
           <Remove />
@@ -494,6 +497,12 @@
           <Affliction identifier="huskinfectionresistance" amount="50" />
           <Affliction identifier="bacterialimmune" amount="50" />
         </StatusEffect>
+		  <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="5">
+			  <Affliction identifier="drunkweakness" amount="5" />
+		  </StatusEffect>
+		  <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="5">
+			  <Affliction identifier="drunkweakness" amount="10" />
+		  </StatusEffect>
         <StatusEffect type="OnUse" target="UseTarget">
           <Conditional entitytype="eq Character" />
           <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
@@ -593,12 +602,12 @@
       <limbposition limb="RightHand" position="224,-160" allowusinglimb="false" />
       <limbposition limb="LeftHand" position="224,-160" allowusinglimb="false" />
       <StatusEffect type="OnActive" target="Character">
-        <reduceaffliction type="damage" strength="0.05" />
-        <reduceaffliction type="indamage" strength="0.05" />
+        <reduceaffliction identifier="psychosis" strength="0.1" />
         <reduceaffliction identifier="bloodloss" strength="0.05" />
-        <reduceaffliction identifier="bleeding" strength="0.05" />
-        <reduceaffliction identifier="nausea" strength="0.05" />
-        <reduceaffliction identifier="drunk" strength="0.05" />
+        <reduceaffliction identifier="nausea" strength="1" />
+        <reduceaffliction identifier="drunk" strength="0.2" />
+		  <reduceaffliction identifier="hallucinating" strength="1" />
+		  <Affliction identifier="resting" amount="2" />
       </StatusEffect>
     </Controller>
     <Upgrade gameversion="0.20.8.0">
@@ -628,6 +637,7 @@
         <reduceaffliction identifier="bleeding" strength="0.05" />
         <reduceaffliction identifier="nausea" strength="0.05" />
         <reduceaffliction identifier="drunk" strength="0.05" />
+		  <Affliction identifier="resting" amount="2" />
       </StatusEffect>
     </Controller>
     <Upgrade gameversion="0.20.8.0">
@@ -650,14 +660,12 @@
       <limbposition limb="RightHand" position="234,-10" allowusinglimb="false" />
       <limbposition limb="LeftHand" position="234,-10" allowusinglimb="false" />
       <StatusEffect type="OnActive" target="Character">
-        <reduceaffliction type="damage" strength="0.05" />
-        <reduceaffliction type="indamage" strength="0.05" />
-        <reduceaffliction identifier="bloodloss" strength="0.05" />
-        <reduceaffliction identifier="bleeding" strength="0.05" />
-        <reduceaffliction identifier="nausea" strength="0.05" />
-        <reduceaffliction identifier="drunk" strength="0.05" />
-        <reduceaffliction identifier="opiatewithdrawal" strength="0.05" />
-        <reduceaffliction identifier="opiateaddiction" strength="0.05" />
+		  <reduceaffliction identifier="psychosis" strength="0.15" />
+		  <reduceaffliction identifier="bloodloss" strength="0.05" />
+		  <reduceaffliction identifier="nausea" strength="1.5" />
+		  <reduceaffliction identifier="drunk" strength="0.3" />
+		  <reduceaffliction identifier="hallucinating" strength="1.5" />
+		  <Affliction identifier="resting" amount="2" />
       </StatusEffect>
     </Controller>
     <Upgrade gameversion="0.20.8.0">
@@ -679,12 +687,12 @@
       <limbposition limb="RightHand" position="234,10" allowusinglimb="false" />
       <limbposition limb="LeftHand" position="234,10" allowusinglimb="false" />
       <StatusEffect type="OnActive" target="Character">
-        <reduceaffliction type="damage" strength="0.05" />
-        <reduceaffliction type="indamage" strength="0.05" />
-        <reduceaffliction identifier="bloodloss" strength="0.05" />
-        <reduceaffliction identifier="bleeding" strength="0.05" />
-        <reduceaffliction identifier="nausea" strength="0.05" />
-        <reduceaffliction identifier="drunk" strength="0.05" />
+		  <reduceaffliction identifier="psychosis" strength="0.1" />
+		  <reduceaffliction identifier="bloodloss" strength="0.05" />
+		  <reduceaffliction identifier="nausea" strength="1" />
+		  <reduceaffliction identifier="drunk" strength="0.2" />
+		  <reduceaffliction identifier="hallucinating" strength="1" />
+		  <Affliction identifier="resting" amount="1.5" />
       </StatusEffect>
     </Controller>
     <Upgrade gameversion="0.20.8.0">
@@ -963,6 +971,56 @@
 		  </MeleeWeapon>
 		  <Projectile characterusable="false" launchimpulse="20.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon"/>
 	  </Item>
-	  
+
+	  <Ethanol name="" identifier="ethanol" category="Medical,Material" maxstacksize="32" maxstacksizecharacterinventory="8" cargocontaineridentifier="chemicalcrate" description="" Tags="smallitem,chem,medical,petfood2" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
+		  <Upgrade gameversion="0.10.0.0" scale="0.5" />
+		  <PreferredContainer primary="sprayer" amount="1" spawnprobability="1"/>
+		  <PreferredContainer secondary="wreckmedcab,abandonedmedcab,piratemedcab" amount="1" spawnprobability="0.2" />
+		  <PreferredContainer secondary="abandonedcrewcab,piratecrewcab" minamount="1" maxamount="2" spawnprobability="0.3" />
+		  <PreferredContainer secondary="crewcab" amount="1" spawnprobability="0.5" notcampaign="true"/>
+		  <PreferredContainer primary="medfabcab" secondary="medcab"/>
+		  <Price baseprice="60" minavailable="6" >
+			  <Price storeidentifier="merchantoutpost" />
+			  <Price storeidentifier="merchantcity" multiplier="0.9" minavailable="8" />
+			  <Price storeidentifier="merchantresearch" multiplier="0.9" minavailable="10" />
+			  <Price storeidentifier="merchantmilitary" multiplier="1.1" />
+			  <Price storeidentifier="merchantmine" multiplier="1.1" />
+			  <Price storeidentifier="merchantclown" minavailable="0" maxavailable="2" />
+		  </Price>
+		  <Fabricate suitablefabricators="vendingmachine" requiredtime="1" requiredmoney="80" fabricationlimitmin="5" fabricationlimitmax="10"/>
+		  <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="256,768,64,64" origin="0.5,0.5" />
+		  <Sprite texture="Content/Items/Medical/Medicines.png" sourcerect="435,452,30,57" depth="0.6" origin="0.5,0.5" />
+		  <Body width="30" height="55" density="20" />
+		  <SuitableTreatment type="infection" suitability="15" />
+		  <SuitableTreatment type="burn" suitability ="-3" />
+		  <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="32,28" holdangle="30" aimangle="120" aimable="false" msg="ItemMsgPickUpSelect">
+			  <StatusEffect type="OnSecondaryUse" target="This" Condition="-30.0"/>
+			  <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true">
+				  <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+			  </StatusEffect>
+			  <!-- When Ethanol is drunk -->
+			  <StatusEffect type="OnSecondaryUse" target="This,UseTarget" delay="10" duration="10" stackable="false">
+				  <Conditional Condition="lte 1" />
+				  <Affliction identifier="drunk" amount="2.0" />
+				  <Affliction identifier="liverdmg" amount="1" />
+				  <Remove />
+			  </StatusEffect>
+			  <StatusEffect type="OnSecondaryUse" target="This" >
+				  <ParticleEmitter particle="waterdrop" particlespersecond="10" scalemin="1" scalemax="1.5" distancemin="20" distancemax="25" anglemin="80" anglemax="100" velocitymin="40" velocitymax="60" copyentityangle="true" lifetimemultiplier="0.10" />
+			  </StatusEffect>
+			  <!-- When Ethanol is used in Health GUI -->
+			  <StatusEffect type="OnUse" target="Limb" duration="10">
+				  <ReduceAffliction identifier="infection" amount="0.8" />
+			  </StatusEffect>
+			  <StatusEffect type="OnUse" target="UseTarget" delay="5" duration="10">
+				  <Affliction identifier="drunk" amount="0.475" />
+			  </StatusEffect>
+			  <StatusEffect type="OnBroken" target="This">
+				  <Remove />
+			  </StatusEffect>
+		  </Holdable>
+		  <AiTarget sightrange="1000" static="true" />
+	  </Ethanol>
+
   </Override>
 </Items>

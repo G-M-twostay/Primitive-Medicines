@@ -178,4 +178,16 @@
   </Effect>
   <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="2,8" sheetelementsize="128,128" color="255,0,127,255" origin="0,0" />
 </Affliction>
+
+	<rested
+  identifier="resting"
+  type="durationincrease"
+  isbuff="false"
+  limbspecific="false"
+  maxstrength="15" AffectMachines="false" HealableInMedicalClinic="false" ShowInHealthScannerThreshold="16">
+		<Effect minstrength="0" maxstrength="15"
+		  strengthchange="-1"
+		  minbuffmultiplier="1"
+		  maxbuffmultiplier="1.1" minspeedmultiplier="1.0" maxspeedmultiplier="0.9"/>
+	</rested>
 </Afflictions>
