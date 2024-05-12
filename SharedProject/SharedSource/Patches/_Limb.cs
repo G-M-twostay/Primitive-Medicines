@@ -28,7 +28,7 @@ namespace PrimMed.Patches
                 const float STEP = 4f;
 
                 var ch = chr.CharacterHealth;
-                float r = Rand.Value(Rand.RandSync.ServerAndClient);
+                float r = Rand.Value(Rand.RandSync.ServerAndClient) * Utils.hostilityMod(WorldHostilityOption.High, -0.0375f);
                 byte dec = 0;
                 foreach (var aff in __result.Afflictions)
                     if (r < rmvBdgProb(aff.Identifier))
