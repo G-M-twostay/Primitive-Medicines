@@ -97,17 +97,22 @@ namespace PrimMed.Patches
                     if (contained is not null)
                     {
                         float posMod = 1 + 0.05f * (posture() - 1);
-                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, (user.HasTalent("deliverysystem") ? 1f : 2f) * posMod, user);
-                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, user.HasTalent("bloodybusiness") ? 1.5f : 2f)
+                        /*                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, (user.HasTalent("deliverysystem") ? 1f : 2f) * posMod, user);
+                                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, user.HasTalent("bloodybusiness") ? 1.5f : 2f)
+                                                {
+                                                    Source = user
+                                                });*/
+                        List<Affliction> toAdd = new List<Affliction>(3) { Utils.PIERCE_PFB.Instantiate((user.HasTalent("deliverysystem") ? 1f : 2f) * posMod, user), new AfflictionBleeding(BLEEDING_PFB, user.HasTalent("bloodybusiness") ? 1.5f : 2f)
                         {
                             Source = user
-                        });
+                        }};
                         if (ReferenceEquals(contained.Prefab, Utils.LIQUIDBAG_PFB))
                         {
                             Entity.Spawner.AddItemToRemoveQueue(contained);
 
                             Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["raw_" + Utils.FindBloodType(affs).Identifier], user.Inventory);
-                            ch.addLimbAffFast(null, Utils.BLOODLOSS_PFB, user.HasTalent("bloodybusiness") ? 25f : 40f, user, true, true);
+                            //ch.addLimbAffFast(null, Utils.BLOODLOSS_PFB, user.HasTalent("bloodybusiness") ? 25f : 40f, user, true, true);
+                            toAdd.Add(Utils.BLOODLOSS_PFB.Instantiate(user.HasTalent("bloodybusiness") ? 25f : 40f, user));
 #if CLIENT
                             SoundPlayer.PlaySound("squelch");
 #endif                        
@@ -118,6 +123,7 @@ namespace PrimMed.Patches
                             contained.ApplyStatusEffects(ActionType.OnUse, 1f, user, useTarget: character);
                             contained.ApplyStatusEffects(ActionType.OnBroken, 1f, user, useTarget: character);
                         }
+                        character.dmgLimbFast(targetLimb, toAdd, user);
                     }
                 }
                 else if (id.StartsWith("raw_") || id.StartsWith("proc_") || id.StartsWith("antibloodloss"))
@@ -200,12 +206,17 @@ namespace PrimMed.Patches
                                         affs.Remove(aff);
                                         break;
                                     }
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 15f * bleedMod * qualMod * patientPainMod * assMod)
+                                Affliction[] toAdd ={new AfflictionBleeding(BLEEDING_PFB, 15f * bleedMod * qualMod * patientPainMod * assMod)
                                 {
                                     Source = user
-                                });
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod * posMod, user);
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.INCISION_PFB, Math.Abs(surgeryReady(minInci)) * inciMod * patientPainMod, user, true, true);
+                                },LAC_PFB.Instantiate(10f * lacMod * qualMod * patientPainMod * assMod * posMod, user) ,Utils.INCISION_PFB.Instantiate(Math.Abs(surgeryReady(minInci)) * inciMod * patientPainMod, user)};
+                                /*                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 15f * bleedMod * qualMod * patientPainMod * assMod)
+                                                                {
+                                                                    Source = user
+                                                                });
+                                                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod * posMod, user);
+                                                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.INCISION_PFB, Math.Abs(surgeryReady(minInci)) * inciMod * patientPainMod, user, true, true);*/
+                                character.dmgLimbFast(targetLimb, toAdd, user, pen: 0.25f, stun: 0.5f);
 #if CLIENT
                                 SoundPlayer.PlaySound("incise");
                                 if (patientPainMod > 1f)
@@ -219,15 +230,25 @@ namespace PrimMed.Patches
                                 var o = organCond(Utils.LUNG_DMG_PFB);
                                 Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["lung"], user.Inventory, o is null ? 100f : Utils.LUNG_DMG_PFB.MaxStrength - o.Strength);
 
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 6f * bleedMod * qualMod * patientPainMod * posMod)
-                                {
-                                    Source = user
-                                });
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 4f * lacMod * qualMod * patientPainMod * posMod, user);
-                                ch.addLimbAffFast(null, new Affs.LungDmg(LUNG_M_PFB, 1f)
-                                {
-                                    Source = user
-                                }, false, true);
+                                /*                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 6f * bleedMod * qualMod * patientPainMod * posMod)
+                                                                {
+                                                                    Source = user
+                                                                });
+                                                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 4f * lacMod * qualMod * patientPainMod * posMod, user);
+                                                                ch.addLimbAffFast(null, new Affs.LungDmg(LUNG_M_PFB, 1f)
+                                                                {
+                                                                    Source = user
+                                                                }, false, true);*/
+                                Affliction[] toAdd =
+                                {new AfflictionBleeding(BLEEDING_PFB, 6f * bleedMod * qualMod * patientPainMod * posMod)
+                                                                {
+                                                                    Source = user
+                                                                },LAC_PFB.Instantiate(4f * lacMod * qualMod * patientPainMod * posMod, user),new Affs.LungDmg(LUNG_M_PFB, 1f)
+                                                                {
+                                                                    Source = user
+                                                                }
+                                };
+                                character.dmgLimbFast(targetLimb, toAdd, user);
 #if CLIENT
                                 SoundPlayer.PlaySound("severed");
                                 if (patientPainMod > 1f)
@@ -245,15 +266,23 @@ namespace PrimMed.Patches
                                 var o = organCond(Utils.LIVER_DMG_PFB);
                                 Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["liver"], user.Inventory, o is null ? 100f : Utils.LIVER_DMG_PFB.MaxStrength - o.Strength);
 
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 5f * bleedMod * qualMod * patientPainMod * posMod)
-                                {
-                                    Source = user
-                                });
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 3f * lacMod * qualMod * patientPainMod * posMod, user);
-                                ch.addLimbAffFast(null, new Affs.LiverDmg(LIVER_M_PFB, 1f)
-                                {
-                                    Source = user
-                                }, false, true);
+                                /*                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 5f * bleedMod * qualMod * patientPainMod * posMod)
+                                                                {
+                                                                    Source = user
+                                                                });
+                                                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 3f * lacMod * qualMod * patientPainMod * posMod, user);
+                                                                ch.addLimbAffFast(null, new Affs.LiverDmg(LIVER_M_PFB, 1f)
+                                                                {
+                                                                    Source = user
+                                                                }, false, true);*/
+                                Affliction[] toAdd = {new AfflictionBleeding(BLEEDING_PFB, 5f * bleedMod * qualMod * patientPainMod * posMod)
+                                                                {
+                                                                    Source = user
+                                                                },LAC_PFB.Instantiate(3f * lacMod * qualMod * patientPainMod * posMod, user),new Affs.LiverDmg(LIVER_M_PFB, 1f)
+                                                                {
+                                                                    Source = user
+                                                                }};
+                                character.dmgLimbFast(targetLimb, toAdd, user);
 #if CLIENT
                                 SoundPlayer.PlaySound("severed");
                                 if (patientPainMod != 1f)
@@ -270,16 +299,24 @@ namespace PrimMed.Patches
                             {
                                 var o = organCond(Utils.HEART_DMG_PFB);
                                 Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["heart"], user.Inventory, o is null ? 100f : Utils.HEART_DMG_PFB.MaxStrength - o.Strength);
-
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 7f * bleedMod * qualMod * patientPainMod * posMod)
-                                {
-                                    Source = user
-                                });
-                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 4f * lacMod * qualMod * patientPainMod * posMod, user);
-                                ch.addLimbAffFast(null, new Affs.HeartDmg(HEART_M_PFB, 1f)
-                                {
-                                    Source = user
-                                }, false, true);
+                                /*
+                                                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 7f * bleedMod * qualMod * patientPainMod * posMod)
+                                                                {
+                                                                    Source = user
+                                                                });
+                                                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 4f * lacMod * qualMod * patientPainMod * posMod, user);
+                                                                ch.addLimbAffFast(null, new Affs.HeartDmg(HEART_M_PFB, 1f)
+                                                                {
+                                                                    Source = user
+                                                                }, false, true);*/
+                                Affliction[] toAdd = {new AfflictionBleeding(BLEEDING_PFB, 7f * bleedMod * qualMod * patientPainMod * posMod)
+                                                                {
+                                                                    Source = user
+                                                                },LAC_PFB.Instantiate(4f * lacMod * qualMod * patientPainMod * posMod, user),new Affs.HeartDmg(HEART_M_PFB, 1f)
+                                                                {
+                                                                    Source = user
+                                                                } };
+                                character.dmgLimbFast(targetLimb, toAdd, user);
 #if CLIENT
                                 SoundPlayer.PlaySound("severed");
                                 if (patientPainMod != 1f)
@@ -300,11 +337,16 @@ namespace PrimMed.Patches
                                         {
                                             Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs["huskstinger"], user.Inventory);
                                             aff.SetStrength(CutStrg);
-                                            ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 15f * bleedMod * qualMod * patientPainMod * assMod * posMod)
+                                            /*                                            ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 15f * bleedMod * qualMod * patientPainMod * assMod * posMod)
+                                                                                        {
+                                                                                            Source = user
+                                                                                        });
+                                                                                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod * posMod, user);*/
+                                            Affliction[] toAdd = {new AfflictionBleeding(BLEEDING_PFB, 15f * bleedMod * qualMod * patientPainMod * assMod * posMod)
                                             {
                                                 Source = user
-                                            });
-                                            ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod * posMod, user);
+                                            },LAC_PFB.Instantiate(10f * lacMod * qualMod * patientPainMod * assMod * posMod, user) };
+                                            character.dmgLimbFast(targetLimb, toAdd, user, stun: 1f);
 #if CLIENT
                                             SoundPlayer.PlaySound("severed");
 #endif
@@ -430,12 +472,17 @@ namespace PrimMed.Patches
                                 {
                                     float bleedMod = (user.HasTalent("bloodybusiness") ? BLEED_MOD_TALENT : BLEED_MOD_NORM) * (rv < r ? 1f : 1.125f);
                                     float lacMod = (user.HasTalent("drsubmarine") ? LAC_MOD_TALENT : LAC_MOD_NORM) * (rv < r ? 1f : 1.125f);
-                                    ch.addLimbAffFast(lh, Utils.SCAR_PFB, 5f * lacMod * qualMod * assMod, user);
-                                    ch.addLimbAffFast(lh, new AfflictionBleeding(BLEEDING_PFB, 7.5f * bleedMod * qualMod * assMod)
-                                    {
-                                        Source = user
-                                    });
-                                    ch.addLimbAffFast(lh, Utils.INCISION_PFB, aff.Strength * posMod, user, true, true);
+                                    /*                                    ch.addLimbAffFast(lh, Utils.SCAR_PFB, 5f * lacMod * qualMod * assMod, user);
+                                                                        ch.addLimbAffFast(lh, new AfflictionBleeding(BLEEDING_PFB, 7.5f * bleedMod * qualMod * assMod)
+                                                                        {
+                                                                            Source = user
+                                                                        });
+                                                                        ch.addLimbAffFast(lh, Utils.INCISION_PFB, aff.Strength * posMod, user, true, true);*/
+                                    Affliction[] toAdd = {Utils.SCAR_PFB.Instantiate(5f * lacMod * qualMod * assMod, user), new AfflictionBleeding(BLEEDING_PFB, 7.5f * bleedMod * qualMod * assMod)
+                                                                        {
+                                                                            Source = user
+                                                                        },Utils.INCISION_PFB.Instantiate( aff.Strength * posMod, user)};
+                                    character.dmgLimbFast(targetLimb, toAdd, user, stun: 0.5f);
                                     affs.Remove(aff);
 #if CLIENT
                                     SoundPlayer.PlaySound("severed");
@@ -470,11 +517,16 @@ namespace PrimMed.Patches
                     }
                     else
                     {
-                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 2f)
+                        /*                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], new AfflictionBleeding(BLEEDING_PFB, 2f)
+                                                {
+                                                    Source = user
+                                                });
+                                                ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, 2f, user, true, true);*/
+                        Affliction[] toAdd = {new AfflictionBleeding(BLEEDING_PFB, 2f)
                         {
                             Source = user
-                        });
-                        ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.PIERCE_PFB, 2f, user, true, true);
+                        },Utils.PIERCE_PFB.Instantiate(2f, user)};
+                        character.dmgLimbFast(targetLimb, toAdd, user, 0.25f);
 #if CLIENT
                         SoundPlayer.PlaySound("poke");
 #endif

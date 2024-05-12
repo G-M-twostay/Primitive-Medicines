@@ -1,6 +1,9 @@
 using Barotrauma;
+using FarseerPhysics;
 using HarmonyLib;
+using Microsoft.Xna.Framework;
 using System.Reflection;
+
 namespace PrimMed
 {
     class AffRegister
@@ -42,11 +45,13 @@ namespace PrimMed
         internal static void addLimbAffFast(this CharacterHealth ch, CharacterHealth.LimbHealth limbh, Affliction newAff, in bool stack = true, in bool canKill = false)
         {
             //no need to check for stun, poison immunity as humans aren't immune to neither.
+            if (ch.Character.Params.Health.ImmunityIdentifiers.Contains(newAff.Identifier))
+                return;
 
             Affliction existing = null;
 
             foreach ((Affliction aff, CharacterHealth.LimbHealth lh) in ch.afflictions)
-                if (lh == limbh && object.ReferenceEquals(aff.Prefab, newAff.Prefab))
+                if (lh == limbh && ReferenceEquals(aff.Prefab, newAff.Prefab))
                 {
                     existing = aff;
                     break;
@@ -86,11 +91,58 @@ namespace PrimMed
                 ch.KillIfOutOfVitality();
             }
         }
-        internal static void reduceAffFast(this CharacterHealth ch, in float totalAmount) => ch.reduceAffFast(ch.matchingAfflictions, totalAmount);
+        //this is addLimbFast that triggers bot aggro if not on player team.
+        internal static AttackResult dmgLimbFast(this Character c, Limb hitLimb, IReadOnlyList<Affliction> affs, Character attacker, in float pen = 1f, in bool sound = true, in float stun = 0f)
+        {
+            if (!c.Removed)
+            {
+                var ch = c.CharacterHealth;
+                void apply(Affliction aff, in bool ck)
+                {
+                    if (aff.Prefab.LimbSpecific)
+                        ch.addLimbAffFast(ch.limbHealths[hitLimb.HealthIndex], aff, canKill: ck);
+                    else
+                        ch.addLimbAffFast(null, aff, canKill: ck);
+                }
+                c.SetStun(stun);
+                Vector2 dir = hitLimb.WorldPosition - c.WorldPosition;
+                Vector2 simPos = hitLimb.SimPosition + ConvertUnits.ToSimUnits(dir);
+                AttackResult attackResult = hitLimb.AddDamage(simPos, affs, sound, penetration: pen, attacker: attacker);
+                if (attacker is not null && c.teamID != attacker.teamID)
+                {
+                    bool wasDead = c.IsDead;
+                    c.OnAttacked?.Invoke(attacker, attackResult);
+                    c.OnAttackedProjSpecific(attacker, attackResult, stun);
+                    if (!wasDead)
+                    {
+                        c.TryAdjustAttackerSkill(attacker, attackResult);
+                    }
+                    c.LastDamage = attackResult;
+                    if (!attacker.Removed)
+                    {
+                        c.AddAttacker(attacker, attackResult.Damage);
+                        c.ApplyStatusEffects(ActionType.OnDamaged, 1f);
+                        hitLimb.ApplyStatusEffects(ActionType.OnDamaged, 1f);
+                    }
+                }
+                for (byte i = 1; i < attackResult.Afflictions.Count; ++i)
+                    apply(attackResult.Afflictions[i], false);
+                apply(attackResult.Afflictions[0], true);
+                return attackResult;
+            }
+            return new AttackResult();
+        }
+        internal static void reduceAffFast(this CharacterHealth ch, in float totalAmount, Character user = null) => ch.reduceAffFast(ch.matchingAfflictions, totalAmount, user);
 
-        internal static void reduceAffFast(this CharacterHealth ch, List<Affliction> matchingAfflictions, float totalAmount)
+        internal static void reduceAffFast(this CharacterHealth ch, List<Affliction> matchingAfflictions, float totalAmount, Character user = null)
         {
             float amount = totalAmount / matchingAfflictions.Count;
+            if (amount > 0f)
+            {
+                var abilityReduceAffliction = new AbilityReduceAffliction(ch.Character, amount);
+                user?.CheckTalents(AbilityEffectType.OnReduceAffliction, abilityReduceAffliction);
+                amount = abilityReduceAffliction.Value;
+            }
             byte active = (byte)matchingAfflictions.Count;
             foreach (var aff in matchingAfflictions)
                 if (aff.Strength < amount)
