@@ -1,6 +1,5 @@
 using Barotrauma;
 using Barotrauma.Items.Components;
-using System.Runtime.CompilerServices;
 namespace PrimMed.Affs
 {
     class Mortal : Affliction
@@ -97,7 +96,7 @@ namespace PrimMed.Affs
                 limbStrengths.Clear();
 
                 var item = ch.Character.Inventory.GetItemInLimbSlot(InvSlotType.OuterClothes);
-                bool hasSuit = item is not null && Unsafe.As<HashSet<Identifier>>(item.GetTags()).IsSupersetOf(new Identifier[] { "deepdiving".ToIdentifier(), "provocative".ToIdentifier() });
+                bool hasSuit = item is not null && item.tags.IsSupersetOf(new Identifier[] { "deepdiving".ToIdentifier(), "human".ToIdentifier() });
                 {//infections
                     Span<float> bdgOffset = stackalloc float[LimbMods.Length];
                     bdgOffset.Clear();
