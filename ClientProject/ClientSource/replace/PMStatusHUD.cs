@@ -6,6 +6,9 @@ namespace PrimMed.Replace
 {
     partial class PMStatusHUD
     {
+        private byte refreshTimer = 0;
+        private float rd = 0f;
+        private const byte MEAN_REFRESH_INTV = 32;
         public override void DrawHUD(SpriteBatch spriteBatch, Character character)
         {
             if (character == null)
@@ -21,6 +24,11 @@ namespace PrimMed.Replace
 
             if (ShowTexts)
             {
+                if (refreshTimer-- == 0)
+                {
+                    refreshTimer = (byte)Rand.Int(MEAN_REFRESH_INTV);
+                    rd = Rand.Value();
+                }
                 Character closestCharacter = null;
                 float closestDist = float.PositiveInfinity;
                 foreach (Character c in visibleCharacters)
@@ -195,7 +203,7 @@ namespace PrimMed.Replace
                             chance *= equipper.GetSkillLevel("medical") / maxSeeSkill;
                             if (equipper.HasTalent("whatastench"))
                                 chance *= 1.125f;
-                            if (Rand.Value(Rand.RandSync.Unsynced) > chance)
+                            if (rd > chance)
                                 continue;
                         }
                     }
