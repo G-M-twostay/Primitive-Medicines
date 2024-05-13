@@ -7,4 +7,5 @@
     <talentdescription.emergencyresponse.mod>You move [movementspeed]% faster, gain [painres]% pain resistance if any crewmember is unconscious.</talentdescription.emergencyresponse.mod>
     <talentdescription.medicaleffectiveness.mod>Medical items are [amount]% more potent when applied to you. You cause no ‖color:gui.red‖[affname]‖end‖ when self-applying syringes.</talentdescription.medicaleffectiveness.mod>
     <talentdescription.seepoison>You're [inc]% better at spotting poisons.</talentdescription.seepoison>
+	<talentdescription.safeitem>[itemname] applied by you cause less side effects.</talentdescription.safeitem>
 </infotexts>

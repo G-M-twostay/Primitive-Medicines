@@ -55,16 +55,29 @@
         <Talent identifier="dontdieonme">
           <Icon texture="Content/UI/TalentsIcons1.png" sheetindex="5,5" sheetelementsize="128,128"/>
           <Description tag="talentdescription.dontdieonme"/>
-
+			<Description tag="talentdescription.safeitem">
+				<Replace tag="[itemname]" value="entityname.liquidoxygenite" color="gui.orange"/>
+			</Description>
           <AbilityGroupEffect abilityeffecttype="None" >
             <Abilities>
               <CharacterAbilityGiveStat stattype="CPRBoost" value="1"/>
             </Abilities>
           </AbilityGroupEffect>
-			<Description tag="talentdescription.unlockrecipe">
-				<Replace tag="[itemname]" value="entityname.gluespear" color="gui.orange"/>
-			</Description>
-			<AddedRecipe itemidentifier="gluespear"/>
+			<AbilityGroupEffect abilityeffecttype="OnApplyTreatment">
+				<Conditions>
+					<AbilityConditionItem identifiers="liquidoxygenite" />
+				</Conditions>
+				<Abilities>
+					<CharacterAbilityApplyStatusEffects>
+						<StatusEffects>
+							<!-- reduce liquid oxygenite side effect -->
+							<StatusEffect tags="medical" type="OnAbility" delay="2" target="UseTarget" duration="5">
+								<Affliction identifier="organdamage" amount="-0.75" />
+							</StatusEffect>
+						</StatusEffects>
+					</CharacterAbilityApplyStatusEffects>
+				</Abilities>
+			</AbilityGroupEffect>
         </Talent>
 
         <Talent identifier="stayinalive">

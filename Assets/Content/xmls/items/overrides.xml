@@ -606,6 +606,7 @@
         <reduceaffliction identifier="bloodloss" strength="0.05" />
         <reduceaffliction identifier="nausea" strength="1" />
         <reduceaffliction identifier="drunk" strength="0.2" />
+		  <reduceaffliction identifier="trauma" strength="0.075" />
 		  <reduceaffliction identifier="hallucinating" strength="1" />
 		  <Affliction identifier="resting" amount="2" />
       </StatusEffect>
@@ -637,6 +638,7 @@
         <reduceaffliction identifier="bleeding" strength="0.05" />
         <reduceaffliction identifier="nausea" strength="0.05" />
         <reduceaffliction identifier="drunk" strength="0.05" />
+		  <reduceaffliction identifier="trauma" strength="0.075" />
 		  <Affliction identifier="resting" amount="2" />
       </StatusEffect>
     </Controller>
@@ -665,6 +667,7 @@
 		  <reduceaffliction identifier="nausea" strength="1.5" />
 		  <reduceaffliction identifier="drunk" strength="0.3" />
 		  <reduceaffliction identifier="hallucinating" strength="1.5" />
+		  <reduceaffliction identifier="trauma" strength="0.15" />
 		  <Affliction identifier="resting" amount="2" />
       </StatusEffect>
     </Controller>
@@ -692,6 +695,7 @@
 		  <reduceaffliction identifier="nausea" strength="1" />
 		  <reduceaffliction identifier="drunk" strength="0.2" />
 		  <reduceaffliction identifier="hallucinating" strength="1" />
+		  <reduceaffliction identifier="trauma" strength="0.075" />
 		  <Affliction identifier="resting" amount="1.5" />
       </StatusEffect>
     </Controller>

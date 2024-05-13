@@ -515,14 +515,14 @@
 		<PreferredContainer primary="armcab" minamount="3" maxamount="6" spawnprobability="1" notcampaign="true" />
 		<PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" minamount="1" maxamount="3" spawnprobability="0.2" />
 		<PreferredContainer primary="secarmcab" />
-		<Price baseprice="11">
-			<Price storeidentifier="merchantcity" minavailable="8" multiplier="1.25" />
-			<Price storeidentifier="merchantmilitary" minavailable="6" multiplier="1.1" />
-			<Price storeidentifier="merchantmine" minavailable="12" multiplier="0.9" />
-			<Price storeidentifier="merchantarmory" minavailable="4" multiplier="1.15" />
+		<Price baseprice="28">
+			<Price storeidentifier="merchantcity" minavailable="6" multiplier="1.15" />
+			<Price storeidentifier="merchantmilitary" minavailable="4" multiplier="1.2" />
+			<Price storeidentifier="merchantmine" minavailable="10" multiplier="0.9" />
+			<Price storeidentifier="merchantarmory" minavailable="2" multiplier="1.25" />
 		</Price>
 		<Deconstruct time="5" />
-		<Fabricate suitablefabricators="fabricator" requiredtime="12" amount="5" requiresrecipe="true">
+		<Fabricate suitablefabricators="fabricator" requiredtime="12" amount="6">
 			<RequiredSkill identifier="weapons" level="10" />
 			<RequiredSkill identifier="mechanical" level="15" />
 			<RequiredSkill identifier="medical" level="25" />
@@ -531,7 +531,7 @@
 			<RequiredItem identifier="deepdiverduck" amount="1" />
 			<RequiredItem identifier="heatpack" mincondition="0.25" usecondition="true"/>
 		</Fabricate>
-		<Fabricate suitablefabricators="fabricator" requiredtime="12" amount="5" requiresrecipe="true">
+		<Fabricate suitablefabricators="fabricator" requiredtime="12" amount="6">
 			<RequiredSkill identifier="weapons" level="10" />
 			<RequiredSkill identifier="mechanical" level="15" />
 			<RequiredSkill identifier="medical" level="20" />
@@ -541,7 +541,7 @@
 			<RequiredItem identifier="incendiumpack" mincondition="0.125" usecondition="true"/>
 		</Fabricate>
 		
-		<Fabricate suitablefabricators="fabricator" requiredtime="12" amount="5" requiresrecipe="true">
+		<Fabricate suitablefabricators="fabricator" requiredtime="12" amount="6">
 			<RequiredSkill identifier="weapons" level="10" />
 			<RequiredSkill identifier="mechanical" level="15" />
 			<RequiredSkill identifier="medical" level="25" />
@@ -551,7 +551,7 @@
 			<RequiredItem identifier="lead" amount="1" />
 			<RequiredItem identifier="heatpack" mincondition="0.25" usecondition="true"/>
 		</Fabricate>
-		<Fabricate suitablefabricators="fabricator" requiredtime="12" amount="5" requiresrecipe="true">
+		<Fabricate suitablefabricators="fabricator" requiredtime="12" amount="6">
 			<RequiredSkill identifier="weapons" level="10" />
 			<RequiredSkill identifier="mechanical" level="15" />
 			<RequiredSkill identifier="medical" level="20" />
@@ -565,7 +565,7 @@
 		<Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="85,368,168,11" depth="0.55" origin="0.5,0.5" />
 		<Body width="160" height="10" density="30" />
 		<Pickable slots="Any" msg="ItemMsgPickUpSelect" />
-		<Rope sourcepullforce="300" targetpullforce="200" projectilepullforce="5" maxlength="1500" snaponcollision="true" spritewidth="3" tile="true" origin="0.05,0.5" targetminmass="10" lerpforces="true" snapanimduration="0.5" ReelSoundPitchSlide="1.0,2.25" MinPullDistance="100">
+		<ConsumeRope sourcepullforce="300" targetpullforce="200" projectilepullforce="5" maxlength="1500" snaponcollision="true" spritewidth="3" tile="true" origin="0.05,0.5" targetminmass="10" lerpforces="true" snapanimduration="0.5" ReelSoundPitchSlide="1.0,2.25" MinPullDistance="100">
 			<Sprite texture="Content/Map/Thalamus/thalamus.png" sourcerect="617,352,174,32" depth="0.57" origin="0.5,0.5" />
 			<SnapSound file="Content/Items/Weapons/HarpoonGun1.ogg" range="500" frequencymultiplier="3.0,4.0"/>
 			<ReelSound file="Content/Items/Weapons/WEAPON_harpoonGunReelLoop.ogg" range="1000" />
@@ -573,9 +573,9 @@
 			<StatusEffect type="OnUse" target="This" Snapped="true" delay="1" checkconditionalalways="true">
 				<Conditional targetitemcomponent="Projectile" IsStuckToTarget="false" />
 			</StatusEffect>
-		</Rope>
+		</ConsumeRope>
 		<Projectile characterusable="false" launchimpulse="4" sticktocharacters="true" sticktoitems="true" sticktostructures="true" sticktodeflective="true" sticktodoors="true" sticktolighttargets="true">
-			<Attack structuredamage="0" itemdamage="5" targetforce="20" severlimbsprobability="0">
+			<Attack structuredamage="0" itemdamage="5" targetforce="15" severlimbsprobability="0">
 				<Affliction identifier="blunttrauma" strength="3" />
 				<Affliction identifier="stun" strength="0.25" />
 			</Attack>
