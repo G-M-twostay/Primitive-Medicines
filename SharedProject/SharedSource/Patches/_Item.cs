@@ -216,7 +216,7 @@ namespace PrimMed.Patches
                                                                 });
                                                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], LAC_PFB, 10f * lacMod * qualMod * patientPainMod * assMod * posMod, user);
                                                                 ch.addLimbAffFast(lhs[targetLimb.HealthIndex], Utils.INCISION_PFB, Math.Abs(surgeryReady(minInci)) * inciMod * patientPainMod, user, true, true);*/
-                                character.dmgLimbFast(targetLimb, toAdd, user, pen: 0.25f, stun: 0.5f);
+                                character.dmgLimbFast(targetLimb, toAdd, user, pen: 1f, stun: 0.5f);
 #if CLIENT
                                 SoundPlayer.PlaySound("incise");
                                 if (patientPainMod > 1f)

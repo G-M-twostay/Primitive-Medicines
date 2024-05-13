@@ -3,6 +3,7 @@ using HarmonyLib;
 using System.Collections.Immutable;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 [assembly: IgnoresAccessChecksTo("BarotraumaCore")]
 [assembly: IgnoresAccessChecksTo("Barotrauma")]
 [assembly: IgnoresAccessChecksTo("DedicatedServer")]
@@ -68,6 +69,55 @@ namespace PrimMed
                 }
             }
         }
+        private static void addNPCItem()
+        {
+            (ContentXElement, float)[] t0Med = { (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"alpha_stim\"/>")), 0.05f), (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"traumafix\"/>")), 0.1f), (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"gamma_stim\"/>")), 0.075f), (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"pacifiedhusk\"/>")), 0.05f) };
+            (ContentXElement, float)[] t1Med = { (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"prednisone\"/>")), 0.1f), (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"Ciclosporin\"/>")), 0.2f) };
+            (ContentXElement, float)[] t2Med = { (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"aspirin\"/>")), 0.2f), (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"antibiotics\"/>")), 0.4f), (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"adrenaline\"/>")), 0.3f) };
+            (ContentXElement, float)[] t3Med = { (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"disinfectant\"/>")), 0.5f), (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"antibloodloss2\"/>")), 0.6f), (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"heatpack\"/>")), 0.35f), (new ContentXElement(CntPkg, XElement.Parse("<Item identifier=\"antibleeding1\"/>")), 0.75f) };
+
+            void copySet(HumanPrefab p, IEnumerable<(ContentXElement, float)> toAdd)
+            {
+                if (p is not null)
+                {
+                    List<(ContentXElement, float)> newSets = new(p.ItemSets.Count);
+                    foreach ((ContentXElement origSet, float origCom) in p.ItemSets)
+                    {
+                        foreach ((ContentXElement it, float com) in toAdd)
+                        {
+                            var newEle = new ContentXElement(CntPkg, new XElement(origSet.Element));
+                            newEle.Add(it);
+                            newSets.Add((newEle, origCom * com));
+                        }
+                    }
+                    p.ItemSets.AddRange(newSets);
+                }
+            }
+            var t = NPCSet.Get("outpostnpcs1", "merchantresearch");
+            copySet(t, t0Med);
+            copySet(t, t1Med);
+            copySet(NPCSet.Get("outpostnpcs1", "researcher"), t0Med);
+            t = NPCSet.Get("outpostnpcs1", "outpostdoctor");
+            copySet(t, t3Med);
+            copySet(t, t2Med);
+            copySet(t, t1Med);
+            copySet(NPCSet.Get("outpostnpcs1", "merchantmedical"), t2Med.Concat(t1Med));
+            copySet(NPCSet.Get("outpostnpcs1", "securitynpccoalition"), t3Med);
+            copySet(NPCSet.Get("outpostnpcs1", "securitynpcseparatists"), t3Med);
+
+            copySet(NPCSet.Get("abandonedoutpostnpcs", "bandit"), t3Med);
+            t = NPCSet.Get("abandonedoutpostnpcs", "bandit_heavy");
+            copySet(t, t3Med);
+            copySet(t, t3Med);
+            t = NPCSet.Get("abandonedoutpostnpcs", "bandit_elite");
+            copySet(t, t3Med);
+            copySet(t, t2Med);
+            copySet(NPCSet.Get("abandonedoutpostnpcs", "banditleader"), t3Med.Concat(t2Med));
+            t = NPCSet.Get("abandonedoutpostnpcs", "banditleader_heavy");
+            copySet(t, t3Med.Concat(t2Med));
+            copySet(t, t3Med);
+            copySet(NPCSet.Get("abandonedoutpostnpcs", "psychoclown"), t3Med);
+        }
         public void Initialize()
         {
             // When your plugin is loading, use this instead of the constructor
@@ -83,6 +133,7 @@ namespace PrimMed
         {
             // After all plugins have loaded
             // Put code that interacts with other plugins here.
+            addNPCItem();
         }
 
         public void PreInitPatching()
