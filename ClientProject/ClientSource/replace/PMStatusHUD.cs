@@ -8,7 +8,7 @@ namespace PrimMed.Replace
     {
         private byte refreshTimer = 0;
         private float rd = 0f;
-        private const byte MEAN_REFRESH_INTV = 32;
+        private const byte MEAN_REFRESH_INTV = 64;
         public override void DrawHUD(SpriteBatch spriteBatch, Character character)
         {
             if (character == null)
