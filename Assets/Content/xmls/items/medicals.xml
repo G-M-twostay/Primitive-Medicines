@@ -88,7 +88,9 @@
       <StatusEffect type="OnSecondaryUse" target="This,Character" Condition="-20.0">
         <Affliction identifier="organdamage" amount="5" />
       </StatusEffect>
-      <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true" />
+		<StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true" >
+			<Sound file="%ModDir%/Sounds/spray.ogg" range="500" />
+		</StatusEffect>
       <StatusEffect tags="medical" type="OnSuccess" target="Limb" duration="30">
         <ReduceAffliction identifier="infection" amount="0.25" />
       </StatusEffect>

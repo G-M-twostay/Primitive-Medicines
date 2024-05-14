@@ -33,6 +33,7 @@
 	<Other file="%ModDir%/Sounds/severed.ogg" />
 	<Other file="%ModDir%/Sounds/blood.ogg" />
 	<Other file="%ModDir%/Sounds/suture.ogg"/>
+	<Other file="%ModDir%/Sounds/spray.ogg"/>
 	<Other file="%ModDir%/Sounds/Voice/scream_male_1.ogg"/>
 	<Other file="%ModDir%/Sounds/Voice/scream_male_2.ogg"/>
 	<Other file="%ModDir%/Sounds/Voice/scream_male_3.ogg"/>
