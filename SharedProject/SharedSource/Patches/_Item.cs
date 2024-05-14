@@ -126,7 +126,7 @@ namespace PrimMed.Patches
                         character.dmgLimbFast(targetLimb, toAdd, user);
                     }
                 }
-                else if (id.StartsWith("raw_") || id.StartsWith("proc_") || id.StartsWith("antibloodloss"))
+                else if (id.StartsWith("raw_") || id.StartsWith("proc_") || id == "antibloodloss2")
                 {
                     if (user.IsPlayer)
                     {
