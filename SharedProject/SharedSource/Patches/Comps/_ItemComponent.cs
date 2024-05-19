@@ -1,48 +1,34 @@
 using Barotrauma;
 using Barotrauma.Items.Components;
 using HarmonyLib;
-using PrimMed.Replace;
-using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 namespace PrimMed.Patches
 {
     [HarmonyPatch(typeof(ItemComponent))]
     static class _ItemComponent
     {
-        private static readonly ContentXElement PierceStatus = new(PMMod.CntPkg, XElement.Parse($"<StatusEffect tags=\"\" type=\"\" target=\"Limb\"  disabledeltatime=\"true\" stack=\"false\">          <Affliction identifier=\"pierce\" amount=\"1\" />        </StatusEffect>"));
+        private static readonly ContentXElement RadItemStatus = new(PMMod.CntPkg, XElement.Parse($"<StatusEffect type=\"\" target=\"NearbyItems\" range=\"\" interval=\"1\" condition=\"\"  disabledeltatime=\"true\" tags=\"bp_rad\" TargetIdentifiers=\"proc_bloodpack,raw_bloodpack,alienblood,organ\"/>"));
 
 
         [HarmonyPostfix]
         [HarmonyPatch(MethodType.Constructor, new Type[] { typeof(Item), typeof(ContentXElement) })]
         public static void PostCtor(ItemComponent __instance, Item item)
         {
-            void LoadStatusEffect(ContentXElement ele, string tag, FastSE.FuncCond cond)
+            foreach ((ActionType at, List<StatusEffect> lse) in __instance.statusEffectLists ?? new Dictionary<ActionType, List<StatusEffect>>(0))
             {
-                ele.SetAttributeValue("tags", tag);
-                ele.SetAttributeValue("type", "OnSuccess");
-                var se = new FastSE(ele, item.Name, cond);
-                __instance.statusEffectLists.addSE(se, tag);
-                ele.SetAttributeValue("type", "OnFailure");
-                se = new FastSE(ele, item.Name, cond);
-                __instance.statusEffectLists.addSE(se, tag);
-            }
-            if (item.HasTag("syringe"))
-            {
-                static bool findPierceStrg(FastSE se, Entity _, IReadOnlyList<ISerializableEntity> targets)
+                byte l = (byte)lse.Count;
+                for (byte i = 0; i < l; ++i)
                 {
-                    float strg = 1.25f;
-                    if (se.user is not null)
+                    var se = lse[i];
+                    Affliction rad = null;
+                    if (se.targetTypes == StatusEffect.TargetType.NearbyCharacters && (rad = se.Afflictions.Find(static aff => aff.Identifier == "radiationsickness")) is not null)
                     {
-                        if (ReferenceEquals(se.user, Unsafe.As<Limb>(targets.FirstOrDefault())?.character))
-                            if (se.user.HasTalent("selfcare"))
-                                return false;
-                        if (se.user.HasTalent("deliverysystem"))
-                            strg = 0.5f;
+                        RadItemStatus.SetAttributeValue("type", at.ToString());
+                        RadItemStatus.SetAttributeValue("range", se.Range.ToString());
+                        RadItemStatus.SetAttributeValue("condition", (Math.Sqrt(rad.Strength) * -1).ToString());
+                        __instance.statusEffectLists.addSE(new StatusEffect(RadItemStatus, item.Name), "bp_rad");
                     }
-                    se.Afflictions[0].SetStrength(strg);
-                    return true;
                 }
-                LoadStatusEffect(PierceStatus, "syringe_pierce", findPierceStrg);
             }
         }
     }

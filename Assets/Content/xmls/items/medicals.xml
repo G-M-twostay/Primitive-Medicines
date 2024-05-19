@@ -275,8 +275,8 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -321,8 +321,8 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -355,8 +355,8 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -399,8 +399,8 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -433,8 +433,8 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-      		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+      		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -478,8 +478,8 @@
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
       <RequiredSkill identifier="medical" level="40" />
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
       </StatusEffect>
@@ -511,8 +511,8 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -555,8 +555,8 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>      
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>      
 		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -589,8 +589,8 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -633,8 +633,8 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -667,8 +667,8 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -711,8 +711,8 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -745,8 +745,8 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -791,8 +791,8 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -825,8 +825,8 @@
     </Price>
     <SkillRequirementHint identifier="medical" level="60" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="60" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />
@@ -871,8 +871,8 @@
     </Deconstruct>
     <SkillRequirementHint identifier="medical" level="40" />
     <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-		<StatusEffect type="OnFire" target="This" Condition="-20" tags="onfire" duration="1" stackable="false" />
-		<StatusEffect type="OnImpact" target="This" Condition="-10" disabledeltatime="true"/>
+		<StatusEffect type="OnFire" target="This" Condition="-10" tags="onfire" duration="1" stackable="false" />
+		<StatusEffect type="OnImpact" target="This" Condition="-5" disabledeltatime="true"/>
 		<RequiredSkill identifier="medical" level="40" />
       <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="%ModDir%/Sounds/pump.ogg" range="500" />

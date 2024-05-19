@@ -131,7 +131,7 @@
         </Quality>
       </Item>
 
-      <Item identifier="coldcrate" category="Medical" tags="crate,allowcleanup" scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_metal_heavy" waterproof="true">
+      <Item identifier="coldcrate" category="Medical" tags="freezer,crate,allowcleanup" scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_metal_heavy" waterproof="true">
         <Deconstruct time="0.5"/>
         <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="0,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
         <Body width="145" height="65" density="25" />
@@ -149,20 +149,55 @@
           <RequiredItem identifier="icepack" amount="1" />
         </Fabricate>
         <ItemContainer capacity="1" maxstacksize="1" slotsperrow="3" hideitems="true" containedstateindicatorslot="0" containedstateindicatorstyle="battery">
-          <Containable items="mobilebattery" />
           <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
-          <StatusEffect type="always" targettype="Contained" TargetSlot="0" Condition="-0.15">
-            <RequiredItem items="organ" type="Contained" />
-          </StatusEffect>
-          <StatusEffect type="Always" target="This" TargetSlot="0" tags="freezed" interval="1" duration="1" setvalue="true" stackable="false">
-            <RequiredItem items="mobilebattery" type="Contained" />
-          </StatusEffect>
+			<Containable items="mobilebattery" >
+				<StatusEffect type="OnContaining" targettype="Contained" TargetSlot="0" Condition="-0.333">
+					<RequiredItem items="organ" type="Contained" />
+				</StatusEffect>
+				<StatusEffect type="OnContaining" target="This" Voltage="1.0" setvalue="true" />
+			</Containable>
           <SubContainer capacity="11" maxstacksize="64">
             <Containable items="organ" />
           </SubContainer>
         </ItemContainer>
-        <Holdable slots="RightHand+LeftHand" holdpos="0,-80" handle1="-20,14" handle2="20,14" aimable="false" msg="ItemMsgPickUpSelect" />
+		  <Holdable slots="RightHand+LeftHand" holdpos="0,-80" handle1="-20,14" handle2="20,14" aimable="false" msg="ItemMsgPickUpSelect" >
+			  <StatusEffect type="onActive" target="Character" SpeedMultiplier="0.75" setvalue="true"/>
+		  </Holdable>
       </Item>
+
+	<Item identifier="coldcrate1" category="Medical" tags="freezer,crate,allowcleanup" scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_metal_heavy" waterproof="true">
+		<Deconstruct time="0.5"/>
+		<Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="0,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
+		<Body width="145" height="65" density="25" />
+		<Deconstruct time="15">
+			<Item identifier="fpgacircuit" amount="1" />
+			<Item identifier="copper" amount="1" />
+			<Item identifier="plastic" amount="1" />
+		</Deconstruct>
+		<Fabricate suitablefabricators="fabricator" requiredtime="30" amount="1">
+			<RequiredSkill identifier="mechanical" level="20"/>
+			<RequiredSkill identifier="electrical" level="60" />
+			<RequiredItem identifier="fulgurium" amount="1" />
+			<RequiredItem identifier="coldcrate" />
+			<RequiredItem identifier="aluminium" amount="1" />
+			<RequiredItem identifier="copper" amount="2" />
+		</Fabricate>
+		<ItemContainer capacity="1" maxstacksize="1" slotsperrow="3" hideitems="true" containedstateindicatorslot="0" containedstateindicatorstyle="battery">
+			<Containable items="reactorfuel" >
+				<StatusEffect type="OnContaining" targettype="Contained" TargetSlot="0" Condition="-0.1">
+					<RequiredItem items="organ" type="Contained" />
+				</StatusEffect>
+				<StatusEffect type="OnContaining" target="This" Voltage="1.0" setvalue="true" />
+			</Containable>
+			<SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="192,448,64,64" origin="0.5,0.5" />
+			<SubContainer capacity="11" maxstacksize="64">
+				<Containable items="organ" />
+			</SubContainer>
+		</ItemContainer>
+		<Holdable slots="RightHand+LeftHand" holdpos="0,-80" handle1="-20,14" handle2="20,14" aimable="false" msg="ItemMsgPickUpSelect" >
+			<StatusEffect type="onActive" target="Character" SpeedMultiplier="0.5" setvalue="true"/>
+		</Holdable>
+	</Item>
       
       <Item identifier="scalpel" category="Weapon" Tags="smallitem,weapon,medicaltool" cargocontaineridentifier="metalcrate" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
         <PreferredContainer secondary="wreckarmcab,abandonedarmcab" amount="1" spawnprobability="0.25" />

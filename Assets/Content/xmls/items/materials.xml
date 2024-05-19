@@ -209,9 +209,10 @@
       <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="2,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
       <Body width="65" height="40" density="50" />
       <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-        <StatusEffect type="Always" target="This" Condition="-0.5" stackable="false" >
-          <Conditional HasStatusTag="! freezed" targetcontainer="true" />
-        </StatusEffect>
+		  <StatusEffect type="Always" target="This" Condition="-0.5" stackable="false" interval="1" disabledeltatime="true" >
+			  <Conditional hastag="! freezer" targetcontainer="true" />
+			  <Conditional voltage="lte 0" targetcontainer="true" />
+		  </StatusEffect>
         <StatusEffect type="OnFire" target="This" Condition="-2.5" />
         <StatusEffect type="InWater" target="This" Condition="-5" />
         <StatusEffect type="OnImpact" target="This" Condition="-20" />
@@ -231,9 +232,10 @@
       <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="1,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
       <Body width="65" height="40" density="50" />
       <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-        <StatusEffect type="Always" target="This" Condition="-0.5" stackable="false" >
-          <Conditional HasStatusTag="! freezed" targetcontainer="true" />
-        </StatusEffect>
+		  <StatusEffect type="Always" target="This" Condition="-0.5" stackable="false" interval="1" disabledeltatime="true" >
+			  <Conditional hastag="! freezer" targetcontainer="true" />
+			  <Conditional voltage="lte 0" targetcontainer="true" />
+		  </StatusEffect>
         <StatusEffect type="OnFire" target="This" Condition="-2.5" />
         <StatusEffect type="InWater" target="This" Condition="-5" />
         <StatusEffect type="OnImpact" target="This" Condition="-20" />
@@ -253,9 +255,10 @@
       <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sheetindex="3,4" sheetelementsize="128,128" depth="0.6" origin="0.5,0.5" />
       <Body width="65" height="40" density="50" />
       <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-        <StatusEffect type="Always" target="This" Condition="-0.5" stackable="false" >
-          <Conditional HasStatusTag="! freezed" targetcontainer="true" />
-        </StatusEffect>
+		  <StatusEffect type="Always" target="This" Condition="-0.5" stackable="false" interval="1" disabledeltatime="true" >
+			  <Conditional hastag="! freezer" targetcontainer="true" />
+			  <Conditional voltage="lte 0" targetcontainer="true" />
+		  </StatusEffect>
         <StatusEffect type="OnFire" target="This" Condition="-2.5" />
         <StatusEffect type="InWater" target="This" Condition="-5" />
         <StatusEffect type="OnImpact" target="This" Condition="-20" />

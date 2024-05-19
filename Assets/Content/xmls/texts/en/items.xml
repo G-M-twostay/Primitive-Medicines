@@ -125,6 +125,9 @@
     <entityname.coldcrate>Refrigerated Crate</entityname.coldcrate>
     <entitydescription.coldcrate>Refrigerates contained items on demand when powered.</entitydescription.coldcrate>
 
+	<entityname.coldcrate1>Nuclear Powered Refrigerated Crate</entityname.coldcrate1>
+	<entitydescription.coldcrate1>Nuclear powered Refrigerated Crate utilizing fulgurium based thermoelectric cooling device.</entitydescription.coldcrate1>
+
     <entityname.anestheticgas0>Nitrous oxide</entityname.anestheticgas0>
     <entitydescription.anestheticgas0>A tank of Nitrous oxide, a weak inhaled anaesthetic.</entitydescription.anestheticgas0>
 
