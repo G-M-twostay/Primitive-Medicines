@@ -1107,7 +1107,7 @@
     <SkillRequirementHint identifier="medical" level="30" />
   </Item>
 
-  <Item identifier="aspirin" category="Medical" maxstacksize="8" Tags="smallitem,medical,syringe" allowasextracargo="true" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
+  <Item identifier="aspirin" category="Medical" maxstacksize="8" Tags="smallitem,medical" allowasextracargo="true" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
     <PreferredContainer primary="medcab"/>
     <Price baseprice="500">
       <Price storeidentifier="merchantcity" multiplier="1.1" minamount="1" maxamount="3"/>
@@ -1127,36 +1127,27 @@
     <Deconstruct time="20">
       <Item identifier="opium" />
     </Deconstruct>
-    <InventoryIcon texture="Content/Items/Medical/Medicines.png" sheetindex="5,0" sheetelementsize="37,69" origin="0.5,0.5" />
-    <Sprite texture="Content/Items/Medical/Medicines.png" sheetindex="5,0" sheetelementsize="37,69" depth="0.6" origin="0.5,0.5" />
-    <Body width="35" height="65" density="10.2" waterdragcoefficient="1"/>
-    <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
-      <RequiredSkill identifier="medical" level="35" />
-      <StatusEffect type="OnSuccess" target="This" Condition="-100.0" setvalue="true"/>
-      <StatusEffect type="OnFailure" target="This" Condition="-100.0" setvalue="true"/>
-      <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="5">
+	  <Sprite texture="Content/Items/Materials/CraftingElements1.png" sourcerect="196,176,23,42" depth="0.55" origin="0.5,0.5" />
+	  <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sheetindex="4,4" sheetelementsize="64,64" origin="0.5,0.5" />
+	  <Body width="35" height="65" density="10.2" waterdragcoefficient="1"/>
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" msg="ItemMsgPickUpSelect">
+		<StatusEffect type="OnSecondaryUse" target="This" Condition="-25.0" />
+		<StatusEffect type="OnSecondaryUse" target="This,Character" disabledeltatime="true">
+			<Conditional Condition="lte 1" />
+			<Use/>
+		</StatusEffect>
+      <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true"/>
+      <StatusEffect tags="medical" type="OnUse" target="UseTarget" duration="5">
         <Affliction identifier="asprin" amount="9" />
       </StatusEffect>
-      <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="5">
-        <Affliction identifier="asprin" amount="5" />
-      </StatusEffect>
-      <StatusEffect type="OnSuccess" target="UseTarget">
-        <Conditional entitytype="eq Character"/>
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-      </StatusEffect>
-      <StatusEffect type="OnFailure" target="UseTarget">
-        <Conditional entitytype="eq Character"/>
-        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-      </StatusEffect>
-      <StatusEffect type="OnImpact" target="UseTarget" multiplyafflictionsbymaxvitality="true" AllowWhenBroken="true">
-        <Affliction identifier="stun" amount="0.1" />
-      </StatusEffect>
+		<StatusEffect type="OnUse" target="UseTarget">
+			<Conditional entitytype="eq Character"/>
+			<Sound file="%ModDir%/Sounds/ointment.ogg" range="500" />
+		</StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
       </StatusEffect>
-    </MeleeWeapon>
-    <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon"/>
-    <SkillRequirementHint identifier="medical" level="35" />
+    </Holdable>
   </Item>
 
   <Item identifier="traumafix" category="Medical" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,x1,medical,syringe" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
@@ -1401,6 +1392,9 @@
       <StatusEffect tags="Medical" type="OnUse" target="UseTarget" disabledeltatime="true">
         <Affliction identifier="bedsidemanner" amount="600" />
       </StatusEffect>
+		<StatusEffect tags="Medical" type="OnUse" target="UseTarget" interval="5" duration="120" disabledeltatime="true">
+			<ReduceAffliction type="organdmg" amount="0.125" />
+		</StatusEffect>
       <StatusEffect type="OnUse" target="UseTarget">
         <Conditional entitytype="eq Character"/>
         <Sound file="%ModDir%/Sounds/ointment.ogg" range="500" />
