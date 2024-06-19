@@ -21,6 +21,12 @@ namespace PrimMed.Patches
             float mod;
             switch (statType)
             {
+                case StatTypes.PropulsionSpeed:
+                    {
+                        Limb torso = __instance.Character.AnimController.GetLimb(LimbType.Torso);
+                        mod = Utils.getLimbPain(torso, __instance) * 0.125f;
+                    }
+                    break;
                 case StatTypes.RepairToolDeattachTimeMultiplier:
                 case StatTypes.RepairToolStructureDamageMultiplier:
                 case StatTypes.RepairToolStructureRepairMultiplier:
@@ -48,6 +54,7 @@ namespace PrimMed.Patches
                         mod = Math.Max(0f, Utils.getLimbPain(leftArm, __instance) + Utils.getLimbPain(rightArm, __instance) - 10f) / 2f;
                     }
                     break;
+                case StatTypes.ExperienceGainMultiplier:
                 case StatTypes.SkillGainSpeed:
                     {
                         Limb head = __instance.Character.AnimController.GetLimb(LimbType.Head);
