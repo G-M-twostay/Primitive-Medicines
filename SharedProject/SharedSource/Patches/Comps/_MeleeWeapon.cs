@@ -35,37 +35,37 @@ namespace PrimMed.Patches
             }
             if (item.Prefab.Identifier.StartsWith("antibleeding"))
             {
-                static float calcMod(Character u) => u.HasTalent("medicalexpertise") ? Affs.Bandaged.TALENT_MOD : 1f;
+                static float calcMod(Character u) => u is not null && u.HasTalent("medicalexpertise") ? Affs.Bandaged.TALENT_MOD : 1f;
                 switch (item.Prefab.Identifier[12])
                 {
                     case '1':
                         {
-                            static bool belowTH(FastSE se, Entity _, IReadOnlyList<ISerializableEntity> targets)
+                            static bool belowTH1(FastSE se, Entity _, IReadOnlyList<ISerializableEntity> targets)
                             {
                                 Limb l = Unsafe.As<Limb>(targets[0]);
-                                return getLimbBdgStrg(l.character.CharacterHealth, l) < 6f * calcMod(Unsafe.As<Character>(se.user));
+                                return getLimbBdgStrg(l.character.CharacterHealth, l) < 6f * calcMod(se.user);
                             }
-                            LoadStatusEffect(bdgSETemp, 2f, belowTH);
+                            LoadStatusEffect(bdgSETemp, 2f, belowTH1);
                         }
                         break;
                     case '2':
                         {
-                            static bool belowTH(FastSE se, Entity _, IReadOnlyList<ISerializableEntity> targets)
+                            static bool belowTH2(FastSE se, Entity _, IReadOnlyList<ISerializableEntity> targets)
                             {
                                 Limb l = Unsafe.As<Limb>(targets[0]);
-                                return getLimbBdgStrg(l.character.CharacterHealth, l) < 12f * calcMod(Unsafe.As<Character>(se.user));
+                                return getLimbBdgStrg(l.character.CharacterHealth, l) < 12f * calcMod(se.user);
                             }
-                            LoadStatusEffect(bdgSETemp, 4f, belowTH);
+                            LoadStatusEffect(bdgSETemp, 4f, belowTH2);
                         }
                         break;
                     case '3':
                         {
-                            static bool belowTH(FastSE se, Entity _, IReadOnlyList<ISerializableEntity> targets)
+                            static bool belowTH3(FastSE se, Entity _, IReadOnlyList<ISerializableEntity> targets)
                             {
                                 Limb l = Unsafe.As<Limb>(targets[0]);
-                                return getLimbBdgStrg(l.character.CharacterHealth, l) < 24f * calcMod(Unsafe.As<Character>(se.user));
+                                return getLimbBdgStrg(l.character.CharacterHealth, l) < 24f * calcMod(se.user);
                             }
-                            LoadStatusEffect(bdgSETemp, 8f, belowTH);
+                            LoadStatusEffect(bdgSETemp, 8f, belowTH3);
                         }
                         break;
                 }
